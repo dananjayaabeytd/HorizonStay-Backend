@@ -31,6 +31,11 @@ public class Booking {
     private float discount;
     private float payableAmount;
 
+    @OneToMany(mappedBy = "booking", cascade = CascadeType.ALL)
+    private List<BookingItem> items;
 
+    @ManyToOne(optional = true)
+    @JoinColumn(name = "system_user_id")
+    private SystemUser systemUser;
 
 }

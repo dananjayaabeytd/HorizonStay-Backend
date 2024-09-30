@@ -1,6 +1,5 @@
 package com.hotel.horizonstay.entity;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 
@@ -25,6 +24,9 @@ public class HotelContract {
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL)
+    private List<Season> seasons= new ArrayList<>();
 
 }
+
+
