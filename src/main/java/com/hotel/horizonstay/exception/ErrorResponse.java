@@ -5,7 +5,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 public class ErrorResponse {
-    public ResponseEntity<HotelDTO> createHotelErrorResponse(String hotelNotFound, HttpStatus httpStatus) {
-        return null;
+    // Helper method to create an error response
+    public ResponseEntity<HotelDTO> createHotelErrorResponse(String message, HttpStatus status)
+    {
+        HotelDTO errorResponse = new HotelDTO();
+        errorResponse.setStatusCode(status.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(status).body(errorResponse);
     }
 }
