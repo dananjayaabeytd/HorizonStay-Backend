@@ -34,5 +34,13 @@ public class Season {
     @OneToMany(mappedBy = "season", cascade = CascadeType.ALL)
     private List<Markup> markups;
 
+    // Method to get the highest markup percentage
+    public float getHighestMarkupPercentage() {
+        return markups.stream()
+                .map(Markup::getPercentage)
+                .max(Float::compare)
+                .orElse(0.0f);
+    }
+
 }
 
