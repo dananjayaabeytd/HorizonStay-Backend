@@ -27,4 +27,9 @@ public class Hotel {
     @ElementCollection
     private List<String> hotelImages;
 
+    @JsonIgnore
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL)
+    private List<HotelContract> contracts = new ArrayList<>();
+
+
 }
