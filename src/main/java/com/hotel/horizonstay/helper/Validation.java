@@ -1,5 +1,6 @@
 package com.hotel.horizonstay.helper;
 
+import com.hotel.horizonstay.dto.HotelContractDTO;
 import com.hotel.horizonstay.dto.HotelDTO;
 import com.hotel.horizonstay.dto.UserDTO;
 
@@ -26,5 +27,9 @@ public class Validation {
                 user.getRole() == null || user.getRole().isEmpty() ||
                 user.getImage() == null || user.getImage().isEmpty() ||
                 user.getNIC() == null || user.getNIC().isEmpty();
+    }
+
+    public boolean isInvalidContractData(HotelContractDTO contractDTO) {
+    return false;
     }
 }
