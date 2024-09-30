@@ -1,6 +1,7 @@
-package com.hotel.horizonstay.exception;
+package com.hotel.horizonstay.helper;
 
 import com.hotel.horizonstay.dto.HotelDTO;
+import com.hotel.horizonstay.dto.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
@@ -12,5 +13,9 @@ public class ErrorResponse {
         errorResponse.setStatusCode(status.value());
         errorResponse.setMessage(message);
         return ResponseEntity.status(status).body(errorResponse);
+    }
+
+    public ResponseEntity<UserDTO> createErrorResponse(String requestBodyIsNull, HttpStatus httpStatus) {
+        return null;
     }
 }

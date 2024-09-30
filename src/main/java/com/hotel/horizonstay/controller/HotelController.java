@@ -1,8 +1,8 @@
 package com.hotel.horizonstay.controller;
 
 import com.hotel.horizonstay.dto.HotelDTO;
-import com.hotel.horizonstay.exception.ErrorResponse;
-import com.hotel.horizonstay.exception.Validation;
+import com.hotel.horizonstay.helper.ErrorResponse;
+import com.hotel.horizonstay.helper.Validation;
 import com.hotel.horizonstay.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

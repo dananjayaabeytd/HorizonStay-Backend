@@ -1,6 +1,7 @@
-package com.hotel.horizonstay.exception;
+package com.hotel.horizonstay.helper;
 
 import com.hotel.horizonstay.dto.HotelDTO;
+import com.hotel.horizonstay.dto.UserDTO;
 
 public class Validation {
 
@@ -13,5 +14,9 @@ public class Validation {
                 hotelDTO.getHotelCity() == null || hotelDTO.getHotelCity().isEmpty() ||
                 hotelDTO.getHotelCountry() == null || hotelDTO.getHotelCountry().isEmpty() ||
                 hotelDTO.getHotelRating() == null || hotelDTO.getHotelImages().isEmpty();
+    }
+
+    public boolean isInvalidUserData(UserDTO reg) {
+        return false;
     }
 }
