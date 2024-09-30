@@ -1,14 +1,12 @@
 package com.hotel.horizonstay.helper;
 
-import com.hotel.horizonstay.dto.HotelContractDTO;
-import com.hotel.horizonstay.dto.HotelDTO;
-import com.hotel.horizonstay.dto.SearchResultDTO;
-import com.hotel.horizonstay.dto.UserDTO;
+import com.hotel.horizonstay.dto.*;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
 import java.util.Collections;
 import java.util.List;
+import java.util.Map;
 
 public class ErrorResponse {
     // Helper method to create an error response
@@ -56,5 +54,13 @@ public class ErrorResponse {
         errorResponse.setMessage(message);
 
         return ResponseEntity.status(status).body(Collections.singletonList(errorResponse));
+    }
+
+    public ResponseEntity<Map<String, Object>> createErrorResponseMap(String requestBodyIsNull, HttpStatus httpStatus) {
+        return null;
+    }
+
+    public ResponseEntity<BookingDTO> createErrorResponseBooking(String message, HttpStatus httpStatus) {
+        return null;
     }
 }
