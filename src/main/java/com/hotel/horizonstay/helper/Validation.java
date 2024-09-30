@@ -29,7 +29,12 @@ public class Validation {
                 user.getNIC() == null || user.getNIC().isEmpty();
     }
 
-    public boolean isInvalidContractData(HotelContractDTO contractDTO) {
-    return false;
+    // Helper method to validate contract data
+    public boolean isInvalidContractData(HotelContractDTO contractDTO)
+    {
+        return contractDTO.getValidFrom() == null || contractDTO.getValidTo() == null ||
+                contractDTO.getCancellationPolicy() == null || contractDTO.getCancellationPolicy().isEmpty() ||
+                contractDTO.getPaymentPolicy() == null || contractDTO.getPaymentPolicy().isEmpty() ||
+                contractDTO.getSeasons() == null || contractDTO.getSeasons().isEmpty();
     }
 }
