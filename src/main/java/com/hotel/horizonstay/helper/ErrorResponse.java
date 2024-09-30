@@ -7,6 +7,7 @@ import com.hotel.horizonstay.dto.UserDTO;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+import java.util.Collections;
 import java.util.List;
 
 public class ErrorResponse {
@@ -28,15 +29,32 @@ public class ErrorResponse {
         return ResponseEntity.status(status).body(errorResponse);
     }
 
-    public ResponseEntity<HotelContractDTO> createContractErrorResponse(String message, HttpStatus httpStatus) {
-        return null;
+    //Helper method to create an error response
+    public ResponseEntity<HotelContractDTO> createContractErrorResponse(String message, HttpStatus status)
+    {
+        HotelContractDTO errorResponse = new HotelContractDTO();
+        errorResponse.setStatusCode(status.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(status).body(errorResponse);
     }
 
-    public ResponseEntity<List<SearchResultDTO>> createSearchErrorResponseList(String message, HttpStatus httpStatus) {
-        return null;
+    //Helper method to create an error response for List
+    public ResponseEntity<List<SearchResultDTO>> createSearchErrorResponseList(String message, HttpStatus status)
+    {
+        SearchResultDTO errorResponse = new SearchResultDTO();
+        errorResponse.setStatusCode(status.value());
+        errorResponse.setMessage(message);
+
+        return ResponseEntity.status(status).body(Collections.singletonList(errorResponse));
     }
 
-    public ResponseEntity<List<HotelContractDTO>> createErrorResponseList(String errorOccurredWhileFetchingContracts, HttpStatus httpStatus) {
-    return null;
+    //Helper method to create an error response for List
+    public ResponseEntity<List<HotelContractDTO>> createErrorResponseList(String message, HttpStatus status)
+    {
+        HotelContractDTO errorResponse = new HotelContractDTO();
+        errorResponse.setStatusCode(status.value());
+        errorResponse.setMessage(message);
+
+        return ResponseEntity.status(status).body(Collections.singletonList(errorResponse));
     }
 }
