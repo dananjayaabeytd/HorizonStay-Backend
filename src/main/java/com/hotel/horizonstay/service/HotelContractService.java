@@ -14,26 +14,26 @@ public class HotelContractService {
     }
 
     public List<HotelContractDTO> getContractsByHotelId(Long hotelID) {
-    return null;
+        return null;
     }
 
     public HotelContractDTO getContractById(Long contractID) {
-    return null;
+        return null;
     }
 
     public HotelContractDTO addHotelContract(Long hotelID, HotelContractDTO contractDTO) {
-    return null;
+        return null;
     }
 
     public HotelContractDTO updateContract(Long contractID, HotelContractDTO contractDTO) {
-    return null;
+        return null;
     }
 
     public List<SearchResultDTO> searchHotelContracts(String location, String checkInDate, String checkOutDate, int adults, int children) {
-    return null;
+        return null;
     }
 
     public Map<String, Float> calculatePayableAmount(CalculationDTO bookingRequest) {
-    return null;
+        return null;
     }
 }
