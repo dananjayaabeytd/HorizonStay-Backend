@@ -16,7 +16,15 @@ public class Validation {
                 hotelDTO.getHotelRating() == null || hotelDTO.getHotelImages().isEmpty();
     }
 
-    public boolean isInvalidUserData(UserDTO reg) {
-        return false;
+    // Helper method to validate user data
+    public boolean isInvalidUserData(UserDTO user)
+    {
+        return user.getName() == null || user.getName().isEmpty() ||
+                user.getEmail() == null || user.getEmail().isEmpty() ||
+                user.getAddress() == null || user.getAddress().isEmpty() ||
+                user.getPassword() == null || user.getPassword().isEmpty() ||
+                user.getRole() == null || user.getRole().isEmpty() ||
+                user.getImage() == null || user.getImage().isEmpty() ||
+                user.getNIC() == null || user.getNIC().isEmpty();
     }
 }

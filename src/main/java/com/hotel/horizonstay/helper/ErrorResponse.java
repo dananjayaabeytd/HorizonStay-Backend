@@ -15,7 +15,12 @@ public class ErrorResponse {
         return ResponseEntity.status(status).body(errorResponse);
     }
 
-    public ResponseEntity<UserDTO> createErrorResponse(String requestBodyIsNull, HttpStatus httpStatus) {
-        return null;
+    // Helper method to create an error response
+    public ResponseEntity<UserDTO> createErrorResponse(String message, HttpStatus status)
+    {
+        UserDTO errorResponse = new UserDTO();
+        errorResponse.setStatusCode(status.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(status).body(errorResponse);
     }
 }
