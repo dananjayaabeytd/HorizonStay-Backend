@@ -56,11 +56,16 @@ public class ErrorResponse {
         return ResponseEntity.status(status).body(Collections.singletonList(errorResponse));
     }
 
-    public ResponseEntity<Map<String, Object>> createErrorResponseMap(String requestBodyIsNull, HttpStatus httpStatus) {
-        return null;
+    // Helper method to create an error response for Map
+    public ResponseEntity<Map<String, Object>> createErrorResponseMap(String message, HttpStatus status)
+    {
+        return ResponseEntity.status(status).body(Collections.singletonMap("error", message));
     }
 
-    public ResponseEntity<BookingDTO> createErrorResponseBooking(String message, HttpStatus httpStatus) {
-        return null;
+    public ResponseEntity<BookingDTO> createErrorResponseBooking(String message, HttpStatus status) {
+        BookingDTO errorResponse = new BookingDTO();
+        errorResponse.setStatusCode(status.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(status).body(errorResponse);
     }
 }
