@@ -2,12 +2,20 @@ package com.hotel.horizonstay.controller;
 
 import com.hotel.horizonstay.dto.HotelDTO;
 import com.hotel.horizonstay.helper.ErrorResponse;
+import com.hotel.horizonstay.helper.FileUploadUtil;
 import com.hotel.horizonstay.helper.Validation;
 import com.hotel.horizonstay.service.HotelService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping
@@ -59,8 +67,8 @@ public class HotelController {
     }
 
     // Endpoint to add a new hotel
-    @PostMapping("admin/hotel/add")
-    public ResponseEntity<HotelDTO> addHotel(@RequestBody HotelDTO hotelDTO)
+    @PostMapping(value = "admin/hotel/add",consumes= MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<HotelDTO> addHotel(@RequestPart("hotel") HotelDTO hotelDTO,@RequestParam("files") MultipartFile[] files)
     {
         if (hotelDTO == null)
         {
@@ -70,8 +78,32 @@ public class HotelController {
         {
             return error.createHotelErrorResponse("Invalid hotel data", HttpStatus.BAD_REQUEST);
         }
+
+        // Directory where the files will be stored
+        String uploadDir = "/HotelImages/";
+
         try
         {
+            // Save each file and get the filenames
+            List<String> fileNames = Arrays.stream(files)
+                    .map(file -> {
+                        try {
+                            // Get a clean file name
+                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+                            // Save the file to the upload directory
+                            FileUploadUtil.saveFile(uploadDir, fileName, file);
+                            return fileName; // Return the filename after saving
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
+                    .toList();
+
+            hotelDTO.setHotelImages(fileNames);
+
+
             HotelDTO addedHotel = hotelService.addHotel(hotelDTO);
             return ResponseEntity.status(HttpStatus.CREATED).body(addedHotel);
         }
