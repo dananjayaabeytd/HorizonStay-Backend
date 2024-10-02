@@ -130,14 +130,14 @@ public class UserController {
     @PutMapping("/admin/update/{userId}")
     public ResponseEntity<UserDTO> updateUser(@PathVariable Integer userId, @RequestBody UserDTO user)
     {
-        if (user == null)
-        {
-            return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
-        }
-        if (validation.isInvalidUserData(user))
-        {
-            return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
-        }
+//        if (user == null)
+//        {
+//            return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
+//        }
+//        if (validation.isInvalidUserData(user))
+//        {
+//            return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
+//        }
 
         try
         {
