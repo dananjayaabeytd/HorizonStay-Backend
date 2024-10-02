@@ -3,14 +3,23 @@ package com.hotel.horizonstay.controller;
 import com.hotel.horizonstay.dto.UserDTO;
 import com.hotel.horizonstay.exception.UserNotFoundException;
 import com.hotel.horizonstay.helper.ErrorResponse;
+import com.hotel.horizonstay.helper.FileUploadUtil;
 import com.hotel.horizonstay.helper.Validation;
 import com.hotel.horizonstay.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
+
+import java.util.Arrays;
+import java.util.List;
+import java.util.Objects;
+import java.util.stream.Collectors;
 
 @RestController
 public class UserController {
@@ -23,28 +32,87 @@ public class UserController {
 
 
     // Endpoint for user registration
-    @PostMapping("/auth/register")
-    public ResponseEntity<UserDTO> register(@RequestBody UserDTO reg)
-    {
-        if (reg == null)
-        {
+//    @PostMapping("/auth/register")
+//    public ResponseEntity<UserDTO> register(@RequestParam("files") MultipartFile[] files, @RequestBody UserDTO reg)
+//    {
+//
+//        String uploadDir = "/profileImages/";
+//        Arrays.stream(files).forEach(file -> {
+//            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+//            System.out.println(fileName);
+//            try{
+//                FileUploadUtil.saveFile(uploadDir, fileName, file);
+//            }catch (Exception e){
+//                e.printStackTrace();
+//            }
+//        });
+//
+//
+//        if (reg == null)
+//        {
+//            return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
+//        }
+//        if (validation.isInvalidUserData(reg))
+//        {
+//            return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
+//        }
+//
+//        try
+//        {
+//            UserDTO response = userService.register(reg);
+//            return new ResponseEntity<>(response, HttpStatus.OK);
+//        }
+//        catch (Exception e)
+//        {
+//            return error.createErrorResponse("Error occurred while registering user", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+    @PostMapping(value = "/auth/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<UserDTO> register(
+            @RequestParam("files") MultipartFile[] files,
+            @RequestPart("user") UserDTO reg) {
+
+        // Validate the user input
+        if (reg == null) {
             return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
         }
-        if (validation.isInvalidUserData(reg))
-        {
+        if (validation.isInvalidUserData(reg)) {
             return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
         }
 
-        try
-        {
+        // Directory where the files will be stored
+        String uploadDir = "/profileImages/";
+
+        try {
+
+            // Save each file and get the filenames
+            List<String> fileNames = Arrays.stream(files)
+                    .map(file -> {
+                        try {
+                            // Get a clean file name
+                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+                            // Save the file to the upload directory
+                            FileUploadUtil.saveFile(uploadDir, fileName, file);
+                            return fileName; // Return the filename after saving
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
+                    .toList();
+
+            reg.setImage(fileNames.get(0)); // Set the first image as the profile image
+
+            // Register the user using the service layer
             UserDTO response = userService.register(reg);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             return error.createErrorResponse("Error occurred while registering user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     // Endpoint for user login
     @PostMapping("/auth/login")
