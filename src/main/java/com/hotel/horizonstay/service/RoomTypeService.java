@@ -26,6 +26,11 @@ public class RoomTypeService {
         if (seasonOptional.isPresent()) {
             RoomType roomType = new RoomType();
             // Set fields from roomTypeDTO to roomType
+            roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
+            roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());
+            roomType.setMaxNumberOfPersons(roomTypeDTO.getMaxNumberOfPersons());
+            roomType.setPrice(roomTypeDTO.getPrice());
+            roomType.setRoomTypeImages(roomTypeDTO.getRoomTypeImages());
             roomType.setSeason(seasonOptional.get());
             roomType = roomTypeRepository.save(roomType);
             return convertToDTO(roomType);
@@ -44,6 +49,11 @@ public class RoomTypeService {
         if (roomTypeOptional.isPresent()) {
             RoomType roomType = roomTypeOptional.get();
             // Update fields from roomTypeDTO to roomType
+            roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
+            roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());
+            roomType.setMaxNumberOfPersons(roomTypeDTO.getMaxNumberOfPersons());
+            roomType.setPrice(roomTypeDTO.getPrice());
+            roomType.setRoomTypeImages(roomTypeDTO.getRoomTypeImages());
             roomType = roomTypeRepository.save(roomType);
             return convertToDTO(roomType);
         } else {
@@ -63,6 +73,12 @@ public class RoomTypeService {
     private RoomTypeDTO convertToDTO(RoomType roomType) {
         RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
         // Set fields from roomType to roomTypeDTO
+        roomTypeDTO.setRoomTypeID(roomType.getId());
+        roomTypeDTO.setRoomTypeName(roomType.getRoomTypeName());
+        roomTypeDTO.setNumberOfRooms(roomType.getNumberOfRooms());
+        roomTypeDTO.setMaxNumberOfPersons(roomType.getMaxNumberOfPersons());
+        roomTypeDTO.setPrice(roomType.getPrice());
+        roomTypeDTO.setRoomTypeImages(roomType.getRoomTypeImages());
         return roomTypeDTO;
     }
 }
