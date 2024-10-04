@@ -2,13 +2,19 @@ package com.hotel.horizonstay.controller;
 
 import com.hotel.horizonstay.dto.RoomTypeDTO;
 import com.hotel.horizonstay.helper.ErrorResponse;
+import com.hotel.horizonstay.helper.FileUploadUtil;
 import com.hotel.horizonstay.service.RoomTypeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.util.StringUtils;
 import org.springframework.web.bind.annotation.*;
+import org.springframework.web.multipart.MultipartFile;
 
+import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @RestController
 @RequestMapping("/roomtype")
@@ -19,9 +25,34 @@ public class RoomTypeController {
 
     private final ErrorResponse error = new ErrorResponse();
 
-    @PostMapping("/{seasonID}")
-    public ResponseEntity<RoomTypeDTO> addRoomTypeToSeason(@PathVariable Long seasonID, @RequestBody RoomTypeDTO roomTypeDTO) {
+    @PostMapping(value = "/{seasonID}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+    public ResponseEntity<RoomTypeDTO> addRoomTypeToSeason(@PathVariable Long seasonID, @RequestParam("files") MultipartFile[] files, @RequestPart("roomtype") RoomTypeDTO roomTypeDTO) {
+
+        // Directory where the files will be stored
+        String uploadDir = "/roomTypeImages/";
+
+
         try {
+
+            // Save each file and get the filenames
+            List<String> fileNames = Arrays.stream(files)
+                    .map(file -> {
+                        try {
+                            // Get a clean file name
+                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+                            // Save the file to the upload directory
+                            FileUploadUtil.saveFile(uploadDir, fileName, file);
+                            return fileName; // Return the filename after saving
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
+                    .toList();
+
+            roomTypeDTO.setRoomTypeImages(fileNames);
+
             RoomTypeDTO createdRoomType = roomTypeService.addRoomTypeToSeason(seasonID, roomTypeDTO);
             return new ResponseEntity<>(createdRoomType, HttpStatus.CREATED);
         } catch (IllegalArgumentException e) {
@@ -43,9 +74,31 @@ public class RoomTypeController {
         }
     }
 
-    @PutMapping("/update/{roomTypeID}")
-    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestBody RoomTypeDTO roomTypeDTO) {
+    @PutMapping(value = "/update/{roomTypeID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestParam("files") MultipartFile[] files, @RequestPart("roomtype") RoomTypeDTO roomTypeDTO) {
+        // Directory where the files will be stored
+        String uploadDir = "/roomTypeImages/";
+
         try {
+            // Save each file and get the filenames
+            List<String> fileNames = Arrays.stream(files)
+                    .map(file -> {
+                        try {
+                            // Get a clean file name
+                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+                            // Save the file to the upload directory
+                            FileUploadUtil.saveFile(uploadDir, fileName, file);
+                            return fileName; // Return the filename after saving
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
+                    .toList();
+
+            roomTypeDTO.setRoomTypeImages(fileNames);
+
             RoomTypeDTO updatedRoomType = roomTypeService.updateRoomType(roomTypeID, roomTypeDTO);
             return new ResponseEntity<>(updatedRoomType, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
@@ -54,6 +107,20 @@ public class RoomTypeController {
             return error.createRoomTypeErrorResponse("Error occurred while updating room type", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @PutMapping("/update/{roomTypeID}")
+//    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestBody RoomTypeDTO roomTypeDTO) {
+//        try {
+//            RoomTypeDTO updatedRoomType = roomTypeService.updateRoomType(roomTypeID, roomTypeDTO);
+//            return new ResponseEntity<>(updatedRoomType, HttpStatus.OK);
+//        } catch (IllegalArgumentException e) {
+//            return error.createRoomTypeErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            return error.createRoomTypeErrorResponse("Error occurred while updating room type", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
+
 
     @DeleteMapping("/delete/{roomTypeID}")
     public ResponseEntity<RoomTypeDTO> deleteRoomType(@PathVariable Long roomTypeID) {

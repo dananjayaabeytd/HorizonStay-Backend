@@ -30,44 +30,6 @@ public class UserController {
     private final Validation validation = new Validation();
     private final ErrorResponse error = new ErrorResponse();
 
-
-    // Endpoint for user registration
-//    @PostMapping("/auth/register")
-//    public ResponseEntity<UserDTO> register(@RequestParam("files") MultipartFile[] files, @RequestBody UserDTO reg)
-//    {
-//
-//        String uploadDir = "/profileImages/";
-//        Arrays.stream(files).forEach(file -> {
-//            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-//            System.out.println(fileName);
-//            try{
-//                FileUploadUtil.saveFile(uploadDir, fileName, file);
-//            }catch (Exception e){
-//                e.printStackTrace();
-//            }
-//        });
-//
-//
-//        if (reg == null)
-//        {
-//            return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
-//        }
-//        if (validation.isInvalidUserData(reg))
-//        {
-//            return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
-//        }
-//
-//        try
-//        {
-//            UserDTO response = userService.register(reg);
-//            return new ResponseEntity<>(response, HttpStatus.OK);
-//        }
-//        catch (Exception e)
-//        {
-//            return error.createErrorResponse("Error occurred while registering user", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @PostMapping(value = "/auth/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<UserDTO> register(
             @RequestParam("files") MultipartFile[] files,
