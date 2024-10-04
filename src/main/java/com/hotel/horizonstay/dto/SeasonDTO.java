@@ -20,9 +20,8 @@ public class SeasonDTO {
     private String seasonName;
     private LocalDate validFrom;
     private LocalDate validTo;
-    private List<RoomTypeDTO> roomTypes;
-    private List<SupplementDTO> supplements;
-    private List<DiscountDTO> discounts;
-    private List<MarkupDTO> markups;
-
+//    private List<RoomTypeDTO> roomTypes;
+//    private List<SupplementDTO> supplements;
+//    private List<DiscountDTO> discounts;
+//    private List<MarkupDTO> markups;
 }

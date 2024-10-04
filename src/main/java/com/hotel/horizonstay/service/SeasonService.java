@@ -26,6 +26,9 @@ public class SeasonService {
         if (contractOptional.isPresent()) {
             Season season = new Season();
             // Set fields from seasonDTO to season
+            season.setSeasonName(seasonDTO.getSeasonName());
+            season.setValidFrom(seasonDTO.getValidFrom());
+            season.setValidTo(seasonDTO.getValidTo());
             season.setContract(contractOptional.get());
             season = seasonRepository.save(season);
             return convertToDTO(season);
@@ -44,6 +47,9 @@ public class SeasonService {
         if (seasonOptional.isPresent()) {
             Season season = seasonOptional.get();
             // Update fields from seasonDTO to season
+            season.setSeasonName(seasonDTO.getSeasonName());
+            season.setValidFrom(seasonDTO.getValidFrom());
+            season.setValidTo(seasonDTO.getValidTo());
             season = seasonRepository.save(season);
             return convertToDTO(season);
         } else {
@@ -63,6 +69,10 @@ public class SeasonService {
     private SeasonDTO convertToDTO(Season season) {
         SeasonDTO seasonDTO = new SeasonDTO();
         // Set fields from season to seasonDTO
+        seasonDTO.setId(season.getId());
+        seasonDTO.setSeasonName(season.getSeasonName());
+        seasonDTO.setValidFrom(season.getValidFrom());
+        seasonDTO.setValidTo(season.getValidTo());
         return seasonDTO;
     }
 }
