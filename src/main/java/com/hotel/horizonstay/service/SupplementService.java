@@ -8,7 +8,9 @@ import com.hotel.horizonstay.repository.SupplementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class SupplementService {
@@ -24,7 +26,10 @@ public class SupplementService {
         if (seasonOptional.isPresent()) {
             Supplement supplement = new Supplement();
             // Set fields from supplementDTO to supplement
+            supplement.setSupplementName(supplementDTO.getSupplementName());
+            supplement.setPrice(supplementDTO.getPrice());
             supplement.setSeason(seasonOptional.get());
+
             supplement = supplementRepository.save(supplement);
             return convertToDTO(supplement);
         } else {
@@ -42,6 +47,8 @@ public class SupplementService {
         if (supplementOptional.isPresent()) {
             Supplement supplement = supplementOptional.get();
             // Update fields from supplementDTO to supplement
+            supplement.setSupplementName(supplementDTO.getSupplementName());
+            supplement.setPrice(supplementDTO.getPrice());
             supplement = supplementRepository.save(supplement);
             return convertToDTO(supplement);
         } else {
@@ -56,6 +63,14 @@ public class SupplementService {
     private SupplementDTO convertToDTO(Supplement supplement) {
         SupplementDTO supplementDTO = new SupplementDTO();
         // Set fields from supplement to supplementDTO
+        supplementDTO.setSupplementID(supplement.getId());
+        supplementDTO.setSupplementName(supplement.getSupplementName());
+        supplementDTO.setPrice(supplement.getPrice());
         return supplementDTO;
+    }
+
+    public List<SupplementDTO> getSupplementsBySeasonId(Long seasonID) {
+        List<Supplement> supplements = supplementRepository.findBySeasonId(seasonID);
+        return supplements.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 }

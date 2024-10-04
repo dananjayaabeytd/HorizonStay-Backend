@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/supplements")
+@RequestMapping("/supplement")
 public class SupplementController {
 
     @Autowired
@@ -62,6 +64,16 @@ public class SupplementController {
             return error.createSupplementErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return error.createSupplementErrorResponse("Error occurred while deleting supplement", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/season/{seasonID}")
+    public ResponseEntity<List<SupplementDTO>> getSupplementsBySeasonId(@PathVariable Long seasonID) {
+        try {
+            List<SupplementDTO> supplements = supplementService.getSupplementsBySeasonId(seasonID);
+            return new ResponseEntity<>(supplements, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
