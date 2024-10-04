@@ -8,7 +8,9 @@ import com.hotel.horizonstay.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class MarkupService {
@@ -24,6 +26,8 @@ public class MarkupService {
         if (seasonOptional.isPresent()) {
             Markup markup = new Markup();
             // Set fields from markupDTO to markup
+            markup.setMarkupName(markupDTO.getMarkupName());
+            markup.setPercentage((float) markupDTO.getPercentage());
             markup.setSeason(seasonOptional.get());
             markup = markupRepository.save(markup);
             return convertToDTO(markup);
@@ -42,6 +46,8 @@ public class MarkupService {
         if (markupOptional.isPresent()) {
             Markup markup = markupOptional.get();
             // Update fields from markupDTO to markup
+            markup.setMarkupName(markupDTO.getMarkupName());
+            markup.setPercentage((float) markupDTO.getPercentage());
             markup = markupRepository.save(markup);
             return convertToDTO(markup);
         } else {
@@ -53,9 +59,17 @@ public class MarkupService {
         markupRepository.deleteById(markupID);
     }
 
+    public List<MarkupDTO> getMarkupsBySeasonId(Long seasonID) {
+        List<Markup> markups = markupRepository.findBySeasonId(seasonID);
+        return markups.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
     private MarkupDTO convertToDTO(Markup markup) {
         MarkupDTO markupDTO = new MarkupDTO();
         // Set fields from markup to markupDTO
+        markupDTO.setId(markup.getId());
+        markupDTO.setMarkupName(markup.getMarkupName());
+        markupDTO.setPercentage(markup.getPercentage());
         return markupDTO;
     }
 }

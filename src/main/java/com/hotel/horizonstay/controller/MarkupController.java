@@ -8,8 +8,10 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @RestController
-@RequestMapping("/api/markups")
+@RequestMapping("/markup")
 public class MarkupController {
 
     @Autowired
@@ -62,6 +64,16 @@ public class MarkupController {
             return error.createMarkupErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
         } catch (Exception e) {
             return error.createMarkupErrorResponse("Error occurred while deleting markup", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/season/{seasonID}")
+    public ResponseEntity<List<MarkupDTO>> getMarkupsBySeasonId(@PathVariable Long seasonID) {
+        try {
+            List<MarkupDTO> markups = markupService.getMarkupsBySeasonId(seasonID);
+            return new ResponseEntity<>(markups, HttpStatus.OK);
+        } catch (Exception e) {
+            return new ResponseEntity<>(null, HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 }
