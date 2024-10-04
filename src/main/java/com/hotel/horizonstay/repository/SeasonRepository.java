@@ -16,4 +16,5 @@ public interface SeasonRepository extends JpaRepository<Season, Long> {
             "(s.validFrom <= :checkOutDate AND s.validTo >= :checkInDate)")
     List<Season> findActiveSeasonsByContract(HotelContract contract, LocalDate checkInDate, LocalDate checkOutDate);
 
+    List<Season> findByContractId(Long contractID);
 }

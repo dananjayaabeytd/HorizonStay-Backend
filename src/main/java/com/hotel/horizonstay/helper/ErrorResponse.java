@@ -68,4 +68,53 @@ public class ErrorResponse {
         errorResponse.setMessage(message);
         return ResponseEntity.status(status).body(errorResponse);
     }
+
+    public ResponseEntity<SeasonDTO> createSeasonErrorResponse(String message, HttpStatus httpStatus) {
+        SeasonDTO errorResponse = new SeasonDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
+    }
+
+    public ResponseEntity<List<SeasonDTO>> createSeasonErrorResponseList(String errorOccurredWhileFetchingSeasons, HttpStatus httpStatus) {
+        SeasonDTO errorResponse = new SeasonDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(errorOccurredWhileFetchingSeasons);
+        return ResponseEntity.status(httpStatus).body(Collections.singletonList(errorResponse));
+    }
+
+    public ResponseEntity<RoomTypeDTO> createRoomTypeErrorResponse(String message, HttpStatus httpStatus) {
+        RoomTypeDTO errorResponse = new RoomTypeDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
+    }
+
+    public ResponseEntity<MarkupDTO> createMarkupErrorResponse(String errorOccurredWhileFetchingMarkup, HttpStatus httpStatus) {
+        MarkupDTO errorResponse = new MarkupDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(errorOccurredWhileFetchingMarkup);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
+    }
+
+    public ResponseEntity<DiscountDTO> createDiscountErrorResponse(String message, HttpStatus httpStatus) {
+        DiscountDTO errorResponse = new DiscountDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(message);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
+    }
+
+    public ResponseEntity<SupplementDTO> createSupplementErrorResponse(String errorOccurredWhileFetchingSupplement, HttpStatus httpStatus) {
+        SupplementDTO errorResponse = new SupplementDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(errorOccurredWhileFetchingSupplement);
+        return ResponseEntity.status(httpStatus).body(errorResponse);
+    }
+
+    public ResponseEntity<List<RoomTypeDTO>> createRoomtErrorResponseList(String s, HttpStatus httpStatus) {
+        RoomTypeDTO errorResponse = new RoomTypeDTO();
+        errorResponse.setStatusCode(httpStatus.value());
+        errorResponse.setMessage(s);
+        return ResponseEntity.status(httpStatus).body(Collections.singletonList(errorResponse));
+    }
 }

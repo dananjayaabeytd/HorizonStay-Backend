@@ -34,7 +34,6 @@ public class Validation {
     {
         return contractDTO.getValidFrom() == null || contractDTO.getValidTo() == null ||
                 contractDTO.getCancellationPolicy() == null || contractDTO.getCancellationPolicy().isEmpty() ||
-                contractDTO.getPaymentPolicy() == null || contractDTO.getPaymentPolicy().isEmpty() ||
-                contractDTO.getSeasons() == null || contractDTO.getSeasons().isEmpty();
+                contractDTO.getPaymentPolicy() == null || contractDTO.getPaymentPolicy().isEmpty() ;
     }
 }
