@@ -5,7 +5,8 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 @Data
-@JsonInclude(JsonInclude.Include.NON_NULL)
+//@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonInclude(JsonInclude.Include.NON_DEFAULT)
 @JsonIgnoreProperties(ignoreUnknown = true)
 public class DiscountDTO {
 
