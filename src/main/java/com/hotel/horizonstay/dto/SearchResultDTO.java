@@ -2,6 +2,7 @@ package com.hotel.horizonstay.dto;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import com.fasterxml.jackson.annotation.JsonInclude;
+import com.hotel.horizonstay.entity.Discount;
 import lombok.Data;
 
 import java.time.LocalDate;
@@ -17,13 +18,12 @@ public class SearchResultDTO {
     private String message;
 
     private Long number;
+    private Long hotelID;
     private LocalDate validFrom;
     private LocalDate validTo;
     private String cancellationPolicy;
     private String paymentPolicy;
-    private List<SeasonDTO> seasons;
 
-    private Long hotelID;
     private String hotelName;
     private String hotelLocation;
     private String hotelDescription;
@@ -31,5 +31,11 @@ public class SearchResultDTO {
     private String hotelEmail;
     private Float hotelRating;
     private List<String> hotelImages;
+
+    private SeasonDTO seasonDTO;
+    private MarkupDTO markupDTO;
+    private List<RoomTypeDTO> roomTypeDTO;
+    private List<DiscountDTO> discountDTO;
+    private List<SupplementDTO> supplementDTOS;
 
 }

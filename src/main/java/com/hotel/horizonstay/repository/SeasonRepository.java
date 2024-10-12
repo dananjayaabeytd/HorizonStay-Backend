@@ -17,4 +17,6 @@ public interface SeasonRepository extends JpaRepository<Season, Long> {
     List<Season> findActiveSeasonsByContract(HotelContract contract, LocalDate checkInDate, LocalDate checkOutDate);
 
     List<Season> findByContractId(Long contractID);
+
+    List<Season> findSeasonsByContract(HotelContract contract);
 }

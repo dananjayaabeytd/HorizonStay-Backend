@@ -3,7 +3,9 @@ package com.hotel.horizonstay.entity;
 import jakarta.persistence.*;
 import lombok.Data;
 
+import java.time.Instant;
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -19,6 +21,7 @@ public class HotelContract {
     private LocalDate validTo;
     private String cancellationPolicy;
     private String paymentPolicy;
+    private LocalDateTime addedDate;
 
     @ManyToOne
     @JoinColumn(name = "hotel_id")

@@ -1,6 +1,7 @@
 package com.hotel.horizonstay.controller;
 
 import com.hotel.horizonstay.dto.HotelContractDTO;
+import com.hotel.horizonstay.dto.SearchResultDTO;
 import com.hotel.horizonstay.helper.ErrorResponse;
 import com.hotel.horizonstay.helper.Validation;
 import com.hotel.horizonstay.service.ContractService;
@@ -83,6 +84,24 @@ public class ContractController {
             return ResponseEntity.ok(contracts);
         } catch (Exception e) {
             return error.createErrorResponseList("Error occurred while fetching contracts", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    @GetMapping("/search")
+    public ResponseEntity<List<SearchResultDTO>> searchHotelContracts(@RequestParam String location, @RequestParam String checkInDate, @RequestParam String checkOutDate, @RequestParam int adults, @RequestParam int children)
+    {
+        try
+        {
+            List<SearchResultDTO> matchingContracts = hotelContractService.searchHotelContracts(location, checkInDate, checkOutDate, adults, children);
+            return ResponseEntity.ok(matchingContracts);
+        }
+        catch (IllegalArgumentException e)
+        {
+            return error.createSearchErrorResponseList(e.getMessage(), HttpStatus.BAD_REQUEST);
+        }
+        catch (Exception e)
+        {
+            return error.createSearchErrorResponseList("Error occurred while searching contracts", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 

@@ -59,6 +59,7 @@ public class HotelService {
                 Hotel hotel = hotelOptional.get();
                 res.setHotelID(hotel.getHotelID());
                 res.setHotelName(hotel.getHotelName());
+                res.setHotelEmail(hotel.getHotelEmail());
                 res.setHotelDescription(hotel.getHotelDescription());
                 res.setHotelContactNumber(hotel.getHotelContactNumber());
                 res.setHotelCity(hotel.getHotelCity());

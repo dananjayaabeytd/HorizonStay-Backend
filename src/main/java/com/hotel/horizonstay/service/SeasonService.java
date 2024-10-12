@@ -66,7 +66,7 @@ public class SeasonService {
         return seasons.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    private SeasonDTO convertToDTO(Season season) {
+    SeasonDTO convertToDTO(Season season) {
         SeasonDTO seasonDTO = new SeasonDTO();
         // Set fields from season to seasonDTO
         seasonDTO.setId(season.getId());

@@ -63,7 +63,7 @@ public class SupplementService {
     private SupplementDTO convertToDTO(Supplement supplement) {
         SupplementDTO supplementDTO = new SupplementDTO();
         // Set fields from supplement to supplementDTO
-        supplementDTO.setSupplementID(supplement.getId());
+        supplementDTO.setId(supplement.getId());
         supplementDTO.setSupplementName(supplement.getSupplementName());
         supplementDTO.setPrice(supplement.getPrice());
         return supplementDTO;

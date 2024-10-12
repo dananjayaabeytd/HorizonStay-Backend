@@ -77,6 +77,7 @@ public class UserService {
             reqRes.setToken(jwt);
             reqRes.setUserId(user.getId());
             reqRes.setRole(user.getRole());
+            reqRes.setImage(user.getImage());
             reqRes.setRefreshToken(refreshToken);
             reqRes.setExpirationTime("24Hrs");
             reqRes.setMessage("Successfully Logged In");

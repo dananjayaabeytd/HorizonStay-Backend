@@ -5,6 +5,7 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import lombok.Data;
 
 import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Data
@@ -22,6 +23,7 @@ public class HotelContractDTO {
     private String cancellationPolicy;
     private String paymentPolicy;
     private List<SeasonDTO> seasons;
+    private LocalDateTime addedDate;
 
     private String hotelName;
     private String hotelLocation;
