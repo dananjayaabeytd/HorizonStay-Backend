@@ -82,11 +82,20 @@ public class HotelService {
         return res;
     }
 
-    public HotelDTO addHotel(HotelDTO hotelDTO)
-    {
+    public HotelDTO addHotel(HotelDTO hotelDTO) {
         HotelDTO res = new HotelDTO();
 
         try {
+            // Check if hotel already exists with the same name or email
+            Optional<Hotel> existingHotelByName = hotelRepository.findByHotelName(hotelDTO.getHotelName());
+            Optional<Hotel> existingHotelByEmail = hotelRepository.findByHotelEmail(hotelDTO.getHotelEmail());
+
+            if (existingHotelByName.isPresent() || existingHotelByEmail.isPresent()) {
+                res.setMessage("Hotel already exists with same name or email");
+                res.setStatusCode(409); // Conflict
+                return res;
+            }
+
             // Create and map the Hotel entity
             Hotel hotel = new Hotel();
             hotel.setHotelName(hotelDTO.getHotelName());
@@ -115,14 +124,55 @@ public class HotelService {
             // Set success response
             res.setStatusCode(200);
             res.setMessage("Hotel added successfully");
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             // Handle any errors
             res.setStatusCode(500);
             res.setError("Error occurred: " + e.getMessage());
         }
         return res;
     }
+
+//    public HotelDTO addHotel(HotelDTO hotelDTO)
+//    {
+//        HotelDTO res = new HotelDTO();
+//
+//        try {
+//            // Create and map the Hotel entity
+//            Hotel hotel = new Hotel();
+//            hotel.setHotelName(hotelDTO.getHotelName());
+//            hotel.setHotelEmail(hotelDTO.getHotelEmail());
+//            hotel.setHotelDescription(hotelDTO.getHotelDescription());
+//            hotel.setHotelContactNumber(hotelDTO.getHotelContactNumber()); // Set contact number
+//            hotel.setHotelCity(hotelDTO.getHotelCity());
+//            hotel.setHotelCountry(hotelDTO.getHotelCountry());
+//            hotel.setHotelRating(hotelDTO.getHotelRating());
+//            hotel.setHotelImages(hotelDTO.getHotelImages());
+//
+//            // Save the hotel in the repository
+//            Hotel savedHotel = hotelRepository.save(hotel);
+//
+//            // Map saved hotel data back to DTO
+//            res.setHotelID(savedHotel.getHotelID());
+//            res.setHotelName(savedHotel.getHotelName());
+//            res.setHotelDescription(savedHotel.getHotelDescription());
+//            res.setHotelContactNumber(savedHotel.getHotelContactNumber()); // Return contact number
+//            res.setHotelCity(savedHotel.getHotelCity());
+//            res.setHotelEmail(savedHotel.getHotelEmail());
+//            res.setHotelCountry(savedHotel.getHotelCountry());
+//            res.setHotelRating(savedHotel.getHotelRating());
+//            res.setHotelImages(savedHotel.getHotelImages());
+//
+//            // Set success response
+//            res.setStatusCode(200);
+//            res.setMessage("Hotel added successfully");
+//        } catch (Exception e)
+//        {
+//            // Handle any errors
+//            res.setStatusCode(500);
+//            res.setError("Error occurred: " + e.getMessage());
+//        }
+//        return res;
+//    }
 
 
     public HotelDTO updateHotel(Long hotelID, HotelDTO hotelDTO)

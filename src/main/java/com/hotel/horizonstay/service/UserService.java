@@ -28,12 +28,19 @@ public class UserService {
     @Autowired
     private PasswordEncoder passwordEncoder;
 
-    public UserDTO register(UserDTO registrationRequest)
-    {
+
+    public UserDTO register(UserDTO registrationRequest) {
         UserDTO reqRes = new UserDTO();
 
-        try
-        {
+        try {
+            // Check if user already exists with the same email
+            Optional<SystemUser> existingUser = usersRepo.findByEmail(registrationRequest.getEmail());
+            if (existingUser.isPresent()) {
+                reqRes.setMessage("User already exists");
+                reqRes.setStatusCode(409); // Conflict
+                return reqRes;
+            }
+
             SystemUser systemUser = new SystemUser();
             systemUser.setEmail(registrationRequest.getEmail());
             systemUser.setName(registrationRequest.getName());
@@ -45,20 +52,52 @@ public class UserService {
 
             SystemUser ourUsersResult = usersRepo.save(systemUser);
 
-            if (ourUsersResult.getId() > 0)
-            {
-                reqRes.setSystemUsers((ourUsersResult));
+            if (ourUsersResult.getId() > 0) {
+                reqRes.setSystemUsers(ourUsersResult);
                 reqRes.setMessage("User Saved Successfully");
                 reqRes.setStatusCode(200);
             }
 
-        } catch (Exception e)
-        {
+        } catch (Exception e) {
             reqRes.setStatusCode(500);
             reqRes.setError(e.getMessage());
         }
         return reqRes;
     }
+
+//    public UserDTO register(UserDTO registrationRequest)
+//    {
+//        UserDTO reqRes = new UserDTO();
+//
+//        try
+//        {
+//
+//
+//            SystemUser systemUser = new SystemUser();
+//            systemUser.setEmail(registrationRequest.getEmail());
+//            systemUser.setName(registrationRequest.getName());
+//            systemUser.setRole(registrationRequest.getRole());
+//            systemUser.setAddress(registrationRequest.getAddress());
+//            systemUser.setImage(registrationRequest.getImage());
+//            systemUser.setNIC(registrationRequest.getNIC());
+//            systemUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
+//
+//            SystemUser ourUsersResult = usersRepo.save(systemUser);
+//
+//            if (ourUsersResult.getId() > 0)
+//            {
+//                reqRes.setSystemUsers((ourUsersResult));
+//                reqRes.setMessage("User Saved Successfully");
+//                reqRes.setStatusCode(200);
+//            }
+//
+//        } catch (Exception e)
+//        {
+//            reqRes.setStatusCode(500);
+//            reqRes.setError(e.getMessage());
+//        }
+//        return reqRes;
+//    }
 
     public UserDTO login(UserDTO loginRequest)
     {
@@ -78,6 +117,9 @@ public class UserService {
             reqRes.setUserId(user.getId());
             reqRes.setRole(user.getRole());
             reqRes.setImage(user.getImage());
+            reqRes.setEmail(user.getEmail());
+            reqRes.setName(user.getName());
+            reqRes.setAddress(user.getAddress());
             reqRes.setRefreshToken(refreshToken);
             reqRes.setExpirationTime("24Hrs");
             reqRes.setMessage("Successfully Logged In");

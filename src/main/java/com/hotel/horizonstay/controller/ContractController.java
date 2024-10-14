@@ -1,5 +1,6 @@
 package com.hotel.horizonstay.controller;
 
+import com.hotel.horizonstay.dto.CalculationDTO;
 import com.hotel.horizonstay.dto.HotelContractDTO;
 import com.hotel.horizonstay.dto.SearchResultDTO;
 import com.hotel.horizonstay.helper.ErrorResponse;
@@ -10,7 +11,12 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 @RestController
 @RequestMapping("/api/contracts")
@@ -49,6 +55,7 @@ public class ContractController {
             return error.createContractErrorResponse("Error occurred while fetching contract", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
 
     @PutMapping("/update/{contractID}")
     public ResponseEntity<HotelContractDTO> updateContract(@PathVariable Long contractID, @RequestBody HotelContractDTO contractDTO) {
@@ -117,4 +124,71 @@ public class ContractController {
         }
         return null;
     }
+
+    @PostMapping("/calculate-amount")
+    public ResponseEntity<Map<String, Object>> calculateAmount(@RequestBody CalculationDTO bookingRequest) {
+        if (bookingRequest == null) {
+            return error.createErrorResponseMap("Request body is null", HttpStatus.BAD_REQUEST);
+        }
+
+        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+        try {
+            LocalDate checkInDate = LocalDate.parse(bookingRequest.getCheckIn(), dateFormatter);
+            LocalDate checkOutDate = LocalDate.parse(bookingRequest.getCheckOut(), dateFormatter);
+
+            if (!checkInDate.isBefore(checkOutDate)) {
+                return error.createErrorResponseMap("Check-in date must be before check-out date.", HttpStatus.BAD_REQUEST);
+            }
+
+            Map<String, Float> result = hotelContractService.calculatePayableAmount(bookingRequest);
+            Map<String, Object> response = new HashMap<>();
+            response.put("payableAmount", result.get("totalAmount"));
+            response.put("discountAmount", result.get("discountAmount"));
+
+            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+        } catch (DateTimeParseException e) {
+            return error.createErrorResponseMap("Invalid date format. Please use YYYY-MM-DD.", HttpStatus.BAD_REQUEST);
+        } catch (Exception e) {
+            return error.createErrorResponseMap("Error occurred while calculating the amount", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+
+    // Endpoint to calculate the payable amount for a booking
+//    @PostMapping("/calculate-amount")
+//    public ResponseEntity<Map<String, Object>> calculateAmount(@RequestBody CalculationDTO bookingRequest)
+//    {
+//
+//        if (bookingRequest == null)
+//        {
+//            return error.createErrorResponseMap("Request body is null", HttpStatus.BAD_REQUEST);
+//        }
+//
+//        DateTimeFormatter dateFormatter = DateTimeFormatter.ofPattern("yyyy-MM-dd");
+//        try
+//        {
+//            LocalDate checkInDate = LocalDate.parse(bookingRequest.getCheckIn(), dateFormatter);
+//            LocalDate checkOutDate = LocalDate.parse(bookingRequest.getCheckOut(), dateFormatter);
+//
+//            if (!checkInDate.isBefore(checkOutDate))
+//            {
+//                return error.createErrorResponseMap("Check-in date must be before check-out date.", HttpStatus.BAD_REQUEST);
+//            }
+//
+//            Map<String, Float> result = hotelContractService.calculatePayableAmount(bookingRequest);
+//            Map<String, Object> response = new HashMap<>();
+//            response.put("payableAmount", result.get("totalAmount"));
+//            response.put("discountAmount", result.get("discountAmount"));
+//
+//            return ResponseEntity.status(HttpStatus.CREATED).body(response);
+//        }
+//        catch (DateTimeParseException e)
+//        {
+//            return error.createErrorResponseMap("Invalid date format. Please use YYYY-MM-DD.", HttpStatus.BAD_REQUEST);
+//        }
+//        catch (Exception e)
+//        {
+//            return error.createErrorResponseMap("Error occurred while calculating the amount", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 }

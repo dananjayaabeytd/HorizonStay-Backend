@@ -25,14 +25,16 @@ public class RoomTypeController {
 
     private final ErrorResponse error = new ErrorResponse();
 
-    @PostMapping(value = "/{seasonID}",consumes = MediaType.MULTIPART_FORM_DATA_VALUE )
+    @PostMapping(value = "/{seasonID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
     public ResponseEntity<RoomTypeDTO> addRoomTypeToSeason(@PathVariable Long seasonID, @RequestParam("files") MultipartFile[] files, @RequestPart("roomtype") RoomTypeDTO roomTypeDTO) {
-
         // Directory where the files will be stored
         String uploadDir = "/roomTypeImages/";
 
-
         try {
+            // Validate roomTypeDTO
+            if (roomTypeDTO.getRoomTypeName() == null || roomTypeDTO.getRoomTypeName().isEmpty()) {
+                return error.createRoomTypeErrorResponse("Invalid room type data", HttpStatus.BAD_REQUEST);
+            }
 
             // Save each file and get the filenames
             List<String> fileNames = Arrays.stream(files)
@@ -50,7 +52,7 @@ public class RoomTypeController {
                     })
                     .filter(Objects::nonNull) // Filter out null values if any file failed to save
                     .toList();
-
+            System.out.println("Uploading files to: " + uploadDir);
             roomTypeDTO.setRoomTypeImages(fileNames);
 
             RoomTypeDTO createdRoomType = roomTypeService.addRoomTypeToSeason(seasonID, roomTypeDTO);
@@ -62,43 +64,9 @@ public class RoomTypeController {
         }
     }
 
-    @GetMapping("/{roomTypeID}")
-    public ResponseEntity<RoomTypeDTO> getRoomTypeById(@PathVariable Long roomTypeID) {
+    @PutMapping("/update/{roomTypeID}")
+    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestBody RoomTypeDTO roomTypeDTO) {
         try {
-            RoomTypeDTO roomTypeDTO = roomTypeService.getRoomTypeById(roomTypeID);
-            return new ResponseEntity<>(roomTypeDTO, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
-            return error.createRoomTypeErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
-            return error.createRoomTypeErrorResponse("Error occurred while fetching room type", HttpStatus.INTERNAL_SERVER_ERROR);
-        }
-    }
-
-    @PutMapping(value = "/update/{roomTypeID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestParam("files") MultipartFile[] files, @RequestPart("roomtype") RoomTypeDTO roomTypeDTO) {
-        // Directory where the files will be stored
-        String uploadDir = "/roomTypeImages/";
-
-        try {
-            // Save each file and get the filenames
-            List<String> fileNames = Arrays.stream(files)
-                    .map(file -> {
-                        try {
-                            // Get a clean file name
-                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
-                            // Save the file to the upload directory
-                            FileUploadUtil.saveFile(uploadDir, fileName, file);
-                            return fileName; // Return the filename after saving
-                        } catch (Exception e) {
-                            e.printStackTrace();
-                            return null;
-                        }
-                    })
-                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
-                    .toList();
-
-            roomTypeDTO.setRoomTypeImages(fileNames);
-
             RoomTypeDTO updatedRoomType = roomTypeService.updateRoomType(roomTypeID, roomTypeDTO);
             return new ResponseEntity<>(updatedRoomType, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
@@ -108,10 +76,35 @@ public class RoomTypeController {
         }
     }
 
-//    @PutMapping("/update/{roomTypeID}")
-//    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestBody RoomTypeDTO roomTypeDTO) {
+//    @PutMapping(value = "/update/{roomTypeID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public ResponseEntity<RoomTypeDTO> updateRoomType(@PathVariable Long roomTypeID, @RequestParam("files") MultipartFile[] files, @RequestPart("roomtype") RoomTypeDTO roomTypeDTO) {
+//        // Directory where the files will be stored
+//        String uploadDir = "/roomTypeImages/";
+//
 //        try {
+//            // Save each file and get the filenames
+//            List<String> fileNames = Arrays.stream(files)
+//                    .map(file -> {
+//                        try {
+//                            // Get a clean file name
+//                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+//                            // Save the file to the upload directory
+//                            FileUploadUtil.saveFile(uploadDir, fileName, file);
+//                            return fileName; // Return the filename after saving
+//                        } catch (Exception e) {
+//                            e.printStackTrace();
+//                            return null;
+//                        }
+//                    })
+//                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
+//                    .toList();
+//            System.out.println("Uploading files to: " + uploadDir);
+//            roomTypeDTO.setRoomTypeImages(fileNames);
+//
 //            RoomTypeDTO updatedRoomType = roomTypeService.updateRoomType(roomTypeID, roomTypeDTO);
+//            if (updatedRoomType == null) {
+//                return error.createRoomTypeErrorResponse("Room type not found for update", HttpStatus.NOT_FOUND);
+//            }
 //            return new ResponseEntity<>(updatedRoomType, HttpStatus.OK);
 //        } catch (IllegalArgumentException e) {
 //            return error.createRoomTypeErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -120,7 +113,20 @@ public class RoomTypeController {
 //        }
 //    }
 
-
+    @GetMapping("/{roomTypeID}")
+    public ResponseEntity<RoomTypeDTO> getRoomTypeById(@PathVariable Long roomTypeID) {
+        try {
+            RoomTypeDTO roomTypeDTO = roomTypeService.getRoomTypeById(roomTypeID);
+            if (roomTypeDTO == null) {
+                return error.createRoomTypeErrorResponse("Room type not found", HttpStatus.NOT_FOUND);
+            }
+            return new ResponseEntity<>(roomTypeDTO, HttpStatus.OK);
+        } catch (IllegalArgumentException e) {
+            return error.createRoomTypeErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
+        } catch (Exception e) {
+            return error.createRoomTypeErrorResponse("Error occurred while fetching room type", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
 
     @DeleteMapping("/delete/{roomTypeID}")
     public ResponseEntity<RoomTypeDTO> deleteRoomType(@PathVariable Long roomTypeID) {

@@ -31,33 +31,47 @@ public class UserController {
     private final ErrorResponse error = new ErrorResponse();
 
     @PostMapping(value = "/auth/register", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
-    public ResponseEntity<UserDTO> register(
-            @RequestParam("files") MultipartFile[] files,
-            @RequestPart("user") UserDTO reg) {
+    public ResponseEntity<UserDTO> register(@RequestParam("files") MultipartFile[] files, @RequestPart("user") UserDTO reg)
+    {
 
         // Validate the user input
-        if (reg == null) {
+        if (reg == null)
+        {
             return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
         }
-        if (validation.isInvalidUserData(reg)) {
+
+        if (validation.isInvalidUserData(reg))
+        {
             return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
         }
 
         // Directory where the files will be stored
         String uploadDir = "/profileImages/";
 
-        try {
+        try
+        {
 
             // Save each file and get the filenames
-            List<String> fileNames = Arrays.stream(files)
-                    .map(file -> {
-                        try {
+            List<String> fileNames = Arrays.stream(files).map(file ->
+                    {
+                        try
+                        {
+
+                            if (file.getOriginalFilename() == null)
+                            {
+                                throw new RuntimeException("File upload error");
+                            }
+
                             // Get a clean file name
                             String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+
                             // Save the file to the upload directory
                             FileUploadUtil.saveFile(uploadDir, fileName, file);
-                            return fileName; // Return the filename after saving
-                        } catch (Exception e) {
+
+                            return fileName;
+
+                        } catch (Exception e)
+                        {
                             e.printStackTrace();
                             return null;
                         }
@@ -70,7 +84,8 @@ public class UserController {
             // Register the user using the service layer
             UserDTO response = userService.register(reg);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e) {
+        } catch (Exception e)
+        {
             return error.createErrorResponse("Error occurred while registering user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
@@ -137,7 +152,6 @@ public class UserController {
         }
     }
 
-    // Endpoint for fetching a user by ID (admin only)
     @GetMapping("/admin/get-users/{userId}")
     public ResponseEntity<UserDTO> getUserById(@PathVariable Integer userId)
     {
@@ -180,7 +194,6 @@ public class UserController {
         }
     }
 
-    // Endpoint for deleting a user (admin only)
     @DeleteMapping("/admin/delete/{userId}")
     public ResponseEntity<UserDTO> deleteUser(@PathVariable Integer userId)
     {
@@ -202,10 +215,32 @@ public class UserController {
     public ResponseEntity<UserDTO> getMyProfile()
     {
         Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-        String email = authentication.getName();
-        UserDTO response = userService.getMyInfo(email);
 
-        return ResponseEntity.status(response.getStatusCode()).body(response);
+        if (authentication == null || authentication.getName() == null)
+        {
+            return new ResponseEntity<>(HttpStatus.UNAUTHORIZED);
+        }
+
+        String email = authentication.getName();
+
+        UserDTO userDTO = userService.getMyInfo(email);
+
+        if (userDTO == null)
+        {
+            return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+        }
+
+        return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
+
+    //    @GetMapping("/adminuser/get-profile")
+//    public ResponseEntity<UserDTO> getMyProfile()
+//    {
+//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
+//        String email = authentication.getName();
+//        UserDTO response = userService.getMyInfo(email);
+//
+//        return ResponseEntity.status(response.getStatusCode()).body(response);
+//    }
 
 }

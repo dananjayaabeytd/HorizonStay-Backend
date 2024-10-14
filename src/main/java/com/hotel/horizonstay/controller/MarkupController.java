@@ -35,6 +35,9 @@ public class MarkupController {
     public ResponseEntity<MarkupDTO> getMarkupById(@PathVariable Long markupID) {
         try {
             MarkupDTO markupDTO = markupService.getMarkupById(markupID);
+            if (markupDTO == null) {
+                return error.createMarkupErrorResponse("Markup not found", HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<>(markupDTO, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return error.createMarkupErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -43,10 +46,25 @@ public class MarkupController {
         }
     }
 
+//    @GetMapping("/{markupID}")
+//    public ResponseEntity<MarkupDTO> getMarkupById(@PathVariable Long markupID) {
+//        try {
+//            MarkupDTO markupDTO = markupService.getMarkupById(markupID);
+//            return new ResponseEntity<>(markupDTO, HttpStatus.OK);
+//        } catch (IllegalArgumentException e) {
+//            return error.createMarkupErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            return error.createMarkupErrorResponse("Error occurred while fetching markup", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
+
     @PutMapping("/update/{markupID}")
     public ResponseEntity<MarkupDTO> updateMarkup(@PathVariable Long markupID, @RequestBody MarkupDTO markupDTO) {
         try {
             MarkupDTO updatedMarkup = markupService.updateMarkup(markupID, markupDTO);
+            if (updatedMarkup == null) {
+                return error.createMarkupErrorResponse("Markup not found for update", HttpStatus.NOT_FOUND);
+            }
             return new ResponseEntity<>(updatedMarkup, HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return error.createMarkupErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
@@ -54,6 +72,18 @@ public class MarkupController {
             return error.createMarkupErrorResponse("Error occurred while updating markup", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
+
+//    @PutMapping("/update/{markupID}")
+//    public ResponseEntity<MarkupDTO> updateMarkup(@PathVariable Long markupID, @RequestBody MarkupDTO markupDTO) {
+//        try {
+//            MarkupDTO updatedMarkup = markupService.updateMarkup(markupID, markupDTO);
+//            return new ResponseEntity<>(updatedMarkup, HttpStatus.OK);
+//        } catch (IllegalArgumentException e) {
+//            return error.createMarkupErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            return error.createMarkupErrorResponse("Error occurred while updating markup", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
     @DeleteMapping("/delete/{markupID}")
     public ResponseEntity<MarkupDTO> deleteMarkup(@PathVariable Long markupID) {

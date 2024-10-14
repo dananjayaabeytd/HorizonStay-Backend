@@ -14,7 +14,7 @@ public class SupplementDTO {
     private String error;
     private String message;
 
-    private Long id;
+    private Long supplementID;
     private String supplementName;
     private Float price;
     private int quantity;

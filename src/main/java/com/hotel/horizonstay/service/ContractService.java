@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeParseException;
+import java.time.temporal.ChronoUnit;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -93,6 +94,7 @@ public class ContractService {
         contractDTO.setId(contract.getId());
         contractDTO.setValidFrom(contract.getValidFrom());
         contractDTO.setValidTo(contract.getValidTo());
+        contractDTO.setAddedDate(contract.getAddedDate());
         contractDTO.setCancellationPolicy(contract.getCancellationPolicy());
         contractDTO.setPaymentPolicy(contract.getPaymentPolicy());
         contractDTO.setHotelName(contract.getHotel().getHotelName());
@@ -186,6 +188,7 @@ public class ContractService {
                     List<RoomTypeDTO> roomTypeDTOs = roomTypeRepository.findRoomTypesBySeason(highestMarkupSeason).stream()
                             .map(roomType -> {
                                 RoomTypeDTO roomDTO = new RoomTypeDTO();
+                                roomDTO.setRoomTypeID(roomType.getId());
                                 roomDTO.setRoomTypeName(roomType.getRoomTypeName());
                                 roomDTO.setMaxNumberOfPersons(roomType.getMaxNumberOfPersons());
                                 roomDTO.setPrice(roomType.getPrice());
@@ -208,6 +211,7 @@ public class ContractService {
                     List<SupplementDTO> supplementDTOs = supplementRepository.findSupplementsBySeason(highestMarkupSeason).stream()
                             .map(supplement -> {
                                 SupplementDTO supplementDTO = new SupplementDTO();
+                                supplementDTO.setSupplementID(supplement.getId());
                                 supplementDTO.setSupplementName(supplement.getSupplementName());
                                 supplementDTO.setPrice(supplement.getPrice());
                                 return supplementDTO;
@@ -234,5 +238,63 @@ public class ContractService {
             searchResults.add(errorDTO);
         }
         return searchResults;
+    }
+
+    // Calculate Payable Amount with Exception Handling
+    public Map<String, Float> calculatePayableAmount(CalculationDTO bookingRequest)
+    {
+        try
+        {
+            LocalDate checkInDate = LocalDate.parse(bookingRequest.getCheckIn());
+            LocalDate checkOutDate = LocalDate.parse(bookingRequest.getCheckOut());
+            long numberOfNights = ChronoUnit.DAYS.between(checkInDate, checkOutDate);
+
+            float totalAmount = 0.0f;
+
+            // Calculate room type cost
+            for (RoomTypeDTO roomTypeDTO : bookingRequest.getRoomTypes())
+            {
+                float roomPrice = roomTypeDTO.getPrice();
+                int numberOfRooms = roomTypeDTO.getNumberOfRooms();
+                int numberOfPassengers = bookingRequest.getNoOfAdults() + bookingRequest.getNoOfChildren();
+                float roomTotal = roomPrice * numberOfRooms * numberOfPassengers * numberOfNights;
+                totalAmount += roomTotal;
+            }
+
+            // Calculate supplement costs
+            for (SupplementDTO supplementDTO : bookingRequest.getSupplements())
+            {
+                float supplementCost = supplementDTO.getPrice() * supplementDTO.getQuantity();
+                totalAmount += supplementCost;
+            }
+
+            // Apply discount if available
+            float discountAmount = 0.0f;
+
+            if (bookingRequest.getDiscountPercentage() != null)
+            {
+                discountAmount = totalAmount * bookingRequest.getDiscountPercentage() / 100;
+                totalAmount -= discountAmount;
+            }
+
+            // Apply markup
+            float markupPercentage = bookingRequest.getMarkupPercentage();
+            totalAmount *= (1 + markupPercentage / 100);
+
+            // Return totalAmount and discountAmount as a map
+            Map<String, Float> result = new HashMap<>();
+            result.put("totalAmount", totalAmount);
+            result.put("discountAmount", discountAmount);
+
+            return result;
+
+        } catch (DateTimeParseException e)
+        {
+            throw new IllegalArgumentException("Invalid date format. Please use YYYY-MM-DD.");
+
+        } catch (Exception e)
+        {
+            throw new RuntimeException("An error occurred while calculating the payable amount.");
+        }
     }
 }

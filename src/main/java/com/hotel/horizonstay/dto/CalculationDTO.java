@@ -22,5 +22,5 @@ public class CalculationDTO {
     private Float discountPercentage;
     private Float markupPercentage;
     private List<SupplementDTO> supplements;
-    private List<RoomTypeDTO> roomType;
+    private List<RoomTypeDTO> roomTypes;
 }

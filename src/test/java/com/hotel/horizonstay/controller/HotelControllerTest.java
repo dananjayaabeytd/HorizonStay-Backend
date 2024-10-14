@@ -9,10 +9,9 @@
 //import org.mockito.MockitoAnnotations;
 //import org.springframework.http.HttpStatus;
 //import org.springframework.http.ResponseEntity;
-//
+//import org.springframework.web.multipart.MultipartFile;
 //import java.util.Arrays;
 //import java.util.Objects;
-//
 //import static org.junit.jupiter.api.Assertions.assertEquals;
 //import static org.mockito.ArgumentMatchers.any;
 //import static org.mockito.ArgumentMatchers.anyLong;
@@ -34,54 +33,37 @@
 //        MockitoAnnotations.openMocks(this);
 //    }
 //
-////    @Test
-////    void testGetAllHotels_Success()
-////    {
-////        // Arrange: Create sample HotelDTO objects
-////        HotelDTO hotel1 = new HotelDTO();
-////        hotel1.setHotelName("Hotel 1");
-////        HotelDTO hotel2 = new HotelDTO();
-////        hotel2.setHotelName("Hotel 2");
-////
-////        // Mock the getAllHotels method of hotelService to return the sample hotels
-////        List<HotelDTO> hotels = Arrays.asList(hotel1, hotel2);
-////        when(hotelService.getAllHotels()).thenReturn(hotels);
-////
-////        // Act: Call the getAllHotels method of hotelController
-////        ResponseEntity<List<HotelDTO>> response = hotelController.getAllHotels();
-////
-////        // Assert: Verify the response status and body
-////        assertEquals(HttpStatus.OK, response.getStatusCode());
-////        assertEquals(2, Objects.requireNonNull(response.getBody()).size());
-////    }
+//    @Test
+//    void testGetAllHotels_Success()
+//    {
+//        // Arrange: Create a sample HotelDTO object
+//        HotelDTO hotels = new HotelDTO();
+//        hotels.setHotelName("Hotel 1");
 //
-////    @Test
-////    void testGetAllHotels_NoHotelsFound()
-////    {
-////        // Mock the getAllHotels method of hotelService to return an empty list
-////        when(hotelService.getAllHotels()).thenReturn(List.of());
-////
-////        // Act: Call the getAllHotels method of hotelController
-////        ResponseEntity<List<HotelDTO>> response = hotelController.getAllHotels();
-////
-////        // Assert: Verify the response status and body
-////        assertEquals(HttpStatus.OK, response.getStatusCode());
-////        assertEquals(0, Objects.requireNonNull(response.getBody()).size());
-////    }
+//        // Mock the getAllHotels method of hotelService to return the sample hotels
+//        when(hotelService.getAllHotels()).thenReturn(hotels);
 //
-////    @Test
-////    void testGetAllHotels_Exception()
-////    {
-////        // Mock the getAllHotels method of hotelService to throw an exception
-////        when(hotelService.getAllHotels()).thenThrow(new RuntimeException("Error Getting all hotels"));
-////
-////        // Act: Call the getAllHotels method of hotelController
-////        ResponseEntity<List<HotelDTO>> response = hotelController.getAllHotels();
-////
-////        // Assert: Verify the response status and error message
-////        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-////        assertEquals("Error occurred while fetching hotels", Objects.requireNonNull(response.getBody()).get(0).getMessage());
-////    }
+//        // Act: Call the getAllHotels method of hotelController
+//        ResponseEntity<HotelDTO> response = hotelController.getAllHotels();
+//
+//        // Assert: Verify the response status and body
+//        assertEquals(HttpStatus.OK, response.getStatusCode());
+//        assertEquals("Hotel 1", Objects.requireNonNull(response.getBody()).getHotelName());
+//    }
+//
+//    @Test
+//    void testGetAllHotels_Exception()
+//    {
+//        // Mock the getAllHotels method of hotelService to throw an exception
+//        when(hotelService.getAllHotels()).thenThrow(new RuntimeException("Error Getting all hotels"));
+//
+//        // Act: Call the getAllHotels method of hotelController
+//        ResponseEntity<HotelDTO> response = hotelController.getAllHotels();
+//
+//        // Assert: Verify the response status and error message
+//        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
+//        assertEquals("Error occurred while fetching hotels", Objects.requireNonNull(response.getBody()).getMessage());
+//    }
 //
 //    @Test
 //    void testGetHotelById_Success()
@@ -147,7 +129,7 @@
 //        when(hotelService.addHotel(any(HotelDTO.class))).thenReturn(hotelDTO);
 //
 //        // Act: Call the addHotel method of hotelController
-//        ResponseEntity<HotelDTO> response = hotelController.addHotel(hotelDTO);
+//        ResponseEntity<HotelDTO> response = hotelController.addHotel(hotelDTO, new MultipartFile[0]);
 //
 //        // Assert: Verify the response status and body
 //        assertEquals(HttpStatus.CREATED, response.getStatusCode());
@@ -158,7 +140,7 @@
 //    void testAddHotel_NullRequest()
 //    {
 //        // Act: Call the addHotel method with null request body
-//        ResponseEntity<HotelDTO> response = hotelController.addHotel(null);
+//        ResponseEntity<HotelDTO> response = hotelController.addHotel(null, new MultipartFile[0]);
 //
 //        // Assert: Verify the response status and error message
 //        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -173,7 +155,7 @@
 //        hotelDTO.setHotelName("");
 //
 //        // Act: Call the addHotel method with invalid data
-//        ResponseEntity<HotelDTO> response = hotelController.addHotel(hotelDTO);
+//        ResponseEntity<HotelDTO> response = hotelController.addHotel(hotelDTO, new MultipartFile[0]);
 //
 //        // Assert: Verify the response status and error message
 //        assertEquals(HttpStatus.BAD_REQUEST, response.getStatusCode());
@@ -198,7 +180,7 @@
 //        when(hotelService.addHotel(any(HotelDTO.class))).thenThrow(new RuntimeException("Error Adding hotel"));
 //
 //        // Act: Call the addHotel method of hotelController
-//        ResponseEntity<HotelDTO> response = hotelController.addHotel(hotelDTO);
+//        ResponseEntity<HotelDTO> response = hotelController.addHotel(hotelDTO, new MultipartFile[0]);
 //
 //        // Assert: Verify the response status and error message
 //        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
