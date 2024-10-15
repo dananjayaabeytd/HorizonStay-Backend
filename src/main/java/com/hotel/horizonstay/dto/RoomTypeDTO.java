@@ -22,4 +22,5 @@ public class RoomTypeDTO {
     private Integer maxNumberOfPersons;
     private Float price;
     private List<String> roomTypeImages;
+    private Integer availableRooms;
 }

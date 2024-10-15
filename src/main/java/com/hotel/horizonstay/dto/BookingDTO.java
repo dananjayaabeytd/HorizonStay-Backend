@@ -46,5 +46,7 @@ public class BookingDTO {
 
     private Integer systemUserId;
 
+    private List<RoomTypeDTO> bookingRooms;
+
 
 }

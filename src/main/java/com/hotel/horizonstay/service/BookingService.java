@@ -2,13 +2,9 @@ package com.hotel.horizonstay.service;
 
 import com.hotel.horizonstay.dto.BookingDTO;
 import com.hotel.horizonstay.dto.BookingItemDTO;
-import com.hotel.horizonstay.entity.Booking;
-import com.hotel.horizonstay.entity.BookingItem;
-import com.hotel.horizonstay.entity.Hotel;
-import com.hotel.horizonstay.entity.SystemUser;
-import com.hotel.horizonstay.repository.BookingRepository;
-import com.hotel.horizonstay.repository.HotelRepository;
-import com.hotel.horizonstay.repository.UserRepository;
+import com.hotel.horizonstay.dto.RoomAvailabilityDTO;
+import com.hotel.horizonstay.entity.*;
+import com.hotel.horizonstay.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -28,6 +24,12 @@ public class BookingService {
 
     @Autowired
     UserRepository userRepository;
+
+    @Autowired
+    RoomTypeRepository roomTypeRepository;
+
+    @Autowired
+    RoomAvailabilityRepository roomAvailabilityRepository;
 
 
     // Method to retrieve bookings by email with exception handling
@@ -199,6 +201,7 @@ public class BookingService {
 
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
         BookingDTO res = new BookingDTO();
+
         try {
             // Create and populate the Booking entity from BookingDTO
             Booking booking = new Booking();
@@ -292,5 +295,29 @@ public class BookingService {
             // need to handle Exception
         }
         return bookingDTOs;
+    }
+
+    public RoomAvailabilityDTO saveRoomAvailability(RoomAvailabilityDTO requestDTO) {
+        List<RoomAvailability> roomAvailabilityList = new ArrayList<>();
+
+        for (RoomAvailabilityDTO.RoomTypeDTO roomTypeDTO : requestDTO.getRoomTypes()) {
+            RoomAvailability roomAvailability = new RoomAvailability();
+            roomAvailability.setCheckIn(requestDTO.getCheckIn());
+            roomAvailability.setCheckOut(requestDTO.getCheckOut());
+            roomAvailability.setNumberOfRooms(roomTypeDTO.getNumberOfRooms()); // Corrected method name
+
+            RoomType roomType = roomTypeRepository.findById(roomTypeDTO.getRoomTypeID())
+                    .orElseThrow(() -> new IllegalArgumentException("RoomType not found"));
+            roomAvailability.setRoomType(roomType);
+
+            roomAvailabilityList.add(roomAvailability);
+        }
+
+        roomAvailabilityRepository.saveAll(roomAvailabilityList);
+
+        requestDTO.setStatusCode(200);
+        requestDTO.setMessage("Room availability saved successfully");
+
+        return requestDTO;
     }
 }

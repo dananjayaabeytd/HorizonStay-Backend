@@ -2,6 +2,7 @@ package com.hotel.horizonstay.controller;
 
 import com.hotel.horizonstay.dto.BookingDTO;
 import com.hotel.horizonstay.dto.CalculationDTO;
+import com.hotel.horizonstay.dto.RoomAvailabilityDTO;
 import com.hotel.horizonstay.helper.ErrorResponse;
 import com.hotel.horizonstay.service.BookingService;
 import com.hotel.horizonstay.service.ContractService;
@@ -233,6 +234,28 @@ public class BookingController {
         catch (Exception e)
         {
             return error.createErrorResponseBooking("Error occurred while fetching the booking", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
+    // Endpoint to save room availability
+    @PostMapping("/availability")
+    public ResponseEntity<RoomAvailabilityDTO> saveRoomAvailability(@RequestBody RoomAvailabilityDTO requestDTO) {
+        if (requestDTO == null || requestDTO.getRoomTypes() == null || requestDTO.getRoomTypes().isEmpty()) {
+            RoomAvailabilityDTO errorResponse = new RoomAvailabilityDTO();
+            errorResponse.setMessage("Request body is null or empty");
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        }
+        try {
+            RoomAvailabilityDTO reponse = bookingService.saveRoomAvailability(requestDTO);
+            return ResponseEntity.ok(reponse);
+        } catch (IllegalArgumentException e) {
+            RoomAvailabilityDTO errorResponse = new RoomAvailabilityDTO();
+            errorResponse.setMessage(e.getMessage());
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+        } catch (Exception e) {
+            RoomAvailabilityDTO errorResponse = new RoomAvailabilityDTO();
+            errorResponse.setMessage("Error occurred while saving room availability");
+            return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
 
