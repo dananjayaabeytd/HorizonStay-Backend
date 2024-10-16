@@ -7,6 +7,8 @@ import com.hotel.horizonstay.entity.*;
 import com.hotel.horizonstay.repository.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.CacheEvict;
 
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -31,65 +33,7 @@ public class BookingService {
     @Autowired
     RoomAvailabilityRepository roomAvailabilityRepository;
 
-
-    // Method to retrieve bookings by email with exception handling
-//    public List<BookingDTO> getBookingsByEmail(String email) {
-//
-//        BookingDTO res = new BookingDTO();
-//        try {
-//            List<Booking> bookings = bookingRepository.findByEmail(email);
-//            if (bookings.isEmpty()) {
-//                res.setStatusCode(404);
-//                res.setMessage("No bookings found for the given email");
-//            } else {
-//                List<BookingDTO> bookingDTOs = bookings.stream()
-//                        .map(this::mapToDTO)
-//                        .collect(Collectors.toList());
-//                res.setBookingList(bookingDTOs); // Assuming you have a list of bookings in your DTO
-//                res.setStatusCode(200);
-//                res.setMessage("Bookings retrieved successfully");
-//            }
-//        } catch (Exception e) {
-//            res.setStatusCode(500);
-//            res.setMessage("Error occurred while retrieving bookings: " + e.getMessage());
-//        }
-//        return (List<BookingDTO>) res;
-//    }
-//
-//    private BookingDTO mapToDTO(Booking booking) {
-//
-//        BookingDTO bookingDTO = new BookingDTO();
-//
-//        bookingDTO.setHotelID(booking.getHotelID());
-//        bookingDTO.setFullName(booking.getFullName());
-//        bookingDTO.setTelephone(booking.getTelephone());
-//        bookingDTO.setEmail(booking.getEmail());
-//        bookingDTO.setAddress(booking.getAddress());
-//        bookingDTO.setCity(booking.getCity());
-//        bookingDTO.setCountry(booking.getCountry());
-//        bookingDTO.setCheckIn(booking.getCheckIn().toString());
-//        bookingDTO.setCheckOut(booking.getCheckOut().toString());
-//        bookingDTO.setNoOfAdults(booking.getNoOfAdults());
-//        bookingDTO.setNoOfChildren(booking.getNoOfChildren());
-//        bookingDTO.setDiscount(booking.getDiscount());
-//        bookingDTO.setPayableAmount(booking.getPayableAmount());
-//
-//
-//
-//        // Map the items
-//        List<BookingItemDTO> items = booking.getItems().stream().map(item -> {
-//            BookingItemDTO itemDTO = new BookingItemDTO();
-//            itemDTO.setName(item.getName());
-//            itemDTO.setPrice(item.getPrice());
-//            itemDTO.setQuantity(item.getQuantity());
-//            itemDTO.setTotalAmount(item.getTotalAmount());
-//            return itemDTO;
-//        }).collect(Collectors.toList());
-//        bookingDTO.setItems(items);
-//
-//        return bookingDTO;
-//    }
-
+    @Cacheable(value = "bookingsByEmail", key = "#email")
     public List<BookingDTO> getBookingsByEmail(String email) {
         List<BookingDTO> bookingDTOs = new ArrayList<>();
         try {
@@ -148,57 +92,7 @@ public class BookingService {
         return bookingDTO;
     }
 
-//    public BookingDTO saveBooking(BookingDTO bookingDTO) {
-//        BookingDTO res = new BookingDTO();
-//        try {
-//            // Create and populate the Booking entity from BookingDTO
-//            Booking booking = new Booking();
-//            booking.setFullName(bookingDTO.getFullName());
-//            booking.setTelephone(bookingDTO.getTelephone());
-//            booking.setEmail(bookingDTO.getEmail());
-//            booking.setHotelID(bookingDTO.getHotelID());
-//            booking.setAddress(bookingDTO.getAddress());
-//            booking.setCity(bookingDTO.getCity());
-//            booking.setCountry(bookingDTO.getCountry());
-//            booking.setCheckIn(LocalDate.parse(bookingDTO.getCheckIn()));
-//            booking.setCheckOut(LocalDate.parse(bookingDTO.getCheckOut()));
-//            booking.setNoOfAdults(bookingDTO.getNoOfAdults());
-//            booking.setNoOfChildren(bookingDTO.getNoOfChildren());
-//            booking.setDiscount(bookingDTO.getDiscount());
-//            booking.setPayableAmount(bookingDTO.getPayableAmount());
-//
-//            // Map BookingItemDTOs to BookingItems
-//            List<BookingItem> bookingItems = new ArrayList<>();
-//            for (BookingItemDTO itemDTO : bookingDTO.getItems()) {
-//                BookingItem item = new BookingItem();
-//                item.setName(itemDTO.getName());
-//                item.setPrice(itemDTO.getPrice());
-//                item.setQuantity(itemDTO.getQuantity());
-//                item.setTotalAmount(itemDTO.getTotalAmount());
-//                item.setBooking(booking);
-//                bookingItems.add(item);
-//            }
-//
-//            booking.setItems(bookingItems);
-//
-//            // Save the Booking entity
-//            Booking savedBooking = bookingRepository.save(booking);
-//
-//            // Map saved Booking entity to BookingDTO for response
-//            BookingDTO savedBookingDTO = mapToDTO(savedBooking);
-//            savedBookingDTO.setStatusCode(200);
-//            savedBookingDTO.setMessage("Booking saved successfully");
-////            res.setBooking(savedBookingDTO); // Assuming you have a single booking in your DTO
-//
-//            return savedBookingDTO;
-//
-//        } catch (Exception e) {
-//            res.setStatusCode(500);
-//            res.setMessage("Error occurred while saving booking: " + e.getMessage());
-//        }
-//        return res;
-//    }
-
+    @CacheEvict(value = "bookingsByEmail", key = "#bookingDTO.email")
     public BookingDTO saveBooking(BookingDTO bookingDTO) {
         BookingDTO res = new BookingDTO();
 
@@ -256,6 +150,7 @@ public class BookingService {
         return res;
     }
 
+
     public BookingDTO updateBooking(Long id, BookingDTO bookingDTO) {
         return null;
     }
@@ -264,6 +159,7 @@ public class BookingService {
 
     }
 
+    @Cacheable(value = "bookingById", key = "#id")
     public BookingDTO getBookingById(Long id) {
         BookingDTO bookingDTO = new BookingDTO();
         try {
@@ -279,6 +175,7 @@ public class BookingService {
         return bookingDTO;
     }
 
+    @Cacheable(value = "bookingsByUserId", key = "#userId")
     public List<BookingDTO> getBookingsByUserId(Integer userId) {
         List<BookingDTO> bookingDTOs = new ArrayList<>();
         try {
