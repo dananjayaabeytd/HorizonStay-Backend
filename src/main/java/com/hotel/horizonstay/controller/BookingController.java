@@ -258,4 +258,14 @@ public class BookingController {
             return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
         }
     }
+
+    @PostMapping("/test")
+    public ResponseEntity<String> test() {
+
+        try {
+            throw new Exception();
+        } catch (Exception e) {
+            throw new IllegalArgumentException("Error occurred while saving room availability");
+        }
+    }
 }
