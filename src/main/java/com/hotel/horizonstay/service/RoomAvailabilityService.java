@@ -14,7 +14,8 @@ public class RoomAvailabilityService {
     RoomAvailabilityRepository roomAvailabilityRepository;
 
     @PostConstruct
-    public void deleteExpiredRoomAvailabilities() {
+    public void deleteExpiredRoomAvailabilities()
+    {
         LocalDate today = LocalDate.now();
         roomAvailabilityRepository.deleteByCheckOutDate(today);
     }

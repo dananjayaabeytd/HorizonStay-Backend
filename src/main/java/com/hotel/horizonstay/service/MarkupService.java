@@ -6,6 +6,9 @@ import com.hotel.horizonstay.entity.Season;
 import com.hotel.horizonstay.repository.MarkupRepository;
 import com.hotel.horizonstay.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +24,13 @@ public class MarkupService {
     @Autowired
     private SeasonRepository seasonRepository;
 
-    public MarkupDTO addMarkupToSeason(Long seasonID, MarkupDTO markupDTO) {
+    @CachePut(value = "markups", key = "#result.id")
+    public MarkupDTO addMarkupToSeason(Long seasonID, MarkupDTO markupDTO)
+    {
         Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
-        if (seasonOptional.isPresent()) {
+
+        if (seasonOptional.isPresent())
+        {
             Markup markup = new Markup();
             // Set fields from markupDTO to markup
             markup.setMarkupName(markupDTO.getMarkupName());
@@ -36,35 +43,47 @@ public class MarkupService {
         }
     }
 
-    public MarkupDTO getMarkupById(Long markupID) {
+    @Cacheable(value = "markups", key = "#markupID")
+    public MarkupDTO getMarkupById(Long markupID)
+    {
         Optional<Markup> markup = markupRepository.findById(markupID);
         return markup.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Markup not found"));
     }
 
-    public MarkupDTO updateMarkup(Long markupID, MarkupDTO markupDTO) {
+    @CachePut(value = "markups", key = "#markupID")
+    public MarkupDTO updateMarkup(Long markupID, MarkupDTO markupDTO)
+    {
         Optional<Markup> markupOptional = markupRepository.findById(markupID);
-        if (markupOptional.isPresent()) {
+
+        if (markupOptional.isPresent())
+        {
             Markup markup = markupOptional.get();
             // Update fields from markupDTO to markup
             markup.setMarkupName(markupDTO.getMarkupName());
             markup.setPercentage((float) markupDTO.getPercentage());
             markup = markupRepository.save(markup);
             return convertToDTO(markup);
+
         } else {
             throw new IllegalArgumentException("Markup not found");
         }
     }
 
-    public void deleteMarkup(Long markupID) {
+    @CacheEvict(value = "markups", key = "#markupID")
+    public void deleteMarkup(Long markupID)
+    {
         markupRepository.deleteById(markupID);
     }
 
-    public List<MarkupDTO> getMarkupsBySeasonId(Long seasonID) {
+    @Cacheable(value = "markupsBySeason", key = "#seasonID")
+    public List<MarkupDTO> getMarkupsBySeasonId(Long seasonID)
+    {
         List<Markup> markups = markupRepository.findBySeasonId(seasonID);
         return markups.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    private MarkupDTO convertToDTO(Markup markup) {
+    private MarkupDTO convertToDTO(Markup markup)
+    {
         MarkupDTO markupDTO = new MarkupDTO();
         // Set fields from markup to markupDTO
         markupDTO.setId(markup.getId());

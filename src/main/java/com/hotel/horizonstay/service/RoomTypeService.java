@@ -6,6 +6,9 @@ import com.hotel.horizonstay.entity.Season;
 import com.hotel.horizonstay.repository.RoomTypeRepository;
 import com.hotel.horizonstay.repository.SeasonRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +24,14 @@ public class RoomTypeService {
     @Autowired
     private SeasonRepository seasonRepository;
 
-    public RoomTypeDTO addRoomTypeToSeason(Long seasonId, RoomTypeDTO roomTypeDTO) {
+    @CachePut(value = "roomTypes", key = "#result.roomTypeID")
+    public RoomTypeDTO addRoomTypeToSeason(Long seasonId, RoomTypeDTO roomTypeDTO)
+    {
+
         Optional<Season> seasonOptional = seasonRepository.findById(seasonId);
-        if (seasonOptional.isPresent()) {
+
+        if (seasonOptional.isPresent())
+        {
             RoomType roomType = new RoomType();
             // Set fields from roomTypeDTO to roomType
             roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
@@ -39,14 +47,21 @@ public class RoomTypeService {
         }
     }
 
-    public RoomTypeDTO getRoomTypeById(Long roomTypeID) {
+    @Cacheable(value = "roomTypes", key = "#roomTypeID")
+    public RoomTypeDTO getRoomTypeById(Long roomTypeID)
+    {
         Optional<RoomType> roomType = roomTypeRepository.findById(roomTypeID);
+
         return roomType.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Room type not found"));
     }
 
-    public RoomTypeDTO updateRoomType(Long roomTypeID, RoomTypeDTO roomTypeDTO) {
+    @CachePut(value = "roomTypes", key = "#roomTypeID")
+    public RoomTypeDTO updateRoomType(Long roomTypeID, RoomTypeDTO roomTypeDTO)
+    {
         Optional<RoomType> roomTypeOptional = roomTypeRepository.findById(roomTypeID);
-        if (roomTypeOptional.isPresent()) {
+
+        if (roomTypeOptional.isPresent())
+        {
             RoomType roomType = roomTypeOptional.get();
             // Update fields from roomTypeDTO to roomType
             roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
@@ -61,16 +76,22 @@ public class RoomTypeService {
         }
     }
 
-    public void deleteRoomType(Long roomTypeID) {
+    @CacheEvict(value = "roomTypes", key = "#roomTypeID")
+    public void deleteRoomType(Long roomTypeID)
+    {
         roomTypeRepository.deleteById(roomTypeID);
     }
 
-    public List<RoomTypeDTO> getRoomTypesBySeasonId(Long seasonID) {
+    @Cacheable(value = "roomTypesBySeason", key = "#seasonID")
+    public List<RoomTypeDTO> getRoomTypesBySeasonId(Long seasonID)
+    {
         List<RoomType> roomTypes = roomTypeRepository.findBySeasonId(seasonID);
+
         return roomTypes.stream().map(this::convertToDTO).collect(Collectors.toList());
     }
 
-    private RoomTypeDTO convertToDTO(RoomType roomType) {
+    private RoomTypeDTO convertToDTO(RoomType roomType)
+    {
         RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
         // Set fields from roomType to roomTypeDTO
         roomTypeDTO.setRoomTypeID(roomType.getId());

@@ -6,6 +6,9 @@ import com.hotel.horizonstay.entity.Supplement;
 import com.hotel.horizonstay.repository.SeasonRepository;
 import com.hotel.horizonstay.repository.SupplementRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -21,9 +24,13 @@ public class SupplementService {
     @Autowired
     private SeasonRepository seasonRepository;
 
-    public SupplementDTO addSupplementToSeason(Long seasonID, SupplementDTO supplementDTO) {
+    @CachePut(value = "supplements", key = "#result.supplementID")
+    public SupplementDTO addSupplementToSeason(Long seasonID, SupplementDTO supplementDTO)
+    {
         Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
-        if (seasonOptional.isPresent()) {
+
+        if (seasonOptional.isPresent())
+        {
             Supplement supplement = new Supplement();
             // Set fields from supplementDTO to supplement
             supplement.setSupplementName(supplementDTO.getSupplementName());
@@ -32,19 +39,26 @@ public class SupplementService {
 
             supplement = supplementRepository.save(supplement);
             return convertToDTO(supplement);
+
         } else {
             throw new IllegalArgumentException("Season not found");
         }
     }
 
-    public SupplementDTO getSupplementById(Long supplementID) {
+    @Cacheable(value = "supplements", key = "#supplementID")
+    public SupplementDTO getSupplementById(Long supplementID)
+    {
         Optional<Supplement> supplement = supplementRepository.findById(supplementID);
         return supplement.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Supplement not found"));
     }
 
-    public SupplementDTO updateSupplement(Long supplementID, SupplementDTO supplementDTO) {
+    @CachePut(value = "supplements", key = "#supplementID")
+    public SupplementDTO updateSupplement(Long supplementID, SupplementDTO supplementDTO)
+    {
         Optional<Supplement> supplementOptional = supplementRepository.findById(supplementID);
-        if (supplementOptional.isPresent()) {
+
+        if (supplementOptional.isPresent())
+        {
             Supplement supplement = supplementOptional.get();
             // Update fields from supplementDTO to supplement
             supplement.setSupplementName(supplementDTO.getSupplementName());
@@ -56,11 +70,21 @@ public class SupplementService {
         }
     }
 
-    public void deleteSupplement(Long supplementID) {
+    @CacheEvict(value = "supplements", key = "#supplementID")
+    public void deleteSupplement(Long supplementID)
+    {
         supplementRepository.deleteById(supplementID);
     }
 
-    private SupplementDTO convertToDTO(Supplement supplement) {
+    @Cacheable(value = "supplementsBySeason", key = "#seasonID")
+    public List<SupplementDTO> getSupplementsBySeasonId(Long seasonID)
+    {
+        List<Supplement> supplements = supplementRepository.findBySeasonId(seasonID);
+        return supplements.stream().map(this::convertToDTO).collect(Collectors.toList());
+    }
+
+    private SupplementDTO convertToDTO(Supplement supplement)
+    {
         SupplementDTO supplementDTO = new SupplementDTO();
         // Set fields from supplement to supplementDTO
         supplementDTO.setSupplementID(supplement.getId());
@@ -69,8 +93,4 @@ public class SupplementService {
         return supplementDTO;
     }
 
-    public List<SupplementDTO> getSupplementsBySeasonId(Long seasonID) {
-        List<Supplement> supplements = supplementRepository.findBySeasonId(seasonID);
-        return supplements.stream().map(this::convertToDTO).collect(Collectors.toList());
-    }
 }

@@ -4,6 +4,9 @@ import com.hotel.horizonstay.dto.UserDTO;
 import com.hotel.horizonstay.entity.SystemUser;
 import com.hotel.horizonstay.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.crypto.password.PasswordEncoder;
@@ -29,13 +32,18 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-    public UserDTO register(UserDTO registrationRequest) {
+    @CachePut(value = "users", key = "#result.systemUsers.id")
+    public UserDTO register(UserDTO registrationRequest)
+    {
         UserDTO reqRes = new UserDTO();
 
         try {
+
             // Check if user already exists with the same email
             Optional<SystemUser> existingUser = usersRepo.findByEmail(registrationRequest.getEmail());
-            if (existingUser.isPresent()) {
+
+            if (existingUser.isPresent())
+            {
                 reqRes.setMessage("User already exists");
                 reqRes.setStatusCode(409); // Conflict
                 return reqRes;
@@ -52,7 +60,8 @@ public class UserService {
 
             SystemUser ourUsersResult = usersRepo.save(systemUser);
 
-            if (ourUsersResult.getId() > 0) {
+            if (ourUsersResult.getId() > 0)
+            {
                 reqRes.setSystemUsers(ourUsersResult);
                 reqRes.setMessage("User Saved Successfully");
                 reqRes.setStatusCode(200);
@@ -62,6 +71,7 @@ public class UserService {
             reqRes.setStatusCode(500);
             reqRes.setError(e.getMessage());
         }
+
         return reqRes;
     }
 
@@ -163,6 +173,7 @@ public class UserService {
         }
     }
 
+    @Cacheable(value = "users")
     public UserDTO getAllUsers()
     {
 
@@ -193,6 +204,7 @@ public class UserService {
         }
     }
 
+    @Cacheable(value = "users", key = "#id")
     public UserDTO getUsersById(Integer id)
     {
 
@@ -215,6 +227,7 @@ public class UserService {
         return res;
     }
 
+    @CacheEvict(value = "users", key = "#userId")
     public UserDTO deleteUser(Integer userId)
     {
         UserDTO res = new UserDTO();
@@ -245,6 +258,7 @@ public class UserService {
         return res;
     }
 
+    @CachePut(value = "users", key = "#userId")
     public UserDTO updateUser(Integer userId, UserDTO updatedUser)
     {
         UserDTO res = new UserDTO();
@@ -286,6 +300,7 @@ public class UserService {
         return res;
     }
 
+    @Cacheable(value = "users", key = "#email")
     public UserDTO getMyInfo(String email)
     {
         UserDTO res = new UserDTO();

@@ -4,6 +4,9 @@ import com.hotel.horizonstay.dto.HotelDTO;
 import com.hotel.horizonstay.entity.Hotel;
 import com.hotel.horizonstay.repository.HotelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
+import org.springframework.cache.annotation.CachePut;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -15,6 +18,7 @@ public class HotelService {
     @Autowired
     private HotelRepository hotelRepository;
 
+    @Cacheable(value = "hotels")
     public HotelDTO getAllHotels()
     {
         HotelDTO res = new HotelDTO();
@@ -46,7 +50,7 @@ public class HotelService {
         }
     }
 
-
+    @Cacheable(value = "hotels", key = "#hotelID")
     public HotelDTO getHotelById(Long hotelID)
     {
         HotelDTO res = new HotelDTO();
@@ -82,6 +86,7 @@ public class HotelService {
         return res;
     }
 
+    @CachePut(value = "hotels", key = "#result.hotelID")
     public HotelDTO addHotel(HotelDTO hotelDTO) {
         HotelDTO res = new HotelDTO();
 
@@ -175,6 +180,7 @@ public class HotelService {
 //    }
 
 
+    @CachePut(value = "hotels", key = "#hotelID")
     public HotelDTO updateHotel(Long hotelID, HotelDTO hotelDTO)
     {
         HotelDTO res = new HotelDTO();
@@ -219,6 +225,7 @@ public class HotelService {
         return res;
     }
 
+    @CacheEvict(value = "hotels", key = "#hotelID")
     public HotelDTO deleteHotel(Long hotelID)
     {
         HotelDTO res = new HotelDTO();
