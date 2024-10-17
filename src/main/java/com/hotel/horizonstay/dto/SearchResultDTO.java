@@ -5,25 +5,28 @@ import com.fasterxml.jackson.annotation.JsonInclude;
 import com.hotel.horizonstay.entity.Discount;
 import lombok.Data;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.time.LocalDate;
 import java.util.List;
 
 @Data
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @JsonIgnoreProperties(ignoreUnknown = true)
-public class SearchResultDTO {
+public class SearchResultDTO implements Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 214101981905645865L;
 
     private int statusCode;
     private String error;
     private String message;
-
     private Long number;
     private Long hotelID;
     private LocalDate validFrom;
     private LocalDate validTo;
     private String cancellationPolicy;
     private String paymentPolicy;
-
     private String hotelName;
     private String hotelLocation;
     private String hotelDescription;
@@ -31,7 +34,6 @@ public class SearchResultDTO {
     private String hotelEmail;
     private Float hotelRating;
     private List<String> hotelImages;
-
     private SeasonDTO seasonDTO;
     private MarkupDTO markupDTO;
     private List<RoomTypeDTO> roomTypeDTO;

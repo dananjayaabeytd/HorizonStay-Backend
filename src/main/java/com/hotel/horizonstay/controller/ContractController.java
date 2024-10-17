@@ -152,8 +152,6 @@ public class ContractController {
             return error.createErrorResponseMap("Error occurred while calculating the amount", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
-
-
     // Endpoint to calculate the payable amount for a booking
 //    @PostMapping("/calculate-amount")
 //    public ResponseEntity<Map<String, Object>> calculateAmount(@RequestBody CalculationDTO bookingRequest)

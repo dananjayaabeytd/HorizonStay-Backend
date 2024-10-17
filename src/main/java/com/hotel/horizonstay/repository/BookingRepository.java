@@ -11,7 +11,6 @@ import java.util.List;
 public interface BookingRepository extends JpaRepository<Booking, Long> {
 
     List<Booking> findByEmail(String email);
-
     List<Booking> findBySystemUser(SystemUser systemUser);
 
 }

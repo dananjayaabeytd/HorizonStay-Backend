@@ -9,7 +9,7 @@ import java.util.List;
 
 @Repository
 public interface MarkupRepository extends JpaRepository<Markup, Long> {
-    List<Markup> findBySeasonId(Long seasonID);
 
+    List<Markup> findBySeasonId(Long seasonID);
     List<Markup> findMarkupsBySeason(Season season);
 }

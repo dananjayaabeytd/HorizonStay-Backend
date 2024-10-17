@@ -10,8 +10,8 @@ import java.util.List;
 
 @Repository
 public interface RoomTypeRepository extends JpaRepository<RoomType, Long> {
-    List<RoomType> findBySeasonId(Long seasonID);
 
+    List<RoomType> findBySeasonId(Long seasonID);
     List<RoomType> findRoomTypesBySeason(Season highestMarkupSeason);
 
 }

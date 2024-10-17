@@ -6,13 +6,18 @@ import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 
+import java.io.Serial;
+import java.io.Serializable;
 import java.util.Collection;
 import java.util.List;
 
 @Entity
 @Table(name = "systemusers")
 @Data
-public class SystemUser implements UserDetails {
+public class SystemUser implements UserDetails, Serializable {
+
+    @Serial
+    private static final long serialVersionUID = 214101981905645865L;
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -25,7 +30,7 @@ public class SystemUser implements UserDetails {
     private String image;
     private String NIC;
 
-    @OneToMany(mappedBy = "systemUser", cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "systemUser", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
     private List<Booking> bookings;
 
     @Override

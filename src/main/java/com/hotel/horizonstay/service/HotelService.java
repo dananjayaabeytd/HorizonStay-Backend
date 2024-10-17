@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
 import org.springframework.cache.annotation.Cacheable;
+import org.springframework.cache.annotation.Caching;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class HotelService {
     @Autowired
     private HotelRepository hotelRepository;
 
-    @Cacheable(value = "hotels")
+    @Cacheable(value = "hotels", unless = "#result.statusCode != 200")
     public HotelDTO getAllHotels()
     {
         HotelDTO res = new HotelDTO();
@@ -50,7 +51,7 @@ public class HotelService {
         }
     }
 
-    @Cacheable(value = "hotels", key = "#hotelID")
+    @Cacheable(value = "hotels", key = "#hotelID", unless = "#result.statusCode != 200")
     public HotelDTO getHotelById(Long hotelID)
     {
         HotelDTO res = new HotelDTO();
@@ -86,7 +87,12 @@ public class HotelService {
         return res;
     }
 
-    @CachePut(value = "hotels", key = "#result.hotelID")
+    @Caching(
+            put = {
+                    @CachePut(value = "hotels", key = "#result.hotelID", unless = "#result.statusCode != 200"),
+                    @CachePut(value = "hotels", key = "'all'", unless = "#result.statusCode != 200")
+            }
+    )
     public HotelDTO addHotel(HotelDTO hotelDTO) {
         HotelDTO res = new HotelDTO();
 
@@ -180,6 +186,12 @@ public class HotelService {
 //    }
 
 
+    @Caching(
+            put = {
+                    @CachePut(value = "hotels", key = "#hotelID", unless = "#result.statusCode != 200"),
+                    @CachePut(value = "hotels", key = "'all'", unless = "#result.statusCode != 200")
+            }
+    )
     @CachePut(value = "hotels", key = "#hotelID")
     public HotelDTO updateHotel(Long hotelID, HotelDTO hotelDTO)
     {
@@ -225,7 +237,12 @@ public class HotelService {
         return res;
     }
 
-    @CacheEvict(value = "hotels", key = "#hotelID")
+    @Caching(
+            evict = {
+                    @CacheEvict(value = "hotels", key = "#hotelID"),
+                    @CacheEvict(value = "hotels", key = "'all'")
+            }
+    )
     public HotelDTO deleteHotel(Long hotelID)
     {
         HotelDTO res = new HotelDTO();

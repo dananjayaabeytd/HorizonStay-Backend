@@ -12,7 +12,8 @@ public class RoomAvailabilityCleanupTask {
     RoomAvailabilityService roomAvailabilityService;
 
     @Scheduled(cron = "0 0 0 * * ?") // Runs every day at midnight
-    public void cleanUpExpiredRoomAvailabilities() {
+    public void cleanUpExpiredRoomAvailabilities()
+    {
         roomAvailabilityService.deleteExpiredRoomAvailabilities();
     }
 }

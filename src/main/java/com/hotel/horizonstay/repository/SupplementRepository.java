@@ -10,7 +10,7 @@ import java.util.List;
 
 @Repository
 public interface SupplementRepository extends JpaRepository<Supplement, Long> {
-    List<Supplement> findBySeasonId(Long seasonID);
 
+    List<Supplement> findBySeasonId(Long seasonID);
     Collection<Supplement> findSupplementsBySeason(Season highestMarkupSeason);
 }

@@ -16,7 +16,10 @@ import java.util.List;
 public interface RoomAvailabilityRepository extends JpaRepository<RoomAvailability, Long> {
 
     @Query("SELECT ra FROM RoomAvailability ra WHERE ra.roomType.id = :roomTypeId AND ra.checkIn <= :checkOutDate AND ra.checkOut >= :checkInDate")
-    List<RoomAvailability> findRoomAvailabilitiesByRoomTypeAndDateRange(@Param("roomTypeId") Long roomTypeId, @Param("checkInDate") LocalDate checkInDate, @Param("checkOutDate") LocalDate checkOutDate);
+    List<RoomAvailability> findRoomAvailabilitiesByRoomTypeAndDateRange
+            (@Param("roomTypeId") Long roomTypeId,
+             @Param("checkInDate") LocalDate checkInDate,
+             @Param("checkOutDate") LocalDate checkOutDate);
 
     @Modifying
     @Transactional

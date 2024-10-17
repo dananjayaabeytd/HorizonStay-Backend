@@ -32,7 +32,6 @@ public class UserService {
     private PasswordEncoder passwordEncoder;
 
 
-    @CachePut(value = "users", key = "#result.systemUsers.id")
     public UserDTO register(UserDTO registrationRequest)
     {
         UserDTO reqRes = new UserDTO();
@@ -173,6 +172,7 @@ public class UserService {
         }
     }
 
+
     @Cacheable(value = "users")
     public UserDTO getAllUsers()
     {
@@ -203,6 +203,7 @@ public class UserService {
             return res;
         }
     }
+
 
     @Cacheable(value = "users", key = "#id")
     public UserDTO getUsersById(Integer id)

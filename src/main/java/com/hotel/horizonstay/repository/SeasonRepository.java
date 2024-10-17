@@ -12,11 +12,6 @@ import java.util.List;
 @Repository
 public interface SeasonRepository extends JpaRepository<Season, Long> {
 
-    @Query("SELECT s FROM Season s WHERE s.contract = :contract AND " +
-            "(s.validFrom <= :checkOutDate AND s.validTo >= :checkInDate)")
-    List<Season> findActiveSeasonsByContract(HotelContract contract, LocalDate checkInDate, LocalDate checkOutDate);
-
     List<Season> findByContractId(Long contractID);
-
     List<Season> findSeasonsByContract(HotelContract contract);
 }

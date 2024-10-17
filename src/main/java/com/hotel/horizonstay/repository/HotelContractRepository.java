@@ -20,5 +20,4 @@ public interface HotelContractRepository extends JpaRepository<HotelContract,Lon
     List<HotelContract> findContractsByLocationAndDateRange(String location, LocalDate checkInDate, LocalDate checkOutDate);
 
     List<HotelContract> findByHotel_HotelID(Long hotelId);
-
 }

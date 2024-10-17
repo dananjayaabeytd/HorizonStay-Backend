@@ -10,7 +10,8 @@ import org.springframework.scheduling.annotation.EnableScheduling;
 @EnableCaching
 public class HorizonstayApplication {
 
-	public static void main(String[] args) {
+	public static void main(String[] args)
+	{
 		SpringApplication.run(HorizonstayApplication.class, args);
 	}
 
