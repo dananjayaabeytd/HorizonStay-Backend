@@ -154,5 +154,49 @@ public class HotelController {
         }
     }
 
+    //    @PutMapping(value = "admin/hotel/update/{hotelID}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+//    public ResponseEntity<HotelDTO> updateHotel(@PathVariable Long hotelID, @RequestPart("hotel") HotelDTO hotelDTO, @RequestParam("files") MultipartFile[] files) {
+//        if (hotelDTO == null) {
+//            return error.createHotelErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
+//        }
+//        if (validation.isInvalidHotelData(hotelDTO)) {
+//            return error.createHotelErrorResponse("Invalid hotel data", HttpStatus.BAD_REQUEST);
+//        }
+//
+//        // Directory where the files will be stored
+//        String uploadDir = "/HotelImages/";
+//
+//        try {
+//            // Check if files are provided
+//            if (files != null && files.length > 0) {
+//                // Save each file and get the filenames
+//                List<String> fileNames = Arrays.stream(files)
+//                        .map(file -> {
+//                            try {
+//                                // Get a clean file name
+//                                String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+//                                // Save the file to the upload directory
+//                                FileUploadUtil.saveFile(uploadDir, fileName, file);
+//                                return fileName; // Return the filename after saving
+//                            } catch (Exception e) {
+//                                e.printStackTrace();
+//                                return null;
+//                            }
+//                        })
+//                        .filter(Objects::nonNull) // Filter out null values if any file failed to save
+//                        .toList();
+//
+//                hotelDTO.setHotelImages(fileNames);
+//            }
+//
+//            HotelDTO updatedHotel = hotelService.updateHotel(hotelID, hotelDTO);
+//            if (updatedHotel != null) {
+//                return ResponseEntity.ok(updatedHotel);
+//            }
+//            return error.createHotelErrorResponse("Hotel not found for update", HttpStatus.NOT_FOUND);
+//        } catch (Exception e) {
+//            return error.createHotelErrorResponse("Error occurred while updating hotel", HttpStatus.INTERNAL_SERVER_ERROR);
+//        }
+//    }
 
 }

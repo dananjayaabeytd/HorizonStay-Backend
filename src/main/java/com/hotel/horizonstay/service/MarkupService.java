@@ -5,10 +5,9 @@ import com.hotel.horizonstay.entity.Markup;
 import com.hotel.horizonstay.entity.Season;
 import com.hotel.horizonstay.repository.MarkupRepository;
 import com.hotel.horizonstay.repository.SeasonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,77 +17,190 @@ import java.util.stream.Collectors;
 @Service
 public class MarkupService {
 
+    private static final Logger logger = LoggerFactory.getLogger(MarkupService.class);
+
     @Autowired
     private MarkupRepository markupRepository;
 
     @Autowired
     private SeasonRepository seasonRepository;
 
-    @CachePut(value = "markups", key = "#result.id")
     public MarkupDTO addMarkupToSeason(Long seasonID, MarkupDTO markupDTO)
     {
-        Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
+        logger.info("Adding markup to season with ID: {}", seasonID);
+        MarkupDTO res = new MarkupDTO();
 
-        if (seasonOptional.isPresent())
+        try
         {
-            Markup markup = new Markup();
-            // Set fields from markupDTO to markup
-            markup.setMarkupName(markupDTO.getMarkupName());
-            markup.setPercentage((float) markupDTO.getPercentage());
-            markup.setSeason(seasonOptional.get());
-            markup = markupRepository.save(markup);
-            return convertToDTO(markup);
-        } else {
-            throw new IllegalArgumentException("Season not found");
+            Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
+
+            if (seasonOptional.isPresent())
+            {
+                Markup markup = new Markup();
+                markup.setMarkupName(markupDTO.getMarkupName());
+                markup.setPercentage((float) markupDTO.getPercentage());
+                markup.setSeason(seasonOptional.get());
+                markup = markupRepository.save(markup);
+
+                res = convertToDTO(markup);
+
+                res.setStatusCode(200);
+                res.setMessage("Markup added successfully");
+                logger.info("Markup added successfully to season with ID: {}", seasonID);
+
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Season not found");
+                logger.warn("Season with ID: {} not found", seasonID);
+            }
+
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while adding markup to season with ID: {}", seasonID, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "markups", key = "#markupID")
     public MarkupDTO getMarkupById(Long markupID)
     {
-        Optional<Markup> markup = markupRepository.findById(markupID);
-        return markup.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Markup not found"));
+        logger.info("Fetching markup with ID: {}", markupID);
+        MarkupDTO res = new MarkupDTO();
+
+        try
+        {
+            Optional<Markup> markup = markupRepository.findById(markupID);
+
+            if (markup.isPresent())
+            {
+                res = convertToDTO(markup.get());
+                res.setStatusCode(200);
+                res.setMessage("Markup found successfully");
+                logger.info("Markup with ID: {} found successfully", markupID);
+
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Markup not found");
+                logger.warn("Markup with ID: {} not found", markupID);
+            }
+
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while fetching markup with ID: {}", markupID, e);
+        }
+
+        return res;
     }
 
-    @CachePut(value = "markups", key = "#markupID")
     public MarkupDTO updateMarkup(Long markupID, MarkupDTO markupDTO)
     {
-        Optional<Markup> markupOptional = markupRepository.findById(markupID);
+        logger.info("Updating markup with ID: {}", markupID);
+        MarkupDTO res = new MarkupDTO();
 
-        if (markupOptional.isPresent())
+        try
         {
-            Markup markup = markupOptional.get();
-            // Update fields from markupDTO to markup
-            markup.setMarkupName(markupDTO.getMarkupName());
-            markup.setPercentage((float) markupDTO.getPercentage());
-            markup = markupRepository.save(markup);
-            return convertToDTO(markup);
+            Optional<Markup> markupOptional = markupRepository.findById(markupID);
 
-        } else {
-            throw new IllegalArgumentException("Markup not found");
+            if (markupOptional.isPresent())
+            {
+                Markup markup = markupOptional.get();
+                markup.setMarkupName(markupDTO.getMarkupName());
+                markup.setPercentage((float) markupDTO.getPercentage());
+                markup = markupRepository.save(markup);
+
+                res = convertToDTO(markup);
+                res.setStatusCode(200);
+                res.setMessage("Markup updated successfully");
+                logger.info("Markup with ID: {} updated successfully", markupID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Markup not found");
+                logger.warn("Markup with ID: {} not found", markupID);
+            }
+
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while updating markup with ID: {}", markupID, e);
+        }
+
+        return res;
     }
 
-    @CacheEvict(value = "markups", key = "#markupID")
-    public void deleteMarkup(Long markupID)
+    public MarkupDTO deleteMarkup(Long markupID)
     {
-        markupRepository.deleteById(markupID);
+        logger.info("Deleting markup with ID: {}", markupID);
+        MarkupDTO res = new MarkupDTO();
+
+        try
+        {
+            Optional<Markup> markupOptional = markupRepository.findById(markupID);
+
+            if (markupOptional.isPresent())
+            {
+                markupRepository.deleteById(markupID);
+                res.setStatusCode(200);
+                res.setMessage("Markup deleted successfully");
+                logger.info("Markup with ID: {} deleted successfully", markupID);
+            } else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Markup not found");
+                logger.warn("Markup with ID: {} not found", markupID);
+            }
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while deleting markup with ID: {}", markupID, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "markupsBySeason", key = "#seasonID")
     public List<MarkupDTO> getMarkupsBySeasonId(Long seasonID)
     {
-        List<Markup> markups = markupRepository.findBySeasonId(seasonID);
-        return markups.stream().map(this::convertToDTO).collect(Collectors.toList());
+        logger.info("Fetching markups for season with ID: {}", seasonID);
+        List<MarkupDTO> res;
+
+        try
+        {
+            List<Markup> markups = markupRepository.findBySeasonId(seasonID);
+            res = markups.stream().map(this::convertToDTO).collect(Collectors.toList());
+            logger.info("Fetched {} markups for season with ID: {}", res.size(), seasonID);
+        }
+        catch (Exception e)
+        {
+            logger.error("Error occurred while fetching markups for season with ID: {}", seasonID, e);
+            throw new RuntimeException("Error occurred: " + e.getMessage());
+        }
+
+        return res;
     }
 
     private MarkupDTO convertToDTO(Markup markup)
     {
         MarkupDTO markupDTO = new MarkupDTO();
-        // Set fields from markup to markupDTO
+
         markupDTO.setId(markup.getId());
         markupDTO.setMarkupName(markup.getMarkupName());
         markupDTO.setPercentage(markup.getPercentage());
+
         return markupDTO;
     }
 }

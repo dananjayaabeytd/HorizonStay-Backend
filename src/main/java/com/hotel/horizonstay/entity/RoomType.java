@@ -24,10 +24,10 @@ public class RoomType implements Serializable {
     private Integer maxNumberOfPersons;
     private Float price;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<String> roomTypeImages;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id")
     private Season season;
 

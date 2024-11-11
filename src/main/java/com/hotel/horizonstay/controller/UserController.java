@@ -84,7 +84,8 @@ public class UserController {
             // Register the user using the service layer
             UserDTO response = userService.register(reg);
             return new ResponseEntity<>(response, HttpStatus.OK);
-        } catch (Exception e)
+        }
+        catch (Exception e)
         {
             return error.createErrorResponse("Error occurred while registering user", HttpStatus.INTERNAL_SERVER_ERROR);
         }
@@ -232,15 +233,5 @@ public class UserController {
 
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
-
-    //    @GetMapping("/adminuser/get-profile")
-//    public ResponseEntity<UserDTO> getMyProfile()
-//    {
-//        Authentication authentication = SecurityContextHolder.getContext().getAuthentication();
-//        String email = authentication.getName();
-//        UserDTO response = userService.getMyInfo(email);
-//
-//        return ResponseEntity.status(response.getStatusCode()).body(response);
-//    }
 
 }

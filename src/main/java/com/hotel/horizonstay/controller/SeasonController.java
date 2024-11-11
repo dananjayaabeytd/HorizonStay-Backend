@@ -20,8 +20,10 @@ public class SeasonController {
     private final ErrorResponse error = new ErrorResponse();
 
     @PostMapping("/{contractID}")
-    public ResponseEntity<SeasonDTO> addSeasonToContract(@PathVariable Long contractID, @RequestBody SeasonDTO seasonDTO) {
-        try {
+    public ResponseEntity<SeasonDTO> addSeasonToContract(@PathVariable Long contractID, @RequestBody SeasonDTO seasonDTO)
+    {
+        try
+        {
             // Validate seasonDTO
             if (seasonDTO.getSeasonName() == null || seasonDTO.getSeasonName().isEmpty()) {
                 return error.createSeasonErrorResponse("Invalid season data", HttpStatus.BAD_REQUEST);
@@ -29,97 +31,100 @@ public class SeasonController {
 
             SeasonDTO createdSeason = seasonService.addSeasonToContract(contractID, seasonDTO);
             return new ResponseEntity<>(createdSeason, HttpStatus.CREATED);
-        } catch (IllegalArgumentException e) {
+
+        }
+        catch (IllegalArgumentException e)
+        {
             return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
-        } catch (Exception e) {
+        }
+        catch (Exception e)
+        {
             return error.createSeasonErrorResponse("Error occurred while adding season", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-//    @PostMapping("/{contractID}")
-//    public ResponseEntity<SeasonDTO> addSeasonToContract(@PathVariable Long contractID, @RequestBody SeasonDTO seasonDTO) {
-//        try {
-//            SeasonDTO createdSeason = seasonService.addSeasonToContract(contractID, seasonDTO);
-//            return new ResponseEntity<>(createdSeason, HttpStatus.CREATED);
-//        } catch (IllegalArgumentException e) {
-//            return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.BAD_REQUEST);
-//        } catch (Exception e) {
-//            return error.createSeasonErrorResponse("Error occurred while adding season", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @GetMapping("/{seasonID}")
-    public ResponseEntity<SeasonDTO> getSeasonById(@PathVariable Long seasonID) {
-        try {
+    public ResponseEntity<SeasonDTO> getSeasonById(@PathVariable Long seasonID)
+    {
+        try
+        {
             SeasonDTO seasonDTO = seasonService.getSeasonById(seasonID);
-            if (seasonDTO == null) {
+
+            if (seasonDTO == null)
+            {
                 return error.createSeasonErrorResponse("Season not found", HttpStatus.NOT_FOUND);
             }
+
             return new ResponseEntity<>(seasonDTO, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
+
+        }
+        catch (IllegalArgumentException e)
+        {
             return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
+
+        }
+        catch (Exception e)
+        {
             return error.createSeasonErrorResponse("Error occurred while fetching season", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-//    @GetMapping("/{seasonID}")
-//    public ResponseEntity<SeasonDTO> getSeasonById(@PathVariable Long seasonID) {
-//        try {
-//            SeasonDTO seasonDTO = seasonService.getSeasonById(seasonID);
-//            return new ResponseEntity<>(seasonDTO, HttpStatus.OK);
-//        } catch (IllegalArgumentException e) {
-//            return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
-//        } catch (Exception e) {
-//            return error.createSeasonErrorResponse("Error occurred while fetching season", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @PutMapping("/update/{seasonID}")
-    public ResponseEntity<SeasonDTO> updateSeason(@PathVariable Long seasonID, @RequestBody SeasonDTO seasonDTO) {
-        try {
+    public ResponseEntity<SeasonDTO> updateSeason(@PathVariable Long seasonID, @RequestBody SeasonDTO seasonDTO)
+    {
+        try
+        {
             SeasonDTO updatedSeason = seasonService.updateSeason(seasonID, seasonDTO);
-            if (updatedSeason == null) {
+
+            if (updatedSeason == null)
+            {
                 return error.createSeasonErrorResponse("Season not found", HttpStatus.NOT_FOUND);
             }
+
             return new ResponseEntity<>(updatedSeason, HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
+        }
+        catch (IllegalArgumentException e)
+        {
             return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
+
+        }
+        catch (Exception e)
+        {
             return error.createSeasonErrorResponse("Error occurred while updating season", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
-//    @PutMapping("/update/{seasonID}")
-//    public ResponseEntity<SeasonDTO> updateSeason(@PathVariable Long seasonID, @RequestBody SeasonDTO seasonDTO) {
-//        try {
-//            SeasonDTO updatedSeason = seasonService.updateSeason(seasonID, seasonDTO);
-//            return new ResponseEntity<>(updatedSeason, HttpStatus.OK);
-//        } catch (IllegalArgumentException e) {
-//            return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
-//        } catch (Exception e) {
-//            return error.createSeasonErrorResponse("Error occurred while updating season", HttpStatus.INTERNAL_SERVER_ERROR);
-//        }
-//    }
-
     @DeleteMapping("/delete/{seasonID}")
-    public ResponseEntity<SeasonDTO> deleteSeason(@PathVariable Long seasonID) {
-        try {
+    public ResponseEntity<SeasonDTO> deleteSeason(@PathVariable Long seasonID)
+    {
+        try
+        {
             seasonService.deleteSeason(seasonID);
             return new ResponseEntity<>(HttpStatus.OK);
-        } catch (IllegalArgumentException e) {
+
+        }
+        catch (IllegalArgumentException e)
+        {
             return error.createSeasonErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
-        } catch (Exception e) {
+
+        }
+        catch (Exception e)
+        {
             return error.createSeasonErrorResponse("Error occurred while deleting season", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }
 
     @GetMapping("/contract/{contractID}")
-    public ResponseEntity<List<SeasonDTO>> getSeasonsByContractId(@PathVariable Long contractID) {
-        try {
+    public ResponseEntity<List<SeasonDTO>> getSeasonsByContractId(@PathVariable Long contractID)
+    {
+        try
+        {
             List<SeasonDTO> seasons = seasonService.getSeasonsByContractId(contractID);
             return ResponseEntity.ok(seasons);
-        } catch (Exception e) {
+
+        }
+        catch (Exception e)
+        {
             return error.createSeasonErrorResponseList("Error occurred while fetching seasons", HttpStatus.INTERNAL_SERVER_ERROR);
         }
     }

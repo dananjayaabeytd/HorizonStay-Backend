@@ -9,9 +9,10 @@ import java.util.Collection;
 import java.util.List;
 
 @Repository
-public interface RoomTypeRepository extends JpaRepository<RoomType, Long> {
-
+public interface RoomTypeRepository extends JpaRepository<RoomType, Long>
+{
     List<RoomType> findBySeasonId(Long seasonID);
+
     List<RoomType> findRoomTypesBySeason(Season highestMarkupSeason);
 
 }

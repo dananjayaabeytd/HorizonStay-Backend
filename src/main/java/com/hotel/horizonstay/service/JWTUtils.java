@@ -17,25 +17,38 @@ import java.util.function.Function;
 @Component
 public class JWTUtils {
 
-    private SecretKey Key;
-    private static final long EXPIRATION_TIME = 86400000;//24hours;
+    private final SecretKey Key;
+    private static final long EXPIRATION_TIME = 86400000; //24hours;
 
 
     // Constructor to inject the secret key from the environment variable
-    public JWTUtils(@Value("${JWT_SECRET}") String secretString) {
+    public JWTUtils(@Value("${JWT_SECRET}") String secretString)
+    {
         // Decode the base64-encoded secret key
         byte[] keyBytes = Base64.getDecoder().decode(secretString.getBytes(StandardCharsets.UTF_8));
+
         this.Key = new SecretKeySpec(keyBytes, "HmacSHA256");
     }
 
     public String generateToken(UserDetails userDetails)
     {
-        return Jwts.builder().subject(userDetails.getUsername()).issuedAt(new Date(System.currentTimeMillis())).expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)).signWith(Key).compact();
+        return Jwts.builder()
+                .subject(userDetails.getUsername())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .signWith(Key)
+                .compact();
     }
 
     public String generateRefreshToken(HashMap<String, Object> claims, UserDetails userDetails)
     {
-        return Jwts.builder().claims(claims).subject(userDetails.getUsername()).issuedAt(new Date(System.currentTimeMillis())).expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME)).signWith(Key).compact();
+        return Jwts.builder()
+                .claims(claims)
+                .subject(userDetails.getUsername())
+                .issuedAt(new Date(System.currentTimeMillis()))
+                .expiration(new Date(System.currentTimeMillis() + EXPIRATION_TIME))
+                .signWith(Key)
+                .compact();
     }
 
     public String extractUsername(String token)

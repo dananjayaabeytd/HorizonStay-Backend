@@ -34,32 +34,38 @@ public class SystemUser implements UserDetails, Serializable {
     private List<Booking> bookings;
 
     @Override
-    public Collection<? extends GrantedAuthority> getAuthorities() {
+    public Collection<? extends GrantedAuthority> getAuthorities()
+    {
         return List.of(new SimpleGrantedAuthority(role));
     }
 
     @Override
-    public String getUsername() {
+    public String getUsername()
+    {
         return email;
     }
 
     @Override
-    public boolean isAccountNonExpired() {
+    public boolean isAccountNonExpired()
+    {
         return true;
     }
 
     @Override
-    public boolean isAccountNonLocked() {
+    public boolean isAccountNonLocked()
+    {
         return true;
     }
 
     @Override
-    public boolean isCredentialsNonExpired() {
+    public boolean isCredentialsNonExpired()
+    {
         return true;
     }
 
     @Override
-    public boolean isEnabled() {
+    public boolean isEnabled()
+    {
         return true;
     }
 }

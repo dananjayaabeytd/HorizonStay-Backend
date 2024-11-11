@@ -28,11 +28,11 @@ public class HotelContract implements Serializable {
     private String paymentPolicy;
     private LocalDateTime addedDate;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")
     private Hotel hotel;
 
-    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "contract", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<Season> seasons= new ArrayList<>();
 
 }

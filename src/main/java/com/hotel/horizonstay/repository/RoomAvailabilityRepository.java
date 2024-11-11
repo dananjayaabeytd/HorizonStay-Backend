@@ -13,7 +13,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface RoomAvailabilityRepository extends JpaRepository<RoomAvailability, Long> {
+public interface RoomAvailabilityRepository extends JpaRepository<RoomAvailability, Long>
+{
 
     @Query("SELECT ra FROM RoomAvailability ra WHERE ra.roomType.id = :roomTypeId AND ra.checkIn <= :checkOutDate AND ra.checkOut >= :checkInDate")
     List<RoomAvailability> findRoomAvailabilitiesByRoomTypeAndDateRange

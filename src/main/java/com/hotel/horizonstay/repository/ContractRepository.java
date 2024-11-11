@@ -8,8 +8,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface ContractRepository extends JpaRepository<HotelContract, Long> {
-
+public interface ContractRepository extends JpaRepository<HotelContract, Long>
+{
     List<HotelContract> findByHotel_HotelID(Long hotelId);
 
     @Query("SELECT hc FROM HotelContract hc " +

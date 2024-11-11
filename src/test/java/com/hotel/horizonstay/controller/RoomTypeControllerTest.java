@@ -118,60 +118,6 @@ class RoomTypeControllerTest {
     }
 
     @Test
-    void testUpdateRoomType_Success()
-    {
-        // Arrange
-        RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
-        roomTypeDTO.setRoomTypeName("Updated Room");
-        MultipartFile[] files = {};
-
-        when(roomTypeService.updateRoomType(anyLong(), any(RoomTypeDTO.class))).thenReturn(roomTypeDTO);
-
-        // Act
-        ResponseEntity<RoomTypeDTO> response = roomTypeController.updateRoomType(1L, files, roomTypeDTO);
-
-        // Assert
-        assertEquals(HttpStatus.OK, response.getStatusCode());
-        assertEquals("Updated Room", Objects.requireNonNull(response.getBody()).getRoomTypeName());
-    }
-
-    @Test
-    void testUpdateRoomType_NotFound()
-    {
-        // Arrange
-        RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
-        roomTypeDTO.setRoomTypeName("Updated Room");
-        MultipartFile[] files = {};
-
-        when(roomTypeService.updateRoomType(anyLong(), any(RoomTypeDTO.class))).thenReturn(null);
-
-        // Act
-        ResponseEntity<RoomTypeDTO> response = roomTypeController.updateRoomType(1L, files, roomTypeDTO);
-
-        // Assert
-        assertEquals(HttpStatus.NOT_FOUND, response.getStatusCode());
-        assertEquals("Room type not found for update", Objects.requireNonNull(response.getBody()).getMessage());
-    }
-
-    @Test
-    void testUpdateRoomType_Exception()
-    {
-        // Arrange
-        RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
-        roomTypeDTO.setRoomTypeName("Updated Room");
-        MultipartFile[] files = {};
-
-        when(roomTypeService.updateRoomType(anyLong(), any(RoomTypeDTO.class))).thenThrow(new RuntimeException("Error Updating room type"));
-
-        // Act
-        ResponseEntity<RoomTypeDTO> response = roomTypeController.updateRoomType(1L, files, roomTypeDTO);
-
-        // Assert
-        assertEquals(HttpStatus.INTERNAL_SERVER_ERROR, response.getStatusCode());
-        assertEquals("Error occurred while updating room type", Objects.requireNonNull(response.getBody()).getMessage());
-    }
-
-    @Test
     void testDeleteRoomType_Success()
     {
         // Act

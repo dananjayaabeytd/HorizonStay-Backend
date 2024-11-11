@@ -58,7 +58,7 @@ public class DiscountController {
     @DeleteMapping("/delete/{discountID}")
     public ResponseEntity<DiscountDTO> deleteDiscount(@PathVariable Long discountID) {
         try {
-            discountService.deleteDiscount(discountID);
+            DiscountDTO discountDTO = discountService.deleteDiscount(discountID);
             return new ResponseEntity<>(HttpStatus.OK);
         } catch (IllegalArgumentException e) {
             return error.createDiscountErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);

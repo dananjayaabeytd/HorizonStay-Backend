@@ -5,10 +5,9 @@ import com.hotel.horizonstay.entity.HotelContract;
 import com.hotel.horizonstay.entity.Season;
 import com.hotel.horizonstay.repository.ContractRepository;
 import com.hotel.horizonstay.repository.SeasonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,76 +17,184 @@ import java.util.stream.Collectors;
 @Service
 public class SeasonService {
 
+    private static final Logger logger = LoggerFactory.getLogger(SeasonService.class);
+
     @Autowired
     private SeasonRepository seasonRepository;
 
     @Autowired
     private ContractRepository contractRepository;
 
-    @CachePut(value = "seasons", key = "#result.id")
     public SeasonDTO addSeasonToContract(Long contractId, SeasonDTO seasonDTO)
     {
-        Optional<HotelContract> contractOptional = contractRepository.findById(contractId);
+        logger.info("Adding season to contract with ID: {}", contractId);
+        SeasonDTO res = new SeasonDTO();
 
-        if (contractOptional.isPresent())
+        try
         {
-            Season season = new Season();
-            // Set fields from seasonDTO to season
-            season.setSeasonName(seasonDTO.getSeasonName());
-            season.setValidFrom(seasonDTO.getValidFrom());
-            season.setValidTo(seasonDTO.getValidTo());
-            season.setContract(contractOptional.get());
-            season = seasonRepository.save(season);
-            return convertToDTO(season);
-        } else {
-            throw new IllegalArgumentException("Contract not found");
+            Optional<HotelContract> contractOptional = contractRepository.findById(contractId);
+
+            if (contractOptional.isPresent())
+            {
+                Season season = new Season();
+                season.setSeasonName(seasonDTO.getSeasonName());
+                season.setValidFrom(seasonDTO.getValidFrom());
+                season.setValidTo(seasonDTO.getValidTo());
+                season.setContract(contractOptional.get());
+                season = seasonRepository.save(season);
+
+                res = convertToDTO(season);
+                res.setStatusCode(200);
+                res.setMessage("Season added successfully");
+                logger.info("Season added successfully to contract with ID: {}", contractId);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Contract not found");
+                logger.warn("Contract with ID: {} not found", contractId);
+            }
+
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while adding season to contract with ID: {}", contractId, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "seasons", key = "#seasonID")
     public SeasonDTO getSeasonById(Long seasonID)
     {
-        Optional<Season> season = seasonRepository.findById(seasonID);
-        return season.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Season not found"));
+        logger.info("Fetching season with ID: {}", seasonID);
+        SeasonDTO res = new SeasonDTO();
+
+        try
+        {
+            Optional<Season> season = seasonRepository.findById(seasonID);
+
+            if (season.isPresent())
+            {
+                res = convertToDTO(season.get());
+                res.setStatusCode(200);
+                res.setMessage("Season found successfully");
+                logger.info("Season with ID: {} found successfully", seasonID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Season not found");
+                logger.warn("Season with ID: {} not found", seasonID);
+            }
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while fetching season with ID: {}", seasonID, e);
+        }
+
+        return res;
     }
 
-    @CachePut(value = "seasons", key = "#seasonID")
     public SeasonDTO updateSeason(Long seasonID, SeasonDTO seasonDTO)
     {
-        Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
+        logger.info("Updating season with ID: {}", seasonID);
+        SeasonDTO res = new SeasonDTO();
 
-        if (seasonOptional.isPresent())
+        try
         {
-            Season season = seasonOptional.get();
-            // Update fields from seasonDTO to season
-            season.setSeasonName(seasonDTO.getSeasonName());
-            season.setValidFrom(seasonDTO.getValidFrom());
-            season.setValidTo(seasonDTO.getValidTo());
-            season = seasonRepository.save(season);
-            return convertToDTO(season);
-        } else {
-            throw new IllegalArgumentException("Season not found");
+            Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
+
+            if (seasonOptional.isPresent())
+            {
+                Season season = seasonOptional.get();
+                season.setSeasonName(seasonDTO.getSeasonName());
+                season.setValidFrom(seasonDTO.getValidFrom());
+                season.setValidTo(seasonDTO.getValidTo());
+                season = seasonRepository.save(season);
+
+                res = convertToDTO(season);
+                res.setStatusCode(200);
+                res.setMessage("Season updated successfully");
+                logger.info("Season with ID: {} updated successfully", seasonID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Season not found");
+                logger.warn("Season with ID: {} not found", seasonID);
+            }
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while updating season with ID: {}", seasonID, e);
+        }
+
+        return res;
     }
 
-    @CacheEvict(value = "seasons", key = "#seasonID")
-    public void deleteSeason(Long seasonID)
+    public SeasonDTO deleteSeason(Long seasonID)
     {
-        seasonRepository.deleteById(seasonID);
+        logger.info("Deleting season with ID: {}", seasonID);
+        SeasonDTO res = new SeasonDTO();
+
+        try
+        {
+            Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
+
+            if (seasonOptional.isPresent())
+            {
+                seasonRepository.deleteById(seasonID);
+                res.setStatusCode(200);
+                res.setMessage("Season deleted successfully");
+                logger.info("Season with ID: {} deleted successfully", seasonID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Season not found");
+                logger.warn("Season with ID: {} not found", seasonID);
+            }
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while deleting season with ID: {}", seasonID, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "seasonsByContract", key = "#contractID")
     public List<SeasonDTO> getSeasonsByContractId(Long contractID)
     {
-        List<Season> seasons = seasonRepository.findByContractId(contractID);
+        logger.info("Fetching seasons for contract with ID: {}", contractID);
+        List<SeasonDTO> res;
 
-        return seasons.stream().map(this::convertToDTO).collect(Collectors.toList());
+        try
+        {
+            List<Season> seasons = seasonRepository.findByContractId(contractID);
+            res = seasons.stream().map(this::convertToDTO).collect(Collectors.toList());
+            logger.info("Fetched {} seasons for contract with ID: {}", res.size(), contractID);
+        }
+        catch (Exception e)
+        {
+            logger.error("Error occurred while fetching seasons for contract with ID: {}", contractID, e);
+            throw new RuntimeException("Error occurred: " + e.getMessage());
+        }
+
+        return res;
     }
 
-    SeasonDTO convertToDTO(Season season)
+    private SeasonDTO convertToDTO(Season season)
     {
         SeasonDTO seasonDTO = new SeasonDTO();
-        // Set fields from season to seasonDTO
+
         seasonDTO.setId(season.getId());
         seasonDTO.setSeasonName(season.getSeasonName());
         seasonDTO.setValidFrom(season.getValidFrom());

@@ -5,10 +5,9 @@ import com.hotel.horizonstay.entity.Season;
 import com.hotel.horizonstay.entity.Supplement;
 import com.hotel.horizonstay.repository.SeasonRepository;
 import com.hotel.horizonstay.repository.SupplementRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,79 +17,192 @@ import java.util.stream.Collectors;
 @Service
 public class SupplementService {
 
+    private static final Logger logger = LoggerFactory.getLogger(SupplementService.class);
+
     @Autowired
     private SupplementRepository supplementRepository;
 
     @Autowired
     private SeasonRepository seasonRepository;
 
-    @CachePut(value = "supplements", key = "#result.supplementID")
     public SupplementDTO addSupplementToSeason(Long seasonID, SupplementDTO supplementDTO)
     {
-        Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
+        logger.info("Adding supplement to season with ID: {}", seasonID);
+        SupplementDTO res = new SupplementDTO();
 
-        if (seasonOptional.isPresent())
+        try
         {
-            Supplement supplement = new Supplement();
-            // Set fields from supplementDTO to supplement
-            supplement.setSupplementName(supplementDTO.getSupplementName());
-            supplement.setPrice(supplementDTO.getPrice());
-            supplement.setSeason(seasonOptional.get());
+            Optional<Season> seasonOptional = seasonRepository.findById(seasonID);
 
-            supplement = supplementRepository.save(supplement);
-            return convertToDTO(supplement);
+            if (seasonOptional.isPresent())
+            {
+                Supplement supplement = new Supplement();
+                supplement.setSupplementName(supplementDTO.getSupplementName());
+                supplement.setPrice(supplementDTO.getPrice());
+                supplement.setSeason(seasonOptional.get());
 
-        } else {
-            throw new IllegalArgumentException("Season not found");
+                supplement = supplementRepository.save(supplement);
+                res = convertToDTO(supplement);
+
+                res.setStatusCode(200);
+                res.setMessage("Supplement added successfully");
+                logger.info("Supplement added successfully to season with ID: {}", seasonID);
+
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Season not found");
+                logger.warn("Season with ID: {} not found", seasonID);
+            }
+
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while adding supplement to season with ID: {}", seasonID, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "supplements", key = "#supplementID")
     public SupplementDTO getSupplementById(Long supplementID)
     {
-        Optional<Supplement> supplement = supplementRepository.findById(supplementID);
-        return supplement.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Supplement not found"));
+        logger.info("Fetching supplement with ID: {}", supplementID);
+        SupplementDTO res = new SupplementDTO();
+
+        try
+        {
+            Optional<Supplement> supplement = supplementRepository.findById(supplementID);
+
+            if (supplement.isPresent())
+            {
+                res = convertToDTO(supplement.get());
+                res.setStatusCode(200);
+                res.setMessage("Supplement found successfully");
+                logger.info("Supplement with ID: {} found successfully", supplementID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Supplement not found");
+                logger.warn("Supplement with ID: {} not found", supplementID);
+            }
+
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while fetching supplement with ID: {}", supplementID, e);
+        }
+
+        return res;
     }
 
-    @CachePut(value = "supplements", key = "#supplementID")
     public SupplementDTO updateSupplement(Long supplementID, SupplementDTO supplementDTO)
     {
-        Optional<Supplement> supplementOptional = supplementRepository.findById(supplementID);
+        logger.info("Updating supplement with ID: {}", supplementID);
+        SupplementDTO res = new SupplementDTO();
 
-        if (supplementOptional.isPresent())
+        try
         {
-            Supplement supplement = supplementOptional.get();
-            // Update fields from supplementDTO to supplement
-            supplement.setSupplementName(supplementDTO.getSupplementName());
-            supplement.setPrice(supplementDTO.getPrice());
-            supplement = supplementRepository.save(supplement);
-            return convertToDTO(supplement);
-        } else {
-            throw new IllegalArgumentException("Supplement not found");
+            Optional<Supplement> supplementOptional = supplementRepository.findById(supplementID);
+
+            if (supplementOptional.isPresent())
+            {
+                Supplement supplement = supplementOptional.get();
+                supplement.setSupplementName(supplementDTO.getSupplementName());
+                supplement.setPrice(supplementDTO.getPrice());
+                supplement = supplementRepository.save(supplement);
+
+                res = convertToDTO(supplement);
+                res.setStatusCode(200);
+                res.setMessage("Supplement updated successfully");
+                logger.info("Supplement with ID: {} updated successfully", supplementID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Supplement not found");
+                logger.warn("Supplement with ID: {} not found", supplementID);
+            }
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while updating supplement with ID: {}", supplementID, e);
+        }
+
+        return res;
     }
 
-    @CacheEvict(value = "supplements", key = "#supplementID")
-    public void deleteSupplement(Long supplementID)
+    public SupplementDTO deleteSupplement(Long supplementID)
     {
-        supplementRepository.deleteById(supplementID);
+        logger.info("Deleting supplement with ID: {}", supplementID);
+        SupplementDTO res = new SupplementDTO();
+
+        try
+        {
+            Optional<Supplement> supplementOptional = supplementRepository.findById(supplementID);
+
+            if (supplementOptional.isPresent())
+            {
+                supplementRepository.deleteById(supplementID);
+
+                res.setStatusCode(200);
+                res.setMessage("Supplement deleted successfully");
+                logger.info("Supplement with ID: {} deleted successfully", supplementID);
+
+            } else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Supplement not found");
+                logger.warn("Supplement with ID: {} not found", supplementID);
+            }
+
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while deleting supplement with ID: {}", supplementID, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "supplementsBySeason", key = "#seasonID")
     public List<SupplementDTO> getSupplementsBySeasonId(Long seasonID)
     {
-        List<Supplement> supplements = supplementRepository.findBySeasonId(seasonID);
-        return supplements.stream().map(this::convertToDTO).collect(Collectors.toList());
+        logger.info("Fetching supplements for season with ID: {}", seasonID);
+        List<SupplementDTO> res;
+
+        try
+        {
+            List<Supplement> supplements = supplementRepository.findBySeasonId(seasonID);
+            res = supplements.stream().map(this::convertToDTO).collect(Collectors.toList());
+
+            logger.info("Fetched {} supplements for season with ID: {}", res.size(), seasonID);
+        }
+        catch (Exception e)
+        {
+            logger.error("Error occurred while fetching supplements for season with ID: {}", seasonID, e);
+            throw new RuntimeException("Error occurred: " + e.getMessage());
+        }
+
+        return res;
     }
 
     private SupplementDTO convertToDTO(Supplement supplement)
     {
         SupplementDTO supplementDTO = new SupplementDTO();
-        // Set fields from supplement to supplementDTO
+
         supplementDTO.setSupplementID(supplement.getId());
         supplementDTO.setSupplementName(supplement.getSupplementName());
         supplementDTO.setPrice(supplement.getPrice());
+
         return supplementDTO;
     }
-
 }

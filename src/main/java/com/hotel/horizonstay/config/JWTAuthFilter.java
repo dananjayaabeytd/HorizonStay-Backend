@@ -20,7 +20,6 @@ import java.io.IOException;
 @Component
 public class JWTAuthFilter extends OncePerRequestFilter
 {
-
     @Autowired
     private JWTUtils jwtUtils;
 
@@ -30,7 +29,6 @@ public class JWTAuthFilter extends OncePerRequestFilter
     @Override
     protected void doFilterInternal(HttpServletRequest request, HttpServletResponse response, FilterChain filterChain) throws ServletException, IOException
     {
-
         final String authHeader = request.getHeader("Authorization");
         final String jwtToken;
         final String userEmail;
@@ -50,13 +48,8 @@ public class JWTAuthFilter extends OncePerRequestFilter
 
             if (jwtUtils.isTokenValid(jwtToken, userDetails))
             {
-
                 SecurityContext securityContext = SecurityContextHolder.createEmptyContext();
-
-                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(
-                        userDetails, null, userDetails.getAuthorities()
-                );
-
+                UsernamePasswordAuthenticationToken token = new UsernamePasswordAuthenticationToken(userDetails, null, userDetails.getAuthorities());
                 token.setDetails(new WebAuthenticationDetailsSource().buildDetails(request));
                 securityContext.setAuthentication(token);
                 SecurityContextHolder.setContext(securityContext);

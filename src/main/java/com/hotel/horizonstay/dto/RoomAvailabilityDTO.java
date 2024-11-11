@@ -24,7 +24,8 @@ public class RoomAvailabilityDTO implements Serializable {
     private String message;
 
     @Data
-    public static class RoomTypeDTO {
+    public static class RoomTypeDTO
+    {
         private Long roomTypeID;
         private Integer numberOfRooms;
     }

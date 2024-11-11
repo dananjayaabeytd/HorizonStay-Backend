@@ -20,7 +20,7 @@ public class Supplement implements Serializable {
     private String supplementName;
     private Float price;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id")
     private Season season;
 

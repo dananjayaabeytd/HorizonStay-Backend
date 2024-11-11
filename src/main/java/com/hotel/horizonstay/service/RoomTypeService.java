@@ -5,10 +5,9 @@ import com.hotel.horizonstay.entity.RoomType;
 import com.hotel.horizonstay.entity.Season;
 import com.hotel.horizonstay.repository.RoomTypeRepository;
 import com.hotel.horizonstay.repository.SeasonRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.cache.annotation.CacheEvict;
-import org.springframework.cache.annotation.CachePut;
-import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -18,88 +17,194 @@ import java.util.stream.Collectors;
 @Service
 public class RoomTypeService {
 
+    private static final Logger logger = LoggerFactory.getLogger(RoomTypeService.class);
+
     @Autowired
     private RoomTypeRepository roomTypeRepository;
 
     @Autowired
     private SeasonRepository seasonRepository;
 
-    @CachePut(value = "roomTypes", key = "#result.roomTypeID")
     public RoomTypeDTO addRoomTypeToSeason(Long seasonId, RoomTypeDTO roomTypeDTO)
     {
+        logger.info("Adding room type to season with ID: {}", seasonId);
+        RoomTypeDTO res = new RoomTypeDTO();
 
-        Optional<Season> seasonOptional = seasonRepository.findById(seasonId);
-
-        if (seasonOptional.isPresent())
+        try
         {
-            RoomType roomType = new RoomType();
-            // Set fields from roomTypeDTO to roomType
-            roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
-            roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());
-            roomType.setMaxNumberOfPersons(roomTypeDTO.getMaxNumberOfPersons());
-            roomType.setPrice(roomTypeDTO.getPrice());
-            roomType.setRoomTypeImages(roomTypeDTO.getRoomTypeImages());
-            roomType.setSeason(seasonOptional.get());
-            roomType = roomTypeRepository.save(roomType);
-            return convertToDTO(roomType);
-        } else {
-            throw new IllegalArgumentException("Season not found");
+            Optional<Season> seasonOptional = seasonRepository.findById(seasonId);
+
+            if (seasonOptional.isPresent())
+            {
+                RoomType roomType = new RoomType();
+                roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
+                roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());
+                roomType.setMaxNumberOfPersons(roomTypeDTO.getMaxNumberOfPersons());
+                roomType.setPrice(roomTypeDTO.getPrice());
+                roomType.setRoomTypeImages(roomTypeDTO.getRoomTypeImages());
+                roomType.setSeason(seasonOptional.get());
+                roomType = roomTypeRepository.save(roomType);
+
+                res = convertToDTO(roomType);
+                res.setStatusCode(200);
+                res.setMessage("Room type added successfully");
+                logger.info("Room type added successfully to season with ID: {}", seasonId);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Season not found");
+                logger.warn("Season with ID: {} not found", seasonId);
+            }
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while adding room type to season with ID: {}", seasonId, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "roomTypes", key = "#roomTypeID")
     public RoomTypeDTO getRoomTypeById(Long roomTypeID)
     {
-        Optional<RoomType> roomType = roomTypeRepository.findById(roomTypeID);
+        logger.info("Fetching room type with ID: {}", roomTypeID);
+        RoomTypeDTO res = new RoomTypeDTO();
 
-        return roomType.map(this::convertToDTO).orElseThrow(() -> new IllegalArgumentException("Room type not found"));
+        try
+        {
+            Optional<RoomType> roomType = roomTypeRepository.findById(roomTypeID);
+
+            if (roomType.isPresent())
+            {
+                res = convertToDTO(roomType.get());
+                res.setStatusCode(200);
+                res.setMessage("Room type found successfully");
+                logger.info("Room type with ID: {} found successfully", roomTypeID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Room type not found");
+                logger.warn("Room type with ID: {} not found", roomTypeID);
+            }
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while fetching room type with ID: {}", roomTypeID, e);
+        }
+
+        return res;
     }
 
-    @CachePut(value = "roomTypes", key = "#roomTypeID")
     public RoomTypeDTO updateRoomType(Long roomTypeID, RoomTypeDTO roomTypeDTO)
     {
-        Optional<RoomType> roomTypeOptional = roomTypeRepository.findById(roomTypeID);
+        logger.info("Updating room type with ID: {}", roomTypeID);
+        RoomTypeDTO res = new RoomTypeDTO();
 
-        if (roomTypeOptional.isPresent())
+        try
         {
-            RoomType roomType = roomTypeOptional.get();
-            // Update fields from roomTypeDTO to roomType
-            roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
-            roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());
-            roomType.setMaxNumberOfPersons(roomTypeDTO.getMaxNumberOfPersons());
-            roomType.setPrice(roomTypeDTO.getPrice());
-            roomType.setRoomTypeImages(roomTypeDTO.getRoomTypeImages());
-            roomType = roomTypeRepository.save(roomType);
-            return convertToDTO(roomType);
-        } else {
-            throw new IllegalArgumentException("Room type not found");
+            Optional<RoomType> roomTypeOptional = roomTypeRepository.findById(roomTypeID);
+
+            if (roomTypeOptional.isPresent())
+            {
+                RoomType roomType = roomTypeOptional.get();
+                roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
+                roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());
+                roomType.setMaxNumberOfPersons(roomTypeDTO.getMaxNumberOfPersons());
+                roomType.setPrice(roomTypeDTO.getPrice());
+                roomType.setRoomTypeImages(roomTypeDTO.getRoomTypeImages());
+                roomType = roomTypeRepository.save(roomType);
+
+                res = convertToDTO(roomType);
+                res.setStatusCode(200);
+                res.setMessage("Room type updated successfully");
+                logger.info("Room type with ID: {} updated successfully", roomTypeID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Room type not found");
+                logger.warn("Room type with ID: {} not found", roomTypeID);
+            }
         }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while updating room type with ID: {}", roomTypeID, e);
+        }
+
+        return res;
     }
 
-    @CacheEvict(value = "roomTypes", key = "#roomTypeID")
-    public void deleteRoomType(Long roomTypeID)
+    public RoomTypeDTO deleteRoomType(Long roomTypeID)
     {
-        roomTypeRepository.deleteById(roomTypeID);
+        logger.info("Deleting room type with ID: {}", roomTypeID);
+        RoomTypeDTO res = new RoomTypeDTO();
+
+        try
+        {
+            Optional<RoomType> roomTypeOptional = roomTypeRepository.findById(roomTypeID);
+
+            if (roomTypeOptional.isPresent())
+            {
+                roomTypeRepository.deleteById(roomTypeID);
+                res.setStatusCode(200);
+                res.setMessage("Room type deleted successfully");
+                logger.info("Room type with ID: {} deleted successfully", roomTypeID);
+            }
+            else
+            {
+                res.setStatusCode(404);
+                res.setMessage("Room type not found");
+                logger.warn("Room type with ID: {} not found", roomTypeID);
+            }
+        }
+        catch (Exception e)
+        {
+            res.setStatusCode(500);
+            res.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while deleting room type with ID: {}", roomTypeID, e);
+        }
+
+        return res;
     }
 
-    @Cacheable(value = "roomTypesBySeason", key = "#seasonID")
     public List<RoomTypeDTO> getRoomTypesBySeasonId(Long seasonID)
     {
-        List<RoomType> roomTypes = roomTypeRepository.findBySeasonId(seasonID);
+        logger.info("Fetching room types for season with ID: {}", seasonID);
+        List<RoomTypeDTO> res;
 
-        return roomTypes.stream().map(this::convertToDTO).collect(Collectors.toList());
+        try
+        {
+            List<RoomType> roomTypes = roomTypeRepository.findBySeasonId(seasonID);
+            res = roomTypes.stream().map(this::convertToDTO).collect(Collectors.toList());
+            logger.info("Fetched {} room types for season with ID: {}", res.size(), seasonID);
+        }
+        catch (Exception e)
+        {
+            logger.error("Error occurred while fetching room types for season with ID: {}", seasonID, e);
+            throw new RuntimeException("Error occurred: " + e.getMessage());
+        }
+
+        return res;
     }
 
     private RoomTypeDTO convertToDTO(RoomType roomType)
     {
         RoomTypeDTO roomTypeDTO = new RoomTypeDTO();
-        // Set fields from roomType to roomTypeDTO
+
         roomTypeDTO.setRoomTypeID(roomType.getId());
         roomTypeDTO.setRoomTypeName(roomType.getRoomTypeName());
         roomTypeDTO.setNumberOfRooms(roomType.getNumberOfRooms());
         roomTypeDTO.setMaxNumberOfPersons(roomType.getMaxNumberOfPersons());
         roomTypeDTO.setPrice(roomType.getPrice());
         roomTypeDTO.setRoomTypeImages(roomType.getRoomTypeImages());
+
         return roomTypeDTO;
     }
 }

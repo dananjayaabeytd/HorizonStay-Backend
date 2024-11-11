@@ -10,8 +10,9 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface SeasonRepository extends JpaRepository<Season, Long> {
-
+public interface SeasonRepository extends JpaRepository<Season, Long>
+{
     List<Season> findByContractId(Long contractID);
+
     List<Season> findSeasonsByContract(HotelContract contract);
 }

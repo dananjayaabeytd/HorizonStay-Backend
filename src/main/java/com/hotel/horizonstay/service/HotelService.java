@@ -3,6 +3,8 @@ package com.hotel.horizonstay.service;
 import com.hotel.horizonstay.dto.HotelDTO;
 import com.hotel.horizonstay.entity.Hotel;
 import com.hotel.horizonstay.repository.HotelRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -16,12 +18,14 @@ import java.util.Optional;
 @Service
 public class HotelService {
 
+    private static final Logger logger = LoggerFactory.getLogger(HotelService.class);
+
     @Autowired
     private HotelRepository hotelRepository;
 
-    @Cacheable(value = "hotels", unless = "#result.statusCode != 200")
     public HotelDTO getAllHotels()
     {
+        logger.info("Fetching all hotels");
         HotelDTO res = new HotelDTO();
 
         try
@@ -34,27 +38,33 @@ public class HotelService {
                 res.setHotelList(result);
                 res.setStatusCode(200);
                 res.setMessage("Hotels retrieved successfully");
+                logger.info("Hotels retrieved successfully");
+
 
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("No hotels found");
+                logger.warn("No hotels found");
+
             }
 
             return res;
 
         } catch (Exception e)
         {
+            logger.error("Error occurred while fetching all hotels: {}", e.getMessage());
             res.setStatusCode(500);
             res.setMessage("Error occurred: " + e.getMessage());
             return res;
         }
     }
 
-    @Cacheable(value = "hotels", key = "#hotelID", unless = "#result.statusCode != 200")
     public HotelDTO getHotelById(Long hotelID)
     {
+        logger.info("Fetching hotel with ID: {}", hotelID);
         HotelDTO res = new HotelDTO();
+
         try
         {
             Optional<Hotel> hotelOptional = hotelRepository.findById(hotelID);
@@ -71,15 +81,21 @@ public class HotelService {
                 res.setHotelCountry(hotel.getHotelCountry());
                 res.setHotelRating(hotel.getHotelRating());
                 res.setHotelImages(hotel.getHotelImages());
+
                 res.setStatusCode(200);
                 res.setMessage("Hotel found successfully");
+                logger.info("Hotel with ID: {} found successfully", hotelID);
+
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("Hotel not found");
+                logger.warn("Hotel with ID: {} not found", hotelID);
+
             }
         } catch (Exception e)
         {
+            logger.error("Error occurred while fetching hotel with ID: {}: {}", hotelID, e.getMessage());
             res.setStatusCode(500);
             res.setError("Error occurred: " + e.getMessage());
         }
@@ -87,13 +103,10 @@ public class HotelService {
         return res;
     }
 
-    @Caching(
-            put = {
-                    @CachePut(value = "hotels", key = "#result.hotelID", unless = "#result.statusCode != 200"),
-                    @CachePut(value = "hotels", key = "'all'", unless = "#result.statusCode != 200")
-            }
-    )
+
     public HotelDTO addHotel(HotelDTO hotelDTO) {
+
+        logger.info("Adding new hotel with name: {}", hotelDTO.getHotelName());
         HotelDTO res = new HotelDTO();
 
         try {
@@ -104,6 +117,7 @@ public class HotelService {
             if (existingHotelByName.isPresent() || existingHotelByEmail.isPresent()) {
                 res.setMessage("Hotel already exists with same name or email");
                 res.setStatusCode(409); // Conflict
+                logger.warn("Hotel already exists with same name or email: {}", hotelDTO.getHotelName());
                 return res;
             }
 
@@ -135,8 +149,11 @@ public class HotelService {
             // Set success response
             res.setStatusCode(200);
             res.setMessage("Hotel added successfully");
+            logger.info("Hotel added successfully with name: {}", hotelDTO.getHotelName());
+
         } catch (Exception e) {
             // Handle any errors
+            logger.error("Error occurred while adding hotel: {}", e.getMessage());
             res.setStatusCode(500);
             res.setError("Error occurred: " + e.getMessage());
         }
@@ -185,20 +202,15 @@ public class HotelService {
 //        return res;
 //    }
 
-
-    @Caching(
-            put = {
-                    @CachePut(value = "hotels", key = "#hotelID", unless = "#result.statusCode != 200"),
-                    @CachePut(value = "hotels", key = "'all'", unless = "#result.statusCode != 200")
-            }
-    )
-    @CachePut(value = "hotels", key = "#hotelID")
     public HotelDTO updateHotel(Long hotelID, HotelDTO hotelDTO)
     {
+        logger.info("Updating hotel with ID: {}", hotelID);
         HotelDTO res = new HotelDTO();
+
         try
         {
             Optional<Hotel> hotelOptional = hotelRepository.findById(hotelID);
+
             if (hotelOptional.isPresent())
             {
                 Hotel hotel = hotelOptional.get();
@@ -222,29 +234,31 @@ public class HotelService {
                 res.setHotelCountry(updatedHotel.getHotelCountry());
                 res.setHotelRating(updatedHotel.getHotelRating());
                 res.setHotelImages(updatedHotel.getHotelImages());
+
                 res.setStatusCode(200);
                 res.setMessage("Hotel updated successfully");
+                logger.info("Hotel with ID: {} updated successfully", hotelID);
+
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("Hotel not found for update");
+                logger.warn("Hotel with ID: {} not found for update", hotelID);
+
             }
         } catch (Exception e)
         {
+            logger.error("Error occurred while updating hotel with ID: {}: {}", hotelID, e.getMessage());
             res.setStatusCode(500);
             res.setError("Error occurred: " + e.getMessage());
         }
         return res;
     }
 
-    @Caching(
-            evict = {
-                    @CacheEvict(value = "hotels", key = "#hotelID"),
-                    @CacheEvict(value = "hotels", key = "'all'")
-            }
-    )
+
     public HotelDTO deleteHotel(Long hotelID)
     {
+        logger.info("Deleting hotel with ID: {}", hotelID);
         HotelDTO res = new HotelDTO();
 
         try
@@ -255,13 +269,18 @@ public class HotelService {
                 hotelRepository.deleteById(hotelID);
                 res.setStatusCode(200);
                 res.setMessage("Hotel deleted successfully");
+                logger.info("Hotel with ID: {} deleted successfully", hotelID);
+
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("Hotel not found for deletion");
+                logger.warn("Hotel with ID: {} not found for deletion", hotelID);
+
             }
         } catch (Exception e)
         {
+            logger.error("Error occurred while deleting hotel with ID: {}: {}", hotelID, e.getMessage());
             res.setStatusCode(500);
             res.setError("Error occurred: " + e.getMessage());
         }

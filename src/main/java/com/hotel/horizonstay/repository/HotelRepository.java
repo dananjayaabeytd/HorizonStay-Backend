@@ -11,11 +11,12 @@ import java.util.List;
 import java.util.Optional;
 
 @Repository
-public interface HotelRepository extends JpaRepository<Hotel, Long> {
-
+public interface HotelRepository extends JpaRepository<Hotel, Long>
+{
     @Query("SELECT h FROM Hotel h WHERE CONCAT(h.hotelCity, ', ', h.hotelCountry) = :location")
     List<Hotel> findByLocation(@Param("location") String location);
 
     Optional<Hotel> findByHotelName(String hotelName);
+
     Optional<Hotel> findByHotelEmail(String hotelEmail);
 }

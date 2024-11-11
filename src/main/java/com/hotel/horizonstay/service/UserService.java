@@ -3,6 +3,8 @@ package com.hotel.horizonstay.service;
 import com.hotel.horizonstay.dto.UserDTO;
 import com.hotel.horizonstay.entity.SystemUser;
 import com.hotel.horizonstay.repository.UserRepository;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.CachePut;
@@ -19,6 +21,8 @@ import java.util.Optional;
 @Service
 public class UserService {
 
+    private static final Logger logger = LoggerFactory.getLogger(UserService.class);
+
     @Autowired
     private UserRepository usersRepo;
 
@@ -34,6 +38,7 @@ public class UserService {
 
     public UserDTO register(UserDTO registrationRequest)
     {
+        logger.info("Registering user with email: {}", registrationRequest.getEmail());
         UserDTO reqRes = new UserDTO();
 
         try {
@@ -43,6 +48,7 @@ public class UserService {
 
             if (existingUser.isPresent())
             {
+                logger.warn("User already exists with email: {}", registrationRequest.getEmail());
                 reqRes.setMessage("User already exists");
                 reqRes.setStatusCode(409); // Conflict
                 return reqRes;
@@ -64,9 +70,11 @@ public class UserService {
                 reqRes.setSystemUsers(ourUsersResult);
                 reqRes.setMessage("User Saved Successfully");
                 reqRes.setStatusCode(200);
+                logger.info("User registered successfully with email: {}", registrationRequest.getEmail());
             }
 
         } catch (Exception e) {
+            logger.error("Error occurred while registering user: {}", e.getMessage());
             reqRes.setStatusCode(500);
             reqRes.setError(e.getMessage());
         }
@@ -74,43 +82,9 @@ public class UserService {
         return reqRes;
     }
 
-//    public UserDTO register(UserDTO registrationRequest)
-//    {
-//        UserDTO reqRes = new UserDTO();
-//
-//        try
-//        {
-//
-//
-//            SystemUser systemUser = new SystemUser();
-//            systemUser.setEmail(registrationRequest.getEmail());
-//            systemUser.setName(registrationRequest.getName());
-//            systemUser.setRole(registrationRequest.getRole());
-//            systemUser.setAddress(registrationRequest.getAddress());
-//            systemUser.setImage(registrationRequest.getImage());
-//            systemUser.setNIC(registrationRequest.getNIC());
-//            systemUser.setPassword(passwordEncoder.encode(registrationRequest.getPassword()));
-//
-//            SystemUser ourUsersResult = usersRepo.save(systemUser);
-//
-//            if (ourUsersResult.getId() > 0)
-//            {
-//                reqRes.setSystemUsers((ourUsersResult));
-//                reqRes.setMessage("User Saved Successfully");
-//                reqRes.setStatusCode(200);
-//            }
-//
-//        } catch (Exception e)
-//        {
-//            reqRes.setStatusCode(500);
-//            reqRes.setError(e.getMessage());
-//        }
-//        return reqRes;
-//    }
-
     public UserDTO login(UserDTO loginRequest)
     {
-
+        logger.info("Logging in user with email: {}", loginRequest.getEmail());
         UserDTO reqRes = new UserDTO();
 
         try
@@ -132,9 +106,11 @@ public class UserService {
             reqRes.setRefreshToken(refreshToken);
             reqRes.setExpirationTime("24Hrs");
             reqRes.setMessage("Successfully Logged In");
+            logger.info("User logged in successfully with email: {}", loginRequest.getEmail());
 
         } catch (Exception e)
         {
+            logger.error("Error occurred while logging in user: {}", e.getMessage());
             reqRes.setStatusCode(500);
             reqRes.setError(e.getMessage());
         }
@@ -144,6 +120,7 @@ public class UserService {
 
     public UserDTO refreshToken(UserDTO refreshTokenRequest)
     {
+        logger.info("Refreshing token for user with email: {}", refreshTokenRequest.getEmail());
         UserDTO res = new UserDTO();
 
         try
@@ -159,6 +136,7 @@ public class UserService {
                 res.setRefreshToken(refreshTokenRequest.getToken());
                 res.setExpirationTime("24Hr");
                 res.setMessage("Successfully Refreshed Token");
+                logger.info("Token refreshed successfully for user with email: {}", ourEmail);
             }
 
             res.setStatusCode(200);
@@ -166,6 +144,7 @@ public class UserService {
 
         } catch (Exception e)
         {
+            logger.error("Error occurred while refreshing token: {}", e.getMessage());
             res.setStatusCode(500);
             res.setMessage(e.getMessage());
             return res;
@@ -173,10 +152,10 @@ public class UserService {
     }
 
 
-    @Cacheable(value = "users")
+//    @Cacheable(value = "users")
     public UserDTO getAllUsers()
     {
-
+        logger.info("Fetching all users");
         UserDTO res = new UserDTO();
 
         try
@@ -189,10 +168,12 @@ public class UserService {
                 res.setSystemUsersList(result);
                 res.setStatusCode(200);
                 res.setMessage("Successful");
+                logger.info("Fetched all users successfully");
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("No users found");
+                logger.warn("No users found");
             }
             return res;
 
@@ -205,10 +186,10 @@ public class UserService {
     }
 
 
-    @Cacheable(value = "users", key = "#id")
+//    @Cacheable(value = "users", key = "#id")
     public UserDTO getUsersById(Integer id)
     {
-
+        logger.info("Fetching user with id: {}", id);
         UserDTO res = new UserDTO();
 
         try
@@ -218,9 +199,11 @@ public class UserService {
             res.setSystemUsers(usersById);
             res.setStatusCode(200);
             res.setMessage("Users with id '" + id + "' found successfully");
+            logger.info("User with id: {} found successfully", id);
 
         } catch (Exception e)
         {
+            logger.error("Error occurred while fetching user with id: {}", id, e);
             res.setStatusCode(500);
             res.setMessage("Error occurred: " + e.getMessage());
 
@@ -228,14 +211,14 @@ public class UserService {
         return res;
     }
 
-    @CacheEvict(value = "users", key = "#userId")
+//    @CacheEvict(value = "users", key = "#userId")
     public UserDTO deleteUser(Integer userId)
     {
+        logger.info("Deleting user with id: {}", userId);
         UserDTO res = new UserDTO();
 
         try
         {
-
             Optional<SystemUser> userOptional = usersRepo.findById(userId);
 
             if (userOptional.isPresent())
@@ -243,15 +226,19 @@ public class UserService {
                 usersRepo.deleteById(userId);
                 res.setStatusCode(200);
                 res.setMessage("User deleted successfully");
+                logger.info("User with id: {} deleted successfully", userId);
 
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("User not found for deletion");
+                logger.warn("User with id: {} not found for deletion", userId);
+
             }
 
         } catch (Exception e)
         {
+            logger.error("Error occurred while deleting user with id: {}", userId, e);
             res.setStatusCode(500);
             res.setMessage("Error occurred while deleting user: " + e.getMessage());
 
@@ -259,10 +246,12 @@ public class UserService {
         return res;
     }
 
-    @CachePut(value = "users", key = "#userId")
+//    @CachePut(value = "users", key = "#userId")
     public UserDTO updateUser(Integer userId, UserDTO updatedUser)
     {
+        logger.info("Updating user with id: {}", userId);
         UserDTO res = new UserDTO();
+
         try
         {
             Optional<SystemUser> userOptional = usersRepo.findById(userId);
@@ -287,24 +276,30 @@ public class UserService {
                 res.setSystemUsers(savedUser);
                 res.setStatusCode(200);
                 res.setMessage("User updated successfully");
+                logger.info("User with id: {} updated successfully", userId);
 
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("User not found for update");
+                logger.warn("User with id: {} not found for update", userId);
+
             }
         } catch (Exception e)
         {
+            logger.error("Error occurred while updating user with id: {}", userId, e);
             res.setStatusCode(500);
             res.setMessage("Error occurred while updating user: " + e.getMessage());
         }
         return res;
     }
 
-    @Cacheable(value = "users", key = "#email")
+//    @Cacheable(value = "users", key = "#email")
     public UserDTO getMyInfo(String email)
     {
+        logger.info("Fetching info for user with email: {}", email);
         UserDTO res = new UserDTO();
+
         try
         {
             Optional<SystemUser> userOptional = usersRepo.findByEmail(email);
@@ -314,13 +309,18 @@ public class UserService {
                 res.setSystemUsers(userOptional.get());
                 res.setStatusCode(200);
                 res.setMessage("successful");
+                logger.info("Fetched info for user with email: {} successfully", email);
+
             } else
             {
                 res.setStatusCode(404);
                 res.setMessage("User not found for update");
+                logger.warn("User with email: {} not found for update", email);
+
             }
 
         } catch (Exception e) {
+            logger.error("Error occurred while getting user info for email: {}", email, e);
             res.setStatusCode(500);
             res.setMessage("Error occurred while getting user info: " + e.getMessage());
         }

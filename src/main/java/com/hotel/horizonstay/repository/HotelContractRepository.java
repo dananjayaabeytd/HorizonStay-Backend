@@ -10,8 +10,8 @@ import java.time.LocalDate;
 import java.util.List;
 
 @Repository
-public interface HotelContractRepository extends JpaRepository<HotelContract,Long> {
-
+public interface HotelContractRepository extends JpaRepository<HotelContract,Long>
+{
     HotelContract findByHotelAndValidFromAndValidTo(Hotel hotel, LocalDate validFrom, LocalDate validTo);
 
     @Query("SELECT hc FROM HotelContract hc " +

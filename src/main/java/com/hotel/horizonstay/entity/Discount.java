@@ -20,7 +20,7 @@ public class Discount implements Serializable {
     private String discountName;
     private Float percentage;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id")
     private Season season;
 

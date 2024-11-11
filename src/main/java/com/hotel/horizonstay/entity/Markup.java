@@ -20,7 +20,7 @@ public class Markup implements Serializable {
     private String markupName;
     private Float percentage;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "season_id")
     private Season season;
 
