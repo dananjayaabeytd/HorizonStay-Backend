@@ -234,4 +234,62 @@ public class UserController {
         return new ResponseEntity<>(userDTO, HttpStatus.OK);
     }
 
+    @PutMapping(value = "/admin/update/{userId}", consumes = MediaType.MULTIPART_FORM_DATA_VALUE)
+    public ResponseEntity<UserDTO> updateUser(@PathVariable Integer userId, @RequestParam("files") MultipartFile[] files, @RequestPart("user") UserDTO user)
+    {
+        // Validate the user input
+//        if (user == null)
+//        {
+//            return error.createErrorResponse("Request body is null", HttpStatus.BAD_REQUEST);
+//        }
+//
+//        if (validation.isInvalidUserData(user))
+//        {
+//            return error.createErrorResponse("Invalid user data", HttpStatus.BAD_REQUEST);
+//        }
+
+        // Directory where the files will be stored
+        String uploadDir = "/profileImages/";
+
+        try
+        {
+            // Save each file and get the filenames
+            List<String> fileNames = Arrays.stream(files).map(file ->
+                    {
+                        try
+                        {
+                            if (file.getOriginalFilename() == null)
+                            {
+                                throw new RuntimeException("File upload error");
+                            }
+
+                            // Get a clean file name
+                            String fileName = StringUtils.cleanPath(Objects.requireNonNull(file.getOriginalFilename()));
+
+                            // Save the file to the upload directory
+                            FileUploadUtil.saveFile(uploadDir, fileName, file);
+
+                            return fileName;
+
+                        } catch (Exception e)
+                        {
+                            e.printStackTrace();
+                            return null;
+                        }
+                    })
+                    .filter(Objects::nonNull) // Filter out null values if any file failed to save
+                    .toList();
+
+            user.setImage(fileNames.get(0)); // Set the first image as the profile image
+
+            // Update the user using the service layer
+            UserDTO response = userService.updateUser(userId, user);
+            return new ResponseEntity<>(response, HttpStatus.OK);
+        }
+        catch (Exception e)
+        {
+            return error.createErrorResponse("Error occurred while updating user", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
 }
