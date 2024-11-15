@@ -28,11 +28,11 @@ public class Hotel implements Serializable {
     private String hotelEmail;
     private Float hotelRating;
 
-    @ElementCollection(fetch = FetchType.EAGER)
+    @ElementCollection(fetch = FetchType.LAZY)
     private List<String> hotelImages;
 
     @JsonIgnore
-    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "hotel", cascade = CascadeType.ALL, fetch = FetchType.LAZY)
     private List<HotelContract> contracts = new ArrayList<>();
 
 

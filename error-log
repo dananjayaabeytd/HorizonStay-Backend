@@ -1,0 +1,14 @@
+2024-11-15 20:46:36.507 [http-nio-5000-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Cannot delete or update a parent row: a foreign key constraint fails (`testdb`.`room_availability`, CONSTRAINT `FK4yndlte6hq7y084jtxjoytr6s` FOREIGN KEY (`room_type_id`) REFERENCES `roomtype` (`id`))
+2024-11-15 20:46:36.514 [http-nio-5000-exec-10] ERROR c.h.horizonstay.service.HotelService - Error occurred while deleting hotel with ID: 2: could not execute statement [Cannot delete or update a parent row: a foreign key constraint fails (`testdb`.`room_availability`, CONSTRAINT `FK4yndlte6hq7y084jtxjoytr6s` FOREIGN KEY (`room_type_id`) REFERENCES `roomtype` (`id`))] [delete from roomtype where id=?]; SQL [delete from roomtype where id=?]; constraint [null]
+2024-11-15 20:47:21.420 [http-nio-5000-exec-8] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:21.420 [http-nio-5000-exec-8] ERROR c.h.horizonstay.service.HotelService - Error occurred while deleting hotel with ID: 2: could not execute statement [Table 'testdb.hotel_hotel_images' doesn't exist] [delete from hotel_hotel_images where hotel_hotelid=?]; SQL [delete from hotel_hotel_images where hotel_hotelid=?]
+2024-11-15 20:47:21.435 [http-nio-5000-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:23.864 [http-nio-5000-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:40.957 [http-nio-5000-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:41.687 [http-nio-5000-exec-7] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:42.332 [http-nio-5000-exec-9] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:42.913 [http-nio-5000-exec-5] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:47:43.557 [http-nio-5000-exec-3] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:48:27.507 [http-nio-5000-exec-2] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
+2024-11-15 20:48:27.510 [http-nio-5000-exec-2] ERROR c.h.horizonstay.service.HotelService - Error occurred while adding hotel: could not execute statement [Table 'testdb.hotel_hotel_images' doesn't exist] [insert into hotel_hotel_images (hotel_hotelid,hotel_images) values (?,?)]; SQL [insert into hotel_hotel_images (hotel_hotelid,hotel_images) values (?,?)]
+2024-11-15 20:48:27.553 [http-nio-5000-exec-10] ERROR o.h.e.jdbc.spi.SqlExceptionHelper - Table 'testdb.hotel_hotel_images' doesn't exist
