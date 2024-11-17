@@ -30,5 +30,6 @@ public class HotelContractDTO implements Serializable {
     private LocalDateTime addedDate;
     private String hotelName;
     private String hotelLocation;
+    private Boolean isActive;
 
 }

@@ -27,6 +27,7 @@ public class HotelContract implements Serializable {
     private String cancellationPolicy;
     private String paymentPolicy;
     private LocalDateTime addedDate;
+    private Boolean isActive;
 
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "hotel_id")

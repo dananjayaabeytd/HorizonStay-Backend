@@ -23,7 +23,7 @@ public class BookingItem implements Serializable {
     private int quantity;
     private float totalAmount;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "booking_id")
     @JsonIgnore
     private Booking booking;

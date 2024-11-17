@@ -23,7 +23,7 @@ public class RoomAvailability implements Serializable {
     private LocalDate checkIn;
     private LocalDate checkOut;
 
-    @ManyToOne(fetch = FetchType.EAGER)
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(name = "room_type_id", nullable = false) // Foreign key to RoomType
     private RoomType roomType;
 

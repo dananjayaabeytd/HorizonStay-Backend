@@ -6746,3 +6746,884 @@
 2024-11-15 20:48:33.844 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
 2024-11-15 20:48:33.846 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
 2024-11-15 20:48:33.849 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-15 20:48:35.713 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 7488 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-15 20:48:35.715 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-15 20:48:36.255 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 20:48:36.256 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-15 20:48:36.360 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99 ms. Found 11 JPA repository interfaces.
+2024-11-15 20:48:36.373 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 20:48:36.374 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-15 20:48:36.384 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.384 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.384 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.385 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.386 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.386 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 20:48:36.386 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-11-15 20:48:36.769 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-15 20:48:36.777 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-15 20:48:36.780 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-15 20:48:36.780 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-15 20:48:36.820 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-15 20:48:36.820 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1071 ms
+2024-11-15 20:48:37.053 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-15 20:48:37.087 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-15 20:48:37.108 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-15 20:48:37.307 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-15 20:48:37.323 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-15 20:48:37.511 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@2c4be45f
+2024-11-15 20:48:37.512 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-15 20:48:38.333 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-15 20:48:38.561 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 20:48:38.811 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-15 20:48:39.208 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-15 20:48:39.208 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-15 20:48:39.280 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-15 20:48:39.720 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-15 20:48:39.730 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-15 20:48:39.740 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.257 seconds (process running for 4.696)
+2024-11-15 20:48:46.978 [http-nio-5000-exec-2] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-15 20:48:46.978 [http-nio-5000-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-15 20:48:46.979 [http-nio-5000-exec-2] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-15 20:48:47.220 [http-nio-5000-exec-3] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 20:48:47.231 [http-nio-5000-exec-3] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 20:48:47.310 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 20:48:47.315 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 20:48:49.300 [http-nio-5000-exec-6] INFO  c.h.horizonstay.service.HotelService - Fetching hotel with ID: 2
+2024-11-15 20:48:49.307 [http-nio-5000-exec-6] INFO  c.h.horizonstay.service.HotelService - Hotel with ID: 2 found successfully
+2024-11-15 20:48:54.625 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.HotelService - ------------------------------------- Adding new hotel with name: Guest Hotel
+2024-11-15 20:48:54.640 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.HotelService - Updating hotel with ID: 2
+2024-11-15 20:48:54.670 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.HotelService - Hotel with ID: 2 updated successfully
+2024-11-15 20:48:54.698 [http-nio-5000-exec-7] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 20:48:54.703 [http-nio-5000-exec-7] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 20:48:55.686 [http-nio-5000-exec-9] INFO  c.h.horizonstay.service.HotelService - Fetching hotel with ID: 2
+2024-11-15 20:48:55.689 [http-nio-5000-exec-9] INFO  c.h.horizonstay.service.HotelService - Hotel with ID: 2 found successfully
+2024-11-15 20:48:57.237 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.HotelService - Fetching hotel with ID: 2
+2024-11-15 20:48:57.241 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.HotelService - Hotel with ID: 2 found successfully
+2024-11-15 20:49:05.625 [http-nio-5000-exec-7] INFO  c.h.horizonstay.service.HotelService - Updating hotel with ID: 2
+2024-11-15 20:49:05.639 [http-nio-5000-exec-7] INFO  c.h.horizonstay.service.HotelService - Hotel with ID: 2 updated successfully
+2024-11-15 20:49:05.663 [http-nio-5000-exec-9] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 20:49:05.667 [http-nio-5000-exec-9] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 20:50:55.017 [http-nio-5000-exec-6] INFO  c.h.horizonstay.service.UserService - Fetching info for user with email: testuser@gmail.com
+2024-11-15 20:50:55.020 [http-nio-5000-exec-6] INFO  c.h.horizonstay.service.UserService - Fetched info for user with email: testuser@gmail.com successfully
+2024-11-15 20:50:56.068 [http-nio-5000-exec-7] INFO  c.h.horizonstay.service.UserService - Fetching user with id: 2
+2024-11-15 20:50:56.073 [http-nio-5000-exec-7] INFO  c.h.horizonstay.service.UserService - User with id: 2 found successfully
+2024-11-15 20:51:00.291 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.UserService - Updating user with id: 2
+2024-11-15 20:51:00.301 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.UserService - User with id: 2 updated successfully
+2024-11-15 20:51:00.325 [http-nio-5000-exec-3] INFO  c.h.horizonstay.service.UserService - Fetching all users
+2024-11-15 20:51:00.330 [http-nio-5000-exec-3] INFO  c.h.horizonstay.service.UserService - Fetched all users successfully
+2024-11-15 20:51:02.360 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.UserService - Fetching all users
+2024-11-15 20:51:02.365 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.UserService - Fetched all users successfully
+2024-11-15 20:51:05.643 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.UserService - Fetching user with id: 2
+2024-11-15 20:51:05.646 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.UserService - User with id: 2 found successfully
+2024-11-15 20:51:10.125 [http-nio-5000-exec-9] INFO  c.h.horizonstay.service.UserService - Fetching user with id: 2
+2024-11-15 20:51:10.129 [http-nio-5000-exec-9] INFO  c.h.horizonstay.service.UserService - User with id: 2 found successfully
+2024-11-15 20:51:10.274 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.UserService - Fetching user with id: 2
+2024-11-15 20:51:10.279 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.UserService - User with id: 2 found successfully
+2024-11-15 20:51:10.396 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.UserService - Fetching user with id: 2
+2024-11-15 20:51:10.400 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.UserService - User with id: 2 found successfully
+2024-11-15 20:51:22.498 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.UserService - Fetching info for user with email: testuser@gmail.com
+2024-11-15 20:51:22.501 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.UserService - Fetched info for user with email: testuser@gmail.com successfully
+2024-11-15 20:51:25.573 [http-nio-5000-exec-9] INFO  c.h.h.service.BookingService - Fetching bookings for email: testuser@gmail.com
+2024-11-15 20:51:25.577 [http-nio-5000-exec-9] WARN  c.h.h.service.BookingService - No bookings found for email: testuser@gmail.com
+2024-11-15 20:51:29.127 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 20:51:29.131 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 20:51:30.275 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.HotelService - Fetching hotel with ID: 2
+2024-11-15 20:51:30.278 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.HotelService - Hotel with ID: 2 found successfully
+2024-11-15 20:51:35.400 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 20:51:35.403 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 20:54:50.946 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-15 20:54:50.960 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-15 20:54:52.151 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetching contract with ID: 2
+2024-11-15 20:54:52.151 [http-nio-5000-exec-5] INFO  c.h.h.service.SeasonService - Fetching seasons for contract with ID: 2
+2024-11-15 20:54:52.155 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Contract with ID: 2 found successfully
+2024-11-15 20:54:52.160 [http-nio-5000-exec-5] INFO  c.h.h.service.SeasonService - Fetched 1 seasons for contract with ID: 2
+2024-11-15 20:54:54.329 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 20:54:54.332 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 20:55:04.991 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 20:55:05.014 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Room type added successfully to season with ID: 2
+2024-11-15 20:55:05.029 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 20:55:05.031 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 20:55:21.849 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Updating room type with ID: 3
+2024-11-15 20:55:21.859 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Room type with ID: 3 updated successfully
+2024-11-15 20:55:21.869 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 20:55:21.872 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 20:55:24.320 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 20:55:24.324 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:00:42.136 [http-nio-5000-exec-3] INFO  c.h.h.service.MarkupService - Fetching markups for season with ID: 2
+2024-11-15 21:00:42.140 [http-nio-5000-exec-3] INFO  c.h.h.service.MarkupService - Fetched 2 markups for season with ID: 2
+2024-11-15 21:00:44.132 [http-nio-5000-exec-8] INFO  c.h.h.service.SupplementService - Fetching supplements for season with ID: 2
+2024-11-15 21:00:44.134 [http-nio-5000-exec-8] INFO  c.h.h.service.SupplementService - Fetched 1 supplements for season with ID: 2
+2024-11-15 21:00:45.435 [http-nio-5000-exec-10] INFO  c.h.h.service.DiscountService - Fetching discounts for season with ID: 2
+2024-11-15 21:00:45.439 [http-nio-5000-exec-10] INFO  c.h.h.service.DiscountService - Fetched 2 discounts for season with ID: 2
+2024-11-15 21:00:50.001 [http-nio-5000-exec-6] INFO  c.h.h.service.SupplementService - Fetching supplements for season with ID: 2
+2024-11-15 21:00:50.003 [http-nio-5000-exec-6] INFO  c.h.h.service.SupplementService - Fetched 1 supplements for season with ID: 2
+2024-11-15 21:00:52.110 [http-nio-5000-exec-7] INFO  c.h.h.service.MarkupService - Fetching markups for season with ID: 2
+2024-11-15 21:00:52.111 [http-nio-5000-exec-7] INFO  c.h.h.service.MarkupService - Fetched 2 markups for season with ID: 2
+2024-11-15 21:02:10.914 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:02:10.915 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:03:06.814 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:03:06.817 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:03:31.377 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:03:31.381 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:03:43.413 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-15 21:03:43.417 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-15 21:03:44.609 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-15 21:03:44.613 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-15 21:03:45.614 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contract with ID: 2
+2024-11-15 21:03:45.614 [http-nio-5000-exec-10] INFO  c.h.h.service.SeasonService - Fetching seasons for contract with ID: 2
+2024-11-15 21:03:45.617 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Contract with ID: 2 found successfully
+2024-11-15 21:03:45.619 [http-nio-5000-exec-10] INFO  c.h.h.service.SeasonService - Fetched 1 seasons for contract with ID: 2
+2024-11-15 21:03:47.565 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:03:47.567 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:15:12.076 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:15:12.079 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:15:42.875 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:15:42.877 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:16:15.816 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Updating room type with ID: 4
+2024-11-15 21:16:15.825 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Room type with ID: 4 updated successfully
+2024-11-15 21:16:15.836 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:16:15.838 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:17:04.055 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Updating room type with ID: 3
+2024-11-15 21:17:04.064 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Room type with ID: 3 updated successfully
+2024-11-15 21:17:04.073 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:17:04.075 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:12.484 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:12.487 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:15.058 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:15.060 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:17.632 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:17.634 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:29.415 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:29.417 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:35.353 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:35.356 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:39.819 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:39.822 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:44.682 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:44.684 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:49.437 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:49.439 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:51.098 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:51.100 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:53.077 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:53.079 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:23:57.833 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:23:57.835 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:02.625 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:02.627 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:06.218 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:06.220 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:11.390 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:11.393 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:15.732 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:15.734 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:17.030 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:17.032 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:24.807 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:24.809 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:31.633 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:31.635 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:33.484 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:33.486 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:24:54.230 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:24:54.232 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:26:23.608 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:26:23.610 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:05.532 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:05.534 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:11.131 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:11.132 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:12.580 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:12.582 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:24.592 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:24.594 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:27.917 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:27.919 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:33.734 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:33.737 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:35.199 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:35.201 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:40.154 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:40.156 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:27:50.731 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:27:50.732 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:00.826 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:00.828 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:03.467 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:03.468 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:06.016 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:06.018 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:10.395 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:10.397 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:11.792 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:11.793 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:13.848 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:13.850 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:21.003 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:21.007 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:26.114 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:26.117 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:28.737 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:28.739 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:35.837 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:35.840 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:28:40.661 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:28:40.663 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:29:31.103 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:29:31.104 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:29:41.299 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:29:41.302 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:30:04.330 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Updating room type with ID: 3
+2024-11-15 21:30:04.339 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Room type with ID: 3 updated successfully
+2024-11-15 21:30:04.349 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:30:04.351 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:30:06.142 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:30:06.144 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:30:06.280 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:30:06.282 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:30:36.811 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 21:30:36.822 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Room type added successfully to season with ID: 2
+2024-11-15 21:30:36.832 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:30:36.833 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:30:40.505 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:30:40.508 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:30:45.452 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 21:30:45.456 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-15 21:30:45.460 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-15 21:30:48.291 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 9040 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-15 21:30:48.293 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-15 21:30:48.879 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 21:30:48.880 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-15 21:30:48.999 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 114 ms. Found 11 JPA repository interfaces.
+2024-11-15 21:30:49.012 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 21:30:49.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-15 21:30:49.025 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.025 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.026 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.027 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.027 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.027 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:30:49.027 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-15 21:30:49.422 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-15 21:30:49.428 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-15 21:30:49.431 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-15 21:30:49.432 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-15 21:30:49.476 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-15 21:30:49.477 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1142 ms
+2024-11-15 21:30:49.715 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-15 21:30:49.753 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-15 21:30:49.775 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-15 21:30:49.971 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-15 21:30:49.987 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-15 21:30:50.164 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@163fbbc9
+2024-11-15 21:30:50.165 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-15 21:30:50.992 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-15 21:30:51.203 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 21:30:51.458 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-15 21:30:51.872 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-15 21:30:51.872 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-15 21:30:51.944 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-15 21:30:52.388 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-15 21:30:52.400 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-15 21:30:52.409 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.342 seconds (process running for 4.943)
+2024-11-15 21:30:57.315 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-15 21:30:57.315 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-15 21:30:57.316 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-15 21:30:57.493 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:30:57.502 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:37:56.421 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:37:56.425 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:38:17.078 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:38:17.083 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:38:55.517 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:38:55.521 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:39:08.249 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:39:08.253 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:39:25.699 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:39:25.702 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:39:30.364 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:39:30.367 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:39:44.075 [http-nio-5000-exec-5] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'files' is not present.]
+2024-11-15 21:39:53.606 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 21:39:53.663 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Room type added successfully to season with ID: 2
+2024-11-15 21:39:53.678 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:39:53.680 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 6 room types for season with ID: 2
+2024-11-15 21:40:00.070 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 21:40:00.073 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-15 21:40:00.078 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-15 21:40:04.173 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 10568 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-15 21:40:04.175 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-15 21:40:04.691 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 21:40:04.692 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-15 21:40:04.810 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 108 ms. Found 11 JPA repository interfaces.
+2024-11-15 21:40:04.823 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 21:40:04.824 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-15 21:40:04.835 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.835 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.835 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.835 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.836 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.837 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:40:04.837 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-11-15 21:40:05.211 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-15 21:40:05.217 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-15 21:40:05.219 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-15 21:40:05.220 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-15 21:40:05.258 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-15 21:40:05.258 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1051 ms
+2024-11-15 21:40:05.478 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-15 21:40:05.513 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-15 21:40:05.534 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-15 21:40:05.730 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-15 21:40:05.746 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-15 21:40:05.926 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d3b4e09
+2024-11-15 21:40:05.927 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-15 21:40:06.765 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-15 21:40:06.971 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 21:40:07.243 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-15 21:40:07.645 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-15 21:40:07.645 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-15 21:40:07.720 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-15 21:40:08.165 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-15 21:40:08.178 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-15 21:40:08.186 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.226 seconds (process running for 4.668)
+2024-11-15 21:40:21.089 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-15 21:40:21.090 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-15 21:40:21.090 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 0 ms
+2024-11-15 21:40:21.257 [http-nio-5000-exec-1] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'files' is not present.]
+2024-11-15 21:40:29.305 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 21:40:29.357 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:40:29.360 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 6 room types for season with ID: 2
+2024-11-15 21:40:44.949 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 11
+2024-11-15 21:40:44.977 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Room type with ID: 11 deleted successfully
+2024-11-15 21:40:44.987 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:40:44.991 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 5 room types for season with ID: 2
+2024-11-15 21:40:46.817 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 10
+2024-11-15 21:40:46.825 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Room type with ID: 10 deleted successfully
+2024-11-15 21:40:46.837 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:40:46.839 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:40:49.279 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 8
+2024-11-15 21:40:49.299 [http-nio-5000-exec-6] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+2024-11-15 21:40:49.318 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:40:49.320 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:40:51.902 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 8
+2024-11-15 21:40:51.907 [http-nio-5000-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+2024-11-15 21:40:51.926 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:40:51.930 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:40:54.834 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:40:54.837 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:41:34.111 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 8
+2024-11-15 21:41:34.117 [http-nio-5000-exec-4] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+2024-11-15 21:41:34.133 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:41:34.136 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:42:47.968 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 21:42:47.969 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-15 21:42:47.973 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-15 21:42:51.918 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 16972 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-15 21:42:51.919 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-15 21:42:52.461 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 21:42:52.462 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-15 21:42:52.568 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 101 ms. Found 11 JPA repository interfaces.
+2024-11-15 21:42:52.581 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-15 21:42:52.582 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-15 21:42:52.593 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.593 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.593 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.593 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.594 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.594 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.594 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.594 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.595 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.595 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.595 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-15 21:42:52.595 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-15 21:42:52.961 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-15 21:42:52.967 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-15 21:42:52.970 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-15 21:42:52.970 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-15 21:42:53.011 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-15 21:42:53.011 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1055 ms
+2024-11-15 21:42:53.218 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-15 21:42:53.250 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-15 21:42:53.270 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-15 21:42:53.462 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-15 21:42:53.477 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-15 21:42:53.647 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4d79d187
+2024-11-15 21:42:53.648 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-15 21:42:54.474 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-15 21:42:54.697 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 21:42:54.959 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-15 21:42:55.379 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-15 21:42:55.380 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-15 21:42:55.461 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-15 21:42:55.938 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-15 21:42:55.951 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-15 21:42:55.960 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.252 seconds (process running for 4.719)
+2024-11-15 21:42:58.997 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-15 21:42:58.997 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-15 21:42:58.998 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-15 21:42:59.180 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:42:59.190 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:43:02.984 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 8
+2024-11-15 21:43:03.021 [http-nio-5000-exec-10] WARN  o.h.e.jdbc.spi.SqlExceptionHelper - SQL Error: 1451, SQLState: 23000
+2024-11-15 21:43:03.048 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:43:03.051 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 4 room types for season with ID: 2
+2024-11-15 21:43:42.240 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Deleting room type with ID: 8
+2024-11-15 21:43:42.254 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Room type with ID: 8 deleted successfully
+2024-11-15 21:43:42.265 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:43:42.268 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:43:55.376 [http-nio-5000-exec-10] WARN  o.s.w.s.m.s.DefaultHandlerExceptionResolver - Resolved [org.springframework.web.multipart.support.MissingServletRequestPartException: Required part 'files' is not present.]
+2024-11-15 21:43:59.847 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 21:43:59.856 [http-nio-5000-exec-9] WARN  c.h.h.service.RoomTypeService - Room type with name: ggg234 already exists in season with ID: 2
+2024-11-15 21:43:59.867 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:43:59.869 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:44:15.540 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 21:44:15.544 [http-nio-5000-exec-10] WARN  c.h.h.service.RoomTypeService - Room type with name: lllllllllllll already exists in season with ID: 2
+2024-11-15 21:44:15.556 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:44:15.561 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:46:08.489 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:46:08.493 [http-nio-5000-exec-1] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:46:13.843 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:46:13.847 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:47:23.862 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:47:23.865 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:55:11.281 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:55:11.284 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:55:31.834 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:55:31.837 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:55:45.569 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:55:45.573 [http-nio-5000-exec-8] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:55:51.686 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:55:51.690 [http-nio-5000-exec-7] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:55:59.184 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:55:59.189 [http-nio-5000-exec-4] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:01.082 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:01.084 [http-nio-5000-exec-3] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:09.399 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:09.402 [http-nio-5000-exec-5] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:14.697 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:14.700 [http-nio-5000-exec-6] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:17.354 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:17.356 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:28.567 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Adding room type to season with ID: 2
+2024-11-15 21:56:28.573 [http-nio-5000-exec-10] WARN  c.h.h.service.RoomTypeService - Room type with name: lllllllllllll already exists in season with ID: 2
+2024-11-15 21:56:28.588 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:28.591 [http-nio-5000-exec-9] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:31.456 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:31.459 [http-nio-5000-exec-2] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 21:56:31.565 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetching room types for season with ID: 2
+2024-11-15 21:56:31.569 [http-nio-5000-exec-10] INFO  c.h.h.service.RoomTypeService - Fetched 3 room types for season with ID: 2
+2024-11-15 23:48:17.292 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-15 23:48:17.295 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-15 23:48:17.303 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-17 08:54:27.689 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 17508 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-17 08:54:27.691 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 08:54:28.315 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 08:54:28.317 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17 08:54:28.469 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 143 ms. Found 11 JPA repository interfaces.
+2024-11-17 08:54:28.487 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 08:54:28.488 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-17 08:54:28.502 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.502 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.502 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.502 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.502 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 08:54:28.503 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-11-17 08:54:28.943 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-17 08:54:28.951 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-17 08:54:28.954 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-17 08:54:28.954 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-17 08:54:28.998 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-17 08:54:28.998 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1271 ms
+2024-11-17 08:54:29.288 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17 08:54:29.335 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-17 08:54:29.375 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-17 08:54:29.629 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17 08:54:29.653 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-17 08:54:30.048 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@3d3b4e09
+2024-11-17 08:54:30.050 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-17 08:54:30.909 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-17 08:54:31.181 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 08:54:31.458 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-17 08:54:31.875 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-17 08:54:31.875 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-17 08:54:31.953 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17 08:54:32.479 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-17 08:54:32.493 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-17 08:54:32.502 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 5.072 seconds (process running for 5.836)
+2024-11-17 08:54:51.229 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-17 08:54:51.229 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-17 08:54:51.230 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-17 08:55:19.176 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.UserService - Logging in user with email: testuser@gmail.com
+2024-11-17 08:55:19.371 [http-nio-5000-exec-8] INFO  c.h.horizonstay.service.UserService - User logged in successfully with email: testuser@gmail.com
+2024-11-17 08:55:19.412 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.UserService - Fetching info for user with email: testuser@gmail.com
+2024-11-17 08:55:19.414 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.UserService - Fetched info for user with email: testuser@gmail.com successfully
+2024-11-17 08:55:22.620 [http-nio-5000-exec-2] INFO  c.h.horizonstay.service.UserService - Fetching info for user with email: testuser@gmail.com
+2024-11-17 08:55:22.624 [http-nio-5000-exec-2] INFO  c.h.horizonstay.service.UserService - Fetched info for user with email: testuser@gmail.com successfully
+2024-11-17 08:55:27.878 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Searching hotel contracts for location: colombo, check-in date: 2024-09-30, check-out date: 2025-11-05, adults: 2, children: 1
+2024-11-17 09:09:22.077 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:09:22.087 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:09:25.879 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:09:25.887 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:09:27.854 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:09:27.858 [http-nio-5000-exec-5] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:11:11.355 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:11:11.356 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-17 09:11:11.361 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-17 09:11:15.510 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 17772 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-17 09:11:15.511 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 09:11:16.047 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:11:16.048 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17 09:11:16.152 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 99 ms. Found 11 JPA repository interfaces.
+2024-11-17 09:11:16.163 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:11:16.165 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-17 09:11:16.178 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.178 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.178 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.178 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.179 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.179 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.179 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.179 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.179 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.179 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.180 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:11:16.180 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 10 ms. Found 0 Redis repository interfaces.
+2024-11-17 09:11:16.556 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-17 09:11:16.562 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:11:16.564 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-17 09:11:16.564 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-17 09:11:16.601 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-17 09:11:16.601 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1054 ms
+2024-11-17 09:11:16.807 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17 09:11:16.840 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-17 09:11:16.860 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-17 09:11:17.058 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17 09:11:17.074 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-17 09:11:17.253 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4be1dce6
+2024-11-17 09:11:17.254 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-17 09:11:18.077 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-17 09:11:18.386 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:11:18.632 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-17 09:11:19.014 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-17 09:11:19.015 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-17 09:11:19.084 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17 09:11:19.502 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:11:19.514 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-17 09:11:19.522 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.244 seconds (process running for 4.697)
+2024-11-17 09:11:49.858 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-17 09:11:49.858 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-17 09:11:49.859 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-17 09:11:50.062 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Adding hotel contract for hotel ID: 2
+2024-11-17 09:11:50.113 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Hotel contract added successfully for hotel ID: 2
+2024-11-17 09:12:40.691 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:12:40.692 [http-nio-5000-exec-4] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:12:41.614 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:12:41.624 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:14:20.072 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:14:20.072 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-17 09:14:20.086 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-17 09:14:23.365 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 20364 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-17 09:14:23.365 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 09:14:23.887 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:14:23.887 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17 09:14:23.982 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 97 ms. Found 11 JPA repository interfaces.
+2024-11-17 09:14:24.007 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:14:24.007 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:14:24.014 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 7 ms. Found 0 Redis repository interfaces.
+2024-11-17 09:14:24.381 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-17 09:14:24.388 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:14:24.388 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-17 09:14:24.388 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-17 09:14:24.420 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-17 09:14:24.420 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1016 ms
+2024-11-17 09:14:24.624 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17 09:14:24.657 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-17 09:14:24.688 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-17 09:14:24.879 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17 09:14:24.909 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-17 09:14:25.069 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4be1dce6
+2024-11-17 09:14:25.069 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-17 09:14:25.887 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-17 09:14:26.111 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:14:26.386 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-17 09:14:26.801 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-17 09:14:26.801 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-17 09:14:26.860 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17 09:14:27.319 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:14:27.325 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-17 09:14:27.333 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.196 seconds (process running for 4.646)
+2024-11-17 09:14:29.862 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-17 09:14:29.862 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-17 09:14:29.863 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 1 ms
+2024-11-17 09:14:30.033 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:14:30.051 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:17:06.839 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:17:06.846 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:26:27.430 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:26:27.439 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:26:58.731 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:26:58.741 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:27:06.431 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:27:06.438 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:27:14.462 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:27:14.467 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:27:31.091 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:27:31.091 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:27:59.025 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetching contract with ID: 2
+2024-11-17 09:27:59.030 [http-nio-5000-exec-10] INFO  c.h.h.service.SeasonService - Fetching seasons for contract with ID: 2
+2024-11-17 09:27:59.034 [http-nio-5000-exec-10] INFO  c.h.h.service.SeasonService - Fetched 1 seasons for contract with ID: 2
+2024-11-17 09:27:59.039 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Contract with ID: 2 found successfully
+2024-11-17 09:28:00.327 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:00.331 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetched 7 contracts for hotel with ID: 2
+2024-11-17 09:28:03.662 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Deleting contract with ID: 10
+2024-11-17 09:28:03.702 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Contract with ID: 10 deleted successfully
+2024-11-17 09:28:03.708 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:03.713 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:28:05.643 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:05.647 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:28:07.600 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Deleting contract with ID: 8
+2024-11-17 09:28:07.631 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Contract with ID: 8 deleted successfully
+2024-11-17 09:28:07.641 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:07.648 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetched 5 contracts for hotel with ID: 2
+2024-11-17 09:28:12.038 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Deleting contract with ID: 7
+2024-11-17 09:28:12.048 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Contract with ID: 7 deleted successfully
+2024-11-17 09:28:12.051 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:12.058 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:28:23.340 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:23.344 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:28:51.763 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:51.768 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:28:57.283 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:28:57.288 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:29:21.577 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:29:21.579 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:29:25.293 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:29:25.296 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:29:39.325 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:29:39.328 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:29:45.767 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:29:45.770 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:30:05.060 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:30:05.064 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetched 4 contracts for hotel with ID: 2
+2024-11-17 09:30:13.388 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:30:13.393 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:30:23.365 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Adding hotel contract for hotel ID: 2
+2024-11-17 09:30:23.392 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Hotel contract added successfully for hotel ID: 2
+2024-11-17 09:30:27.299 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:30:27.302 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:30:28.467 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:30:28.470 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetched 5 contracts for hotel with ID: 2
+2024-11-17 09:30:49.609 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:30:49.612 [http-nio-5000-exec-1] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:30:57.021 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Adding hotel contract for hotel ID: 2
+2024-11-17 09:30:57.030 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Hotel contract added successfully for hotel ID: 2
+2024-11-17 09:31:04.227 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.HotelService - Fetching all hotels
+2024-11-17 09:31:04.231 [http-nio-5000-exec-10] INFO  c.h.horizonstay.service.HotelService - Hotels retrieved successfully
+2024-11-17 09:31:05.000 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:31:05.004 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:31:30.329 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:31:30.333 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:31:37.629 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:31:37.629 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:31:39.924 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:31:39.928 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:32:29.110 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:32:29.114 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:33:33.790 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:33:33.793 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:33:35.563 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:33:35.566 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:33:39.980 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:33:39.984 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:34:33.878 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:34:33.883 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:34:39.652 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:34:39.657 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:34:51.892 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:34:51.895 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:34:55.020 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:34:55.025 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:34:56.237 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:34:56.238 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:34:58.068 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:34:58.071 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:35:05.172 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:35:05.175 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:35:21.271 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:35:21.274 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:35:23.368 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:35:23.372 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:35:36.075 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:35:36.080 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:35:39.971 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:35:39.972 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:35:47.480 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:35:47.484 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:41:25.554 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:41:25.559 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:43:16.086 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:43:16.089 [http-nio-5000-exec-8] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:46:10.409 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:46:10.414 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:46:21.249 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:46:21.252 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:49:25.492 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:49:25.496 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:49:37.152 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:49:37.156 [http-nio-5000-exec-6] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:49:56.996 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:49:56.998 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:50:05.393 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:50:05.397 [http-nio-5000-exec-9] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:50:23.559 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:50:23.564 [http-nio-5000-exec-1] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:50:30.728 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:50:30.728 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-17 09:50:30.735 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-17 09:50:38.458 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 11004 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-17 09:50:38.462 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 09:50:39.000 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:50:39.001 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17 09:50:39.111 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 106 ms. Found 11 JPA repository interfaces.
+2024-11-17 09:50:39.122 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:50:39.122 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:50:39.128 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 6 ms. Found 0 Redis repository interfaces.
+2024-11-17 09:50:39.522 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-17 09:50:39.528 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:50:39.532 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-17 09:50:39.532 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-17 09:50:39.578 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-17 09:50:39.578 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1084 ms
+2024-11-17 09:50:39.792 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17 09:50:39.843 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-17 09:50:39.868 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-17 09:50:40.078 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17 09:50:40.098 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-17 09:50:40.418 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@6b71e98f
+2024-11-17 09:50:40.418 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-17 09:50:41.292 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-17 09:50:41.538 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:50:41.788 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-17 09:50:42.178 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-17 09:50:42.178 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-17 09:50:42.250 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17 09:50:42.328 [main] WARN  o.s.b.w.s.c.AnnotationConfigServletWebServerApplicationContext - Exception encountered during context initialization - cancelling refresh attempt: org.springframework.beans.factory.BeanCreationException: Error creating bean with name 'org.springframework.security.config.annotation.web.configuration.WebSecurityConfiguration': Injection of autowired dependencies failed
+2024-11-17 09:50:42.328 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:50:42.328 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-17 09:50:42.338 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.
+2024-11-17 09:50:42.353 [main] INFO  o.a.catalina.core.StandardService - Stopping service [Tomcat]
+2024-11-17 09:50:42.358 [main] INFO  o.s.b.a.l.ConditionEvaluationReportLogger - 
+
+Error starting ApplicationContext. To display the condition evaluation report re-run your application with 'debug' enabled.
+2024-11-17 09:51:30.021 [main] INFO  c.h.h.HorizonstayApplication - Starting HorizonstayApplication using Java 17.0.11 with PID 6412 (C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend\target\classes started by Dananjaya Abey in C:\Users\Dananjaya Abey\Desktop\Horizon Project\backend)
+2024-11-17 09:51:30.028 [main] INFO  c.h.h.HorizonstayApplication - No active profile set, falling back to 1 default profile: "default"
+2024-11-17 09:51:30.565 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:51:30.566 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data JPA repositories in DEFAULT mode.
+2024-11-17 09:51:30.678 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 107 ms. Found 11 JPA repository interfaces.
+2024-11-17 09:51:30.690 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Multiple Spring Data modules found, entering strict repository configuration mode
+2024-11-17 09:51:30.691 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Bootstrapping Spring Data Redis repositories in DEFAULT mode.
+2024-11-17 09:51:30.702 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.BookingRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.703 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.ContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.703 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.DiscountRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelContractRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.HotelRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.MarkupRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomAvailabilityRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.RoomTypeRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.704 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SeasonRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.705 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.SupplementRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.705 [main] INFO  o.s.d.r.c.RepositoryConfigurationExtensionSupport - Spring Data Redis - Could not safely identify store assignment for repository candidate interface com.hotel.horizonstay.repository.UserRepository; If you want this repository to be a Redis repository, consider annotating your entities with one of these annotations: org.springframework.data.redis.core.RedisHash (preferred), or consider extending one of the following types with your repository: org.springframework.data.keyvalue.repository.KeyValueRepository
+2024-11-17 09:51:30.705 [main] INFO  o.s.d.r.c.RepositoryConfigurationDelegate - Finished Spring Data repository scanning in 8 ms. Found 0 Redis repository interfaces.
+2024-11-17 09:51:31.080 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat initialized with port 5000 (http)
+2024-11-17 09:51:31.086 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Initializing ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:51:31.088 [main] INFO  o.a.catalina.core.StandardService - Starting service [Tomcat]
+2024-11-17 09:51:31.088 [main] INFO  o.a.catalina.core.StandardEngine - Starting Servlet engine: [Apache Tomcat/10.1.28]
+2024-11-17 09:51:31.133 [main] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring embedded WebApplicationContext
+2024-11-17 09:51:31.133 [main] INFO  o.s.b.w.s.c.ServletWebServerApplicationContext - Root WebApplicationContext: initialization completed in 1075 ms
+2024-11-17 09:51:31.357 [main] INFO  o.h.jpa.internal.util.LogHelper - HHH000204: Processing PersistenceUnitInfo [name: default]
+2024-11-17 09:51:31.390 [main] INFO  org.hibernate.Version - HHH000412: Hibernate ORM core version 6.5.2.Final
+2024-11-17 09:51:31.411 [main] INFO  o.h.c.i.RegionFactoryInitiator - HHH000026: Second-level cache disabled
+2024-11-17 09:51:31.609 [main] INFO  o.s.o.j.p.SpringPersistenceUnitInfo - No LoadTimeWeaver setup: ignoring JPA class transformer
+2024-11-17 09:51:31.625 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Starting...
+2024-11-17 09:51:31.795 [main] INFO  com.zaxxer.hikari.pool.HikariPool - HikariPool-1 - Added connection com.mysql.cj.jdbc.ConnectionImpl@4be1dce6
+2024-11-17 09:51:31.796 [main] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Start completed.
+2024-11-17 09:51:32.587 [main] INFO  o.h.e.t.j.p.i.JtaPlatformInitiator - HHH000489: No JTA platform available (set 'hibernate.transaction.jta.platform' to enable JTA platform integration)
+2024-11-17 09:51:32.850 [main] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Initialized JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:51:33.096 [main] INFO  o.s.d.j.r.query.QueryEnhancerFactory - Hibernate is in classpath; If applicable, HQL parser will be used.
+2024-11-17 09:51:33.479 [main] INFO  o.s.s.c.a.a.c.InitializeAuthenticationProviderBeanManagerConfigurer$InitializeAuthenticationProviderManagerConfigurer - Global AuthenticationManager configured with AuthenticationProvider bean with name authenticationProvider
+2024-11-17 09:51:33.480 [main] WARN  o.s.s.c.a.a.c.InitializeUserDetailsBeanManagerConfigurer$InitializeUserDetailsManagerConfigurer - Global AuthenticationManager configured with an AuthenticationProvider bean. UserDetailsService beans will not be used for username/password login. Consider removing the AuthenticationProvider bean. Alternatively, consider using the UserDetailsService in a manually instantiated DaoAuthenticationProvider.
+2024-11-17 09:51:33.548 [main] WARN  o.s.b.a.o.j.JpaBaseConfiguration$JpaWebConfiguration - spring.jpa.open-in-view is enabled by default. Therefore, database queries may be performed during view rendering. Explicitly configure spring.jpa.open-in-view to disable this warning
+2024-11-17 09:51:33.978 [main] INFO  o.a.coyote.http11.Http11NioProtocol - Starting ProtocolHandler ["http-nio-5000"]
+2024-11-17 09:51:33.991 [main] INFO  o.s.b.w.e.tomcat.TomcatWebServer - Tomcat started on port 5000 (http) with context path '/'
+2024-11-17 09:51:34.000 [main] INFO  c.h.h.HorizonstayApplication - Started HorizonstayApplication in 4.19 seconds (process running for 4.594)
+2024-11-17 09:51:37.190 [http-nio-5000-exec-1] INFO  o.a.c.c.C.[Tomcat].[localhost].[/] - Initializing Spring DispatcherServlet 'dispatcherServlet'
+2024-11-17 09:51:37.190 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Initializing Servlet 'dispatcherServlet'
+2024-11-17 09:51:37.192 [http-nio-5000-exec-1] INFO  o.s.web.servlet.DispatcherServlet - Completed initialization in 2 ms
+2024-11-17 09:51:37.371 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:51:37.388 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:51:40.548 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Updating contract status with ID: 2
+2024-11-17 09:51:40.568 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:51:40.573 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:51:46.483 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:51:46.492 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:51:51.137 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Updating contract status with ID: 11
+2024-11-17 09:51:51.166 [http-nio-5000-exec-3] INFO  c.h.h.service.ContractService - Contract status with ID: 11 updated successfully
+2024-11-17 09:51:51.176 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:51:51.180 [http-nio-5000-exec-10] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:51:52.595 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:51:52.601 [http-nio-5000-exec-7] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:52:10.779 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Updating contract status with ID: 12
+2024-11-17 09:52:10.882 [http-nio-5000-exec-4] INFO  c.h.h.service.ContractService - Contract status with ID: 12 updated successfully
+2024-11-17 09:52:10.890 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:52:10.896 [http-nio-5000-exec-5] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:52:12.314 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetching contracts for hotel with ID: 2
+2024-11-17 09:52:12.319 [http-nio-5000-exec-2] INFO  c.h.h.service.ContractService - Fetched 6 contracts for hotel with ID: 2
+2024-11-17 09:53:17.878 [SpringApplicationShutdownHook] INFO  o.s.o.j.LocalContainerEntityManagerFactoryBean - Closing JPA EntityManagerFactory for persistence unit 'default'
+2024-11-17 09:53:17.878 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown initiated...
+2024-11-17 09:53:17.878 [SpringApplicationShutdownHook] INFO  com.zaxxer.hikari.HikariDataSource - HikariPool-1 - Shutdown completed.

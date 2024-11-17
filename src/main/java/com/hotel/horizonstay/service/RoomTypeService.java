@@ -36,6 +36,16 @@ public class RoomTypeService {
 
             if (seasonOptional.isPresent())
             {
+
+                // Check if a room type with the same name already exists in the season
+                Optional<RoomType> existingRoomType = roomTypeRepository.findByRoomTypeNameAndSeasonId(roomTypeDTO.getRoomTypeName(), seasonId);
+                if (existingRoomType.isPresent()) {
+                    res.setStatusCode(409); // Conflict status code
+                    res.setMessage("Room type with the same name already exists in the season");
+                    logger.warn("Room type with name: {} already exists in season with ID: {}", roomTypeDTO.getRoomTypeName(), seasonId);
+                    return res;
+                }
+
                 RoomType roomType = new RoomType();
                 roomType.setRoomTypeName(roomTypeDTO.getRoomTypeName());
                 roomType.setNumberOfRooms(roomTypeDTO.getNumberOfRooms());

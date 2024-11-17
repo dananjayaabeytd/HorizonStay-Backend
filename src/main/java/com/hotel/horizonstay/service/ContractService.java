@@ -71,6 +71,7 @@ public class ContractService {
             contract.setValidTo(contractDTO.getValidTo());
             contract.setCancellationPolicy(contractDTO.getCancellationPolicy());
             contract.setPaymentPolicy(contractDTO.getPaymentPolicy());
+            contract.setIsActive(true);
             contract = contractRepository.save(contract);
 
             response = convertToDTO(contract);
@@ -213,6 +214,7 @@ public class ContractService {
         contractDTO.setCancellationPolicy(contract.getCancellationPolicy());
         contractDTO.setPaymentPolicy(contract.getPaymentPolicy());
         contractDTO.setHotelName(contract.getHotel().getHotelName());
+        contractDTO.setIsActive(contract.getIsActive());
         contractDTO.setHotelLocation(contract.getHotel().getHotelCity() + ", " + contract.getHotel().getHotelCountry());
 
         return contractDTO;
@@ -440,5 +442,41 @@ public class ContractService {
         }
 
         return result;
+    }
+
+    public HotelContractDTO updateContractStatus(Long contractID) {
+        logger.info("Updating contract status with ID: {}", contractID);
+        HotelContractDTO response = new HotelContractDTO();
+
+        try {
+            Optional<HotelContract> contractOptional = contractRepository.findById(contractID);
+
+            if (contractOptional.isPresent()) {
+                HotelContract contract = contractOptional.get();
+
+                if (contract.getIsActive()){
+                    contract.setIsActive(false);
+                }else{
+                    contract.setIsActive(true);
+                }
+
+//                contract.setIsActive(!contract.getIsActive());
+                contract = contractRepository.save(contract);
+                response = convertToDTO(contract);
+                response.setStatusCode(200);
+                response.setMessage("Contract status updated successfully");
+                logger.info("Contract status with ID: {} updated successfully", contractID);
+            } else {
+                response.setStatusCode(404);
+                response.setMessage("Contract not found");
+                logger.warn("Contract with ID: {} not found", contractID);
+            }
+        } catch (Exception e) {
+            response.setStatusCode(500);
+            response.setMessage("Error occurred: " + e.getMessage());
+            logger.error("Error occurred while updating contract status with ID: {}", contractID, e);
+        }
+
+        return response;
     }
 }

@@ -94,6 +94,24 @@ public class ContractController {
         }
     }
 
+    @PutMapping("/update/status/{contractID}")
+    public ResponseEntity<HotelContractDTO> updateContractStatus(@PathVariable Long contractID)
+    {
+        try
+        {
+            HotelContractDTO updatedContract = hotelContractService.updateContractStatus(contractID);
+            return new ResponseEntity<>(updatedContract, HttpStatus.OK);
+        }
+        catch (IllegalArgumentException e)
+        {
+            return error.createContractErrorResponse(e.getMessage(), HttpStatus.NOT_FOUND);
+        }
+        catch (Exception e)
+        {
+            return error.createContractErrorResponse("Error occurred while updating contract", HttpStatus.INTERNAL_SERVER_ERROR);
+        }
+    }
+
     @DeleteMapping("/delete/{contractID}")
     public ResponseEntity<HotelContractDTO> deleteContract(@PathVariable Long contractID)
     {

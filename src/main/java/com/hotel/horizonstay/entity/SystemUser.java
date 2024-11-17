@@ -30,7 +30,7 @@ public class SystemUser implements UserDetails, Serializable {
     private String image;
     private String NIC;
 
-    @OneToMany(mappedBy = "systemUser", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.EAGER)
+    @OneToMany(mappedBy = "systemUser", cascade = CascadeType.ALL, orphanRemoval = true, fetch = FetchType.LAZY)
     private List<Booking> bookings;
 
     @Override
