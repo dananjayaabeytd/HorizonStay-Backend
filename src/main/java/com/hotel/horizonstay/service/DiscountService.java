@@ -36,6 +36,17 @@ public class DiscountService {
 
             if (seasonOptional.isPresent())
             {
+
+                // Check if a discount with the same name already exists in the season
+                Optional<Discount> existingDiscount = discountRepository.findByDiscountNameAndSeasonId(discountDTO.getDiscountName(), seasonID);
+
+                if (existingDiscount.isPresent()) {
+                    res.setStatusCode(409); // Conflict status code
+                    res.setMessage("Discount with the same name already exists in the season");
+                    logger.warn("Discount with name: {} already exists in season with ID: {}", discountDTO.getDiscountName(), seasonID);
+                    return res;
+                }
+
                 Discount discount = new Discount();
                 discount.setDiscountName(discountDTO.getDiscountName());
                 discount.setPercentage(discountDTO.getPercentage());

@@ -7,6 +7,7 @@ import org.springframework.stereotype.Repository;
 
 import java.util.Collection;
 import java.util.List;
+import java.util.Optional;
 
 @Repository
 public interface DiscountRepository extends JpaRepository<Discount, Long>
@@ -15,4 +16,5 @@ public interface DiscountRepository extends JpaRepository<Discount, Long>
 
     Collection<Discount> findDiscountsBySeason(Season highestMarkupSeason);
 
+    Optional<Discount> findByDiscountNameAndSeasonId(String discountName, Long seasonID);
 }
