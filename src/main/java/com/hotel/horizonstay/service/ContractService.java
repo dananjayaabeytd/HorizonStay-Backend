@@ -231,7 +231,7 @@ public class ContractService {
             LocalDate checkOutDate = LocalDate.parse(checkOutDateStr);
             int totalPersons = adults + children;
 
-            List<HotelContract> contractsPage = contractRepository.findContractsByLocationAndDateRange(location, checkInDate, checkOutDate);
+            List<HotelContract> contractsPage = contractRepository.findContractsByLocationAndDateRange(location, checkInDate, checkOutDate).stream().filter(HotelContract::getIsActive).toList();
 
             Map<Long, HotelContract> selectedContracts = new HashMap<>();
 
