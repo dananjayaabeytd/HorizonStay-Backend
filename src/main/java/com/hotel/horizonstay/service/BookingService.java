@@ -15,6 +15,8 @@ import org.springframework.cache.annotation.CacheEvict;
 import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.locks.ReentrantLock;
 import java.util.stream.Collectors;
 
 @Service
@@ -36,6 +38,8 @@ public class BookingService {
 
     @Autowired
     private RoomAvailabilityRepository roomAvailabilityRepository;
+
+    private final ConcurrentHashMap<Long, ReentrantLock> hotelLocks = new ConcurrentHashMap<>();
 
 
     public List<BookingDTO> getBookingsByEmail(String email)
@@ -117,6 +121,15 @@ public class BookingService {
         logger.info("Saving booking for email: {}", bookingDTO.getEmail());
         BookingDTO res = new BookingDTO();
 
+        Long hotelID = bookingDTO.getHotelID();
+        ReentrantLock lock = hotelLocks.computeIfAbsent(hotelID, k -> new ReentrantLock());
+
+        if (!lock.tryLock()) {
+            res.setStatusCode(423); // 423 Locked
+            res.setMessage("Booking is currently in progress for this hotel. Please wait.");
+            return res;
+        }
+
         try
         {
             Booking booking = new Booking();
@@ -168,6 +181,9 @@ public class BookingService {
             logger.error("Error occurred while saving booking for email: {}", bookingDTO.getEmail(), e);
             res.setStatusCode(500);
             res.setMessage("Error occurred while saving booking: " + e.getMessage());
+        } finally
+        {
+            lock.unlock();
         }
 
         return res;
