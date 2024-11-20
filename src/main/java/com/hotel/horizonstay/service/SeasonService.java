@@ -25,28 +25,83 @@ public class SeasonService {
     @Autowired
     private ContractRepository contractRepository;
 
-    public SeasonDTO addSeasonToContract(Long contractId, SeasonDTO seasonDTO)
-    {
+//    public SeasonDTO addSeasonToContract(Long contractId, SeasonDTO seasonDTO)
+//    {
+//        logger.info("Adding season to contract with ID: {}", contractId);
+//        SeasonDTO res = new SeasonDTO();
+//
+//        try
+//        {
+//            Optional<HotelContract> contractOptional = contractRepository.findById(contractId);
+//
+//            if (contractOptional.isPresent())
+//            {
+//                Season season = new Season();
+//                season.setSeasonName(seasonDTO.getSeasonName());
+//                season.setValidFrom(seasonDTO.getValidFrom());
+//                season.setValidTo(seasonDTO.getValidTo());
+//                season.setContract(contractOptional.get());
+//                season = seasonRepository.save(season);
+//
+//                res = convertToDTO(season);
+//                res.setStatusCode(200);
+//                res.setMessage("Season added successfully");
+//                logger.info("Season added successfully to contract with ID: {}", contractId);
+//            }
+//            else
+//            {
+//                res.setStatusCode(404);
+//                res.setMessage("Contract not found");
+//                logger.warn("Contract with ID: {} not found", contractId);
+//            }
+//
+//        }
+//        catch (Exception e)
+//        {
+//            res.setStatusCode(500);
+//            res.setMessage("Error occurred: " + e.getMessage());
+//            logger.error("Error occurred while adding season to contract with ID: {}", contractId, e);
+//        }
+//
+//        return res;
+//    }
+
+    public SeasonDTO addSeasonToContract(Long contractId, SeasonDTO seasonDTO) {
         logger.info("Adding season to contract with ID: {}", contractId);
         SeasonDTO res = new SeasonDTO();
 
-        try
-        {
+        try {
             Optional<HotelContract> contractOptional = contractRepository.findById(contractId);
 
             if (contractOptional.isPresent())
             {
-                Season season = new Season();
-                season.setSeasonName(seasonDTO.getSeasonName());
-                season.setValidFrom(seasonDTO.getValidFrom());
-                season.setValidTo(seasonDTO.getValidTo());
-                season.setContract(contractOptional.get());
-                season = seasonRepository.save(season);
+                List<Season> existingSeasons = seasonRepository.findByContractId(contractId);
 
-                res = convertToDTO(season);
-                res.setStatusCode(200);
-                res.setMessage("Season added successfully");
-                logger.info("Season added successfully to contract with ID: {}", contractId);
+                boolean isOverlapping = existingSeasons.stream().anyMatch(season ->
+                        (seasonDTO.getValidFrom().isBefore(season.getValidTo()) && seasonDTO.getValidTo().isAfter(season.getValidFrom()))
+                );
+
+                if (isOverlapping)
+                {
+                    res.setStatusCode(409);
+                    res.setMessage("Season dates are overlapping with existing seasons");
+                    logger.warn("Season dates are overlapping with existing seasons for contract ID: {}", contractId);
+                }
+                else
+                {
+                    Season season = new Season();
+                    season.setSeasonName(seasonDTO.getSeasonName());
+                    season.setValidFrom(seasonDTO.getValidFrom());
+                    season.setValidTo(seasonDTO.getValidTo());
+                    season.setContract(contractOptional.get());
+                    season = seasonRepository.save(season);
+
+                    res = convertToDTO(season);
+                    res.setStatusCode(200);
+                    res.setMessage("Season added successfully");
+                    logger.info("Season added successfully to contract with ID: {}", contractId);
+                }
+
             }
             else
             {
@@ -54,10 +109,7 @@ public class SeasonService {
                 res.setMessage("Contract not found");
                 logger.warn("Contract with ID: {} not found", contractId);
             }
-
-        }
-        catch (Exception e)
-        {
+        } catch (Exception e) {
             res.setStatusCode(500);
             res.setMessage("Error occurred: " + e.getMessage());
             logger.error("Error occurred while adding season to contract with ID: {}", contractId, e);
