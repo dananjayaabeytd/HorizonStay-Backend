@@ -36,6 +36,17 @@ public class MarkupService {
 
             if (seasonOptional.isPresent())
             {
+
+                // Check if a markup with the same name already exists in the season
+                Optional<Markup> existingMarkup = markupRepository.findByMarkupNameAndSeasonId(markupDTO.getMarkupName(), seasonID);
+
+                if (existingMarkup.isPresent()) {
+                    res.setStatusCode(409); // Conflict status code
+                    res.setMessage("Markup with the same name already exists in the season");
+                    logger.warn("Markup with name: {} already exists in season with ID: {}", markupDTO.getMarkupName(), seasonID);
+                    return res;
+                }
+
                 Markup markup = new Markup();
                 markup.setMarkupName(markupDTO.getMarkupName());
                 markup.setPercentage((float) markupDTO.getPercentage());
