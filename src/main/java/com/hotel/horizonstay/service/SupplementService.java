@@ -36,6 +36,16 @@ public class SupplementService {
 
             if (seasonOptional.isPresent())
             {
+                // Check if a supplement with the same name already exists in the season
+                Optional<Supplement> existingSupplement = supplementRepository.findBySupplementNameAndSeasonId(supplementDTO.getSupplementName(), seasonID);
+
+                if (existingSupplement.isPresent()) {
+                    res.setStatusCode(409); // Conflict status code
+                    res.setMessage("Supplement with the same name already exists in the season");
+                    logger.warn("Supplement with name: {} already exists in season with ID: {}", supplementDTO.getSupplementName(), seasonID);
+                    return res;
+                }
+
                 Supplement supplement = new Supplement();
                 supplement.setSupplementName(supplementDTO.getSupplementName());
                 supplement.setPrice(supplementDTO.getPrice());
